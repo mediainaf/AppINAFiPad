@@ -26,6 +26,7 @@
 		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
 		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
 		0386A1E31933BBD50043347F /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386A1E21933BBD50043347F /* News.m */; };
+		03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C49BE119421D6300454BC2 /* LICENSE.txt */; };
 		03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
 		03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA519337AB3001823F4 /* CoreGraphics.framework */; };
 		03DEDAA819337AB3001823F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA719337AB3001823F4 /* UIKit.framework */; };
@@ -107,6 +108,7 @@
 		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
 		0386A1E11933BBD50043347F /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		0386A1E21933BBD50043347F /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		03C49BE119421D6300454BC2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		03DEDAA019337AB3001823F4 /* INAF iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "INAF iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DEDAA319337AB3001823F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		03DEDAA519337AB3001823F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -279,6 +281,7 @@
 		03DEDAAA19337AB3001823F4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				03C49BE119421D6300454BC2 /* LICENSE.txt */,
 				03DEDAAB19337AB3001823F4 /* INAF iPad-Info.plist */,
 				03DEDAAC19337AB3001823F4 /* InfoPlist.strings */,
 				03DEDAAF19337AB3001823F4 /* main.m */,
@@ -466,6 +469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */,
 				03DEDAE619337CC6001823F4 /* ViewControllerFive.xib in Resources */,
 				03DEDAF719337F18001823F4 /* Assets in Resources */,
 				03DEDB061933865F001823F4 /* VideoCell.xib in Resources */,
