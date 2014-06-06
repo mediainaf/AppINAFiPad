@@ -1,0 +1,747 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		034DF0941934ED7600886FFD /* ParserThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0931934ED7600886FFD /* ParserThumbnail.m */; };
+		034DF0971934EE0E00886FFD /* ParserImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0961934EE0E00886FFD /* ParserImages.m */; };
+		034DF09A1934F22900886FFD /* EventsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0991934F22900886FFD /* EventsCell.m */; };
+		034DF09C1934F23500886FFD /* EventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF09B1934F23500886FFD /* EventsCell.xib */; };
+		034DF0A01934F49800886FFD /* DetailEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF09E1934F49800886FFD /* DetailEventsViewController.m */; };
+		034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF09F1934F49800886FFD /* DetailEventsViewController.xib */; };
+		034DF0A5193504B000886FFD /* MapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0A3193504B000886FFD /* MapsViewController.m */; };
+		034DF0A6193504B000886FFD /* MapsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0A4193504B000886FFD /* MapsViewController.xib */; };
+		034DF0AA193504C600886FFD /* JobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0A8193504C600886FFD /* JobsViewController.m */; };
+		034DF0AB193504C600886FFD /* JobsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0A9193504C600886FFD /* JobsViewController.xib */; };
+		034DF0AF193504DB00886FFD /* AppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0AD193504DB00886FFD /* AppsViewController.m */; };
+		034DF0B0193504DB00886FFD /* AppsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0AE193504DB00886FFD /* AppsViewController.xib */; };
+		034DF0B81935064500886FFD /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B21935064500886FFD /* Annotation.m */; };
+		034DF0B91935064500886FFD /* Istituto.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B41935064500886FFD /* Istituto.m */; };
+		034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B61935064500886FFD /* ViewControllerAnnotation.m */; };
+		034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */; };
+		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
+		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
+		0386A1E31933BBD50043347F /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386A1E21933BBD50043347F /* News.m */; };
+		03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
+		03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA519337AB3001823F4 /* CoreGraphics.framework */; };
+		03DEDAA819337AB3001823F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA719337AB3001823F4 /* UIKit.framework */; };
+		03DEDAAE19337AB3001823F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAAC19337AB3001823F4 /* InfoPlist.strings */; };
+		03DEDAB019337AB3001823F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAAF19337AB3001823F4 /* main.m */; };
+		03DEDAB419337AB3001823F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAB319337AB3001823F4 /* AppDelegate.m */; };
+		03DEDABC19337AB3001823F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDABB19337AB3001823F4 /* Images.xcassets */; };
+		03DEDAC319337AB3001823F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAC219337AB3001823F4 /* XCTest.framework */; };
+		03DEDAC419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
+		03DEDAC519337AB3001823F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA719337AB3001823F4 /* UIKit.framework */; };
+		03DEDACD19337AB3001823F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDACB19337AB3001823F4 /* InfoPlist.strings */; };
+		03DEDACF19337AB3001823F4 /* INAF_iPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDACE19337AB3001823F4 /* INAF_iPadTests.m */; };
+		03DEDADB19337AC7001823F4 /* ViewControllerOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAD919337AC7001823F4 /* ViewControllerOne.m */; };
+		03DEDADC19337AC7001823F4 /* ViewControllerOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDADA19337AC7001823F4 /* ViewControllerOne.xib */; };
+		03DEDAE519337CC6001823F4 /* ViewControllerFive.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAE319337CC6001823F4 /* ViewControllerFive.m */; };
+		03DEDAE619337CC6001823F4 /* ViewControllerFive.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAE419337CC6001823F4 /* ViewControllerFive.xib */; };
+		03DEDAEA19337CD8001823F4 /* ViewControllerFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAE819337CD8001823F4 /* ViewControllerFour.m */; };
+		03DEDAEB19337CD8001823F4 /* ViewControllerFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAE919337CD8001823F4 /* ViewControllerFour.xib */; };
+		03DEDAEF19337CE5001823F4 /* ViewControllerThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAED19337CE5001823F4 /* ViewControllerThree.m */; };
+		03DEDAF019337CE5001823F4 /* ViewControllerThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAEE19337CE5001823F4 /* ViewControllerThree.xib */; };
+		03DEDAF419337CF0001823F4 /* ViewControllerTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAF219337CF0001823F4 /* ViewControllerTwo.m */; };
+		03DEDAF519337CF0001823F4 /* ViewControllerTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAF319337CF0001823F4 /* ViewControllerTwo.xib */; };
+		03DEDAF719337F18001823F4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAF619337F18001823F4 /* Assets */; };
+		03DEDAFB19338225001823F4 /* ViewControllerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAF919338225001823F4 /* ViewControllerInfo.m */; };
+		03DEDAFC19338225001823F4 /* ViewControllerInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAFA19338225001823F4 /* ViewControllerInfo.xib */; };
+		03DEDB00193382A7001823F4 /* ViewControllerCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDAFE193382A7001823F4 /* ViewControllerCredits.m */; };
+		03DEDB01193382A7001823F4 /* ViewControllerCredits.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDAFF193382A7001823F4 /* ViewControllerCredits.xib */; };
+		03DEDB0419338651001823F4 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB0319338651001823F4 /* VideoCell.m */; };
+		03DEDB061933865F001823F4 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDB051933865F001823F4 /* VideoCell.xib */; };
+		03DEDB0919338765001823F4 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB0819338765001823F4 /* Video.m */; };
+		03DEDB0D19338FB0001823F4 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */; };
+		03DEDB0E19338FB0001823F4 /* DetailVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */; };
+		03DEDB1219339D0F001823F4 /* ViewControllerVideoYoutube.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */; };
+		03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */; };
+		03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */; };
+		03E67B241935F4F000C0E4AB /* DetailNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */; };
+		03E67B2719361AD000C0E4AB /* Telescope.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E67B2619361AD000C0E4AB /* Telescope.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03DEDAC619337AB3001823F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03DEDA9819337AB3001823F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03DEDA9F19337AB3001823F4;
+			remoteInfo = "INAF iPad";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		034DF0921934ED7600886FFD /* ParserThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserThumbnail.h; sourceTree = "<group>"; };
+		034DF0931934ED7600886FFD /* ParserThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserThumbnail.m; sourceTree = "<group>"; };
+		034DF0951934EE0E00886FFD /* ParserImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserImages.h; sourceTree = "<group>"; };
+		034DF0961934EE0E00886FFD /* ParserImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserImages.m; sourceTree = "<group>"; };
+		034DF0981934F22900886FFD /* EventsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsCell.h; sourceTree = "<group>"; };
+		034DF0991934F22900886FFD /* EventsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsCell.m; sourceTree = "<group>"; };
+		034DF09B1934F23500886FFD /* EventsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsCell.xib; sourceTree = "<group>"; };
+		034DF09D1934F49800886FFD /* DetailEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailEventsViewController.h; sourceTree = "<group>"; };
+		034DF09E1934F49800886FFD /* DetailEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailEventsViewController.m; sourceTree = "<group>"; };
+		034DF09F1934F49800886FFD /* DetailEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailEventsViewController.xib; sourceTree = "<group>"; };
+		034DF0A2193504B000886FFD /* MapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapsViewController.h; sourceTree = "<group>"; };
+		034DF0A3193504B000886FFD /* MapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapsViewController.m; sourceTree = "<group>"; };
+		034DF0A4193504B000886FFD /* MapsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapsViewController.xib; sourceTree = "<group>"; };
+		034DF0A7193504C600886FFD /* JobsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsViewController.h; sourceTree = "<group>"; };
+		034DF0A8193504C600886FFD /* JobsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsViewController.m; sourceTree = "<group>"; };
+		034DF0A9193504C600886FFD /* JobsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobsViewController.xib; sourceTree = "<group>"; };
+		034DF0AC193504DB00886FFD /* AppsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsViewController.h; sourceTree = "<group>"; };
+		034DF0AD193504DB00886FFD /* AppsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppsViewController.m; sourceTree = "<group>"; };
+		034DF0AE193504DB00886FFD /* AppsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppsViewController.xib; sourceTree = "<group>"; };
+		034DF0B11935064500886FFD /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		034DF0B21935064500886FFD /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		034DF0B31935064500886FFD /* Istituto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Istituto.h; sourceTree = "<group>"; };
+		034DF0B41935064500886FFD /* Istituto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Istituto.m; sourceTree = "<group>"; };
+		034DF0B51935064500886FFD /* ViewControllerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerAnnotation.h; sourceTree = "<group>"; };
+		034DF0B61935064500886FFD /* ViewControllerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerAnnotation.m; sourceTree = "<group>"; };
+		034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerAnnotation.xib; sourceTree = "<group>"; };
+		03751C931940A43B00FF31D5 /* AppTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableCell.xib; sourceTree = "<group>"; };
+		03751C951940A45900FF31D5 /* AppTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTableCell.h; sourceTree = "<group>"; };
+		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
+		0386A1E11933BBD50043347F /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		0386A1E21933BBD50043347F /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		03DEDAA019337AB3001823F4 /* INAF iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "INAF iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03DEDAA319337AB3001823F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		03DEDAA519337AB3001823F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		03DEDAA719337AB3001823F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		03DEDAAB19337AB3001823F4 /* INAF iPad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "INAF iPad-Info.plist"; sourceTree = "<group>"; };
+		03DEDAAD19337AB3001823F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03DEDAAF19337AB3001823F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		03DEDAB119337AB3001823F4 /* INAF iPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "INAF iPad-Prefix.pch"; sourceTree = "<group>"; };
+		03DEDAB219337AB3001823F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		03DEDAB319337AB3001823F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		03DEDABB19337AB3001823F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		03DEDAC119337AB3001823F4 /* INAF iPadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "INAF iPadTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03DEDAC219337AB3001823F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		03DEDACA19337AB3001823F4 /* INAF iPadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "INAF iPadTests-Info.plist"; sourceTree = "<group>"; };
+		03DEDACC19337AB3001823F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03DEDACE19337AB3001823F4 /* INAF_iPadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INAF_iPadTests.m; sourceTree = "<group>"; };
+		03DEDAD819337AC7001823F4 /* ViewControllerOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerOne.h; sourceTree = "<group>"; };
+		03DEDAD919337AC7001823F4 /* ViewControllerOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerOne.m; sourceTree = "<group>"; };
+		03DEDADA19337AC7001823F4 /* ViewControllerOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerOne.xib; sourceTree = "<group>"; };
+		03DEDAE219337CC6001823F4 /* ViewControllerFive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerFive.h; sourceTree = "<group>"; };
+		03DEDAE319337CC6001823F4 /* ViewControllerFive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFive.m; sourceTree = "<group>"; };
+		03DEDAE419337CC6001823F4 /* ViewControllerFive.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerFive.xib; sourceTree = "<group>"; };
+		03DEDAE719337CD8001823F4 /* ViewControllerFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerFour.h; sourceTree = "<group>"; };
+		03DEDAE819337CD8001823F4 /* ViewControllerFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerFour.m; sourceTree = "<group>"; };
+		03DEDAE919337CD8001823F4 /* ViewControllerFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerFour.xib; sourceTree = "<group>"; };
+		03DEDAEC19337CE5001823F4 /* ViewControllerThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerThree.h; sourceTree = "<group>"; };
+		03DEDAED19337CE5001823F4 /* ViewControllerThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerThree.m; sourceTree = "<group>"; };
+		03DEDAEE19337CE5001823F4 /* ViewControllerThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerThree.xib; sourceTree = "<group>"; };
+		03DEDAF119337CF0001823F4 /* ViewControllerTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerTwo.h; sourceTree = "<group>"; };
+		03DEDAF219337CF0001823F4 /* ViewControllerTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTwo.m; sourceTree = "<group>"; };
+		03DEDAF319337CF0001823F4 /* ViewControllerTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerTwo.xib; sourceTree = "<group>"; };
+		03DEDAF619337F18001823F4 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		03DEDAF819338225001823F4 /* ViewControllerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerInfo.h; sourceTree = "<group>"; };
+		03DEDAF919338225001823F4 /* ViewControllerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerInfo.m; sourceTree = "<group>"; };
+		03DEDAFA19338225001823F4 /* ViewControllerInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerInfo.xib; sourceTree = "<group>"; };
+		03DEDAFD193382A7001823F4 /* ViewControllerCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCredits.h; sourceTree = "<group>"; };
+		03DEDAFE193382A7001823F4 /* ViewControllerCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCredits.m; sourceTree = "<group>"; };
+		03DEDAFF193382A7001823F4 /* ViewControllerCredits.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerCredits.xib; sourceTree = "<group>"; };
+		03DEDB0219338651001823F4 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		03DEDB0319338651001823F4 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		03DEDB051933865F001823F4 /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
+		03DEDB0719338765001823F4 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		03DEDB0819338765001823F4 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		03DEDB0A19338FB0001823F4 /* DetailVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewController.h; sourceTree = "<group>"; };
+		03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewController.m; sourceTree = "<group>"; };
+		03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVideoViewController.xib; sourceTree = "<group>"; };
+		03DEDB0F19339D0F001823F4 /* ViewControllerVideoYoutube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerVideoYoutube.h; sourceTree = "<group>"; };
+		03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerVideoYoutube.m; sourceTree = "<group>"; };
+		03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerVideoYoutube.xib; sourceTree = "<group>"; };
+		03E67B201935F4F000C0E4AB /* DetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNewsViewController.h; sourceTree = "<group>"; };
+		03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNewsViewController.m; sourceTree = "<group>"; };
+		03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNewsViewController.xib; sourceTree = "<group>"; };
+		03E67B2519361AD000C0E4AB /* Telescope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Telescope.h; sourceTree = "<group>"; };
+		03E67B2619361AD000C0E4AB /* Telescope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Telescope.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03DEDA9D19337AB3001823F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */,
+				03DEDAA819337AB3001823F4 /* UIKit.framework in Frameworks */,
+				03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03DEDABE19337AB3001823F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDAC319337AB3001823F4 /* XCTest.framework in Frameworks */,
+				03DEDAC519337AB3001823F4 /* UIKit.framework in Frameworks */,
+				03DEDAC419337AB3001823F4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0386A1DE1933B8490043347F /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				034DF0AC193504DB00886FFD /* AppsViewController.h */,
+				034DF0AD193504DB00886FFD /* AppsViewController.m */,
+				034DF0AE193504DB00886FFD /* AppsViewController.xib */,
+				03751C951940A45900FF31D5 /* AppTableCell.h */,
+				03751C961940A45900FF31D5 /* AppTableCell.m */,
+				03751C931940A43B00FF31D5 /* AppTableCell.xib */,
+			);
+			name = Apps;
+			sourceTree = "<group>";
+		};
+		0386A1DF1933B84F0043347F /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				034DF0B11935064500886FFD /* Annotation.h */,
+				034DF0B21935064500886FFD /* Annotation.m */,
+				034DF0B31935064500886FFD /* Istituto.h */,
+				034DF0B41935064500886FFD /* Istituto.m */,
+				034DF0B51935064500886FFD /* ViewControllerAnnotation.h */,
+				034DF0B61935064500886FFD /* ViewControllerAnnotation.m */,
+				034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */,
+				034DF0A2193504B000886FFD /* MapsViewController.h */,
+				034DF0A3193504B000886FFD /* MapsViewController.m */,
+				034DF0A4193504B000886FFD /* MapsViewController.xib */,
+				03E67B2519361AD000C0E4AB /* Telescope.h */,
+				03E67B2619361AD000C0E4AB /* Telescope.m */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		0386A1E01933B8550043347F /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				034DF0A7193504C600886FFD /* JobsViewController.h */,
+				034DF0A8193504C600886FFD /* JobsViewController.m */,
+				034DF0A9193504C600886FFD /* JobsViewController.xib */,
+			);
+			name = Jobs;
+			sourceTree = "<group>";
+		};
+		03DEDA9719337AB3001823F4 = {
+			isa = PBXGroup;
+			children = (
+				03DEDAA919337AB3001823F4 /* INAF iPad */,
+				03DEDAC819337AB3001823F4 /* INAF iPadTests */,
+				03DEDAA219337AB3001823F4 /* Frameworks */,
+				03DEDAA119337AB3001823F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03DEDAA119337AB3001823F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAA019337AB3001823F4 /* INAF iPad.app */,
+				03DEDAC119337AB3001823F4 /* INAF iPadTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03DEDAA219337AB3001823F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAA319337AB3001823F4 /* Foundation.framework */,
+				03DEDAA519337AB3001823F4 /* CoreGraphics.framework */,
+				03DEDAA719337AB3001823F4 /* UIKit.framework */,
+				03DEDAC219337AB3001823F4 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03DEDAA919337AB3001823F4 /* INAF iPad */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAF619337F18001823F4 /* Assets */,
+				03DEDAE119337CA5001823F4 /* Five */,
+				03DEDAE019337CA1001823F4 /* Four */,
+				03DEDADF19337C9C001823F4 /* Three */,
+				03DEDADE19337C94001823F4 /* Two */,
+				03DEDADD19337C8C001823F4 /* One */,
+				03DEDAB219337AB3001823F4 /* AppDelegate.h */,
+				03DEDAB319337AB3001823F4 /* AppDelegate.m */,
+				03DEDABB19337AB3001823F4 /* Images.xcassets */,
+				03DEDAAA19337AB3001823F4 /* Supporting Files */,
+			);
+			path = "INAF iPad";
+			sourceTree = "<group>";
+		};
+		03DEDAAA19337AB3001823F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAAB19337AB3001823F4 /* INAF iPad-Info.plist */,
+				03DEDAAC19337AB3001823F4 /* InfoPlist.strings */,
+				03DEDAAF19337AB3001823F4 /* main.m */,
+				03DEDAB119337AB3001823F4 /* INAF iPad-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03DEDAC819337AB3001823F4 /* INAF iPadTests */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDACE19337AB3001823F4 /* INAF_iPadTests.m */,
+				03DEDAC919337AB3001823F4 /* Supporting Files */,
+			);
+			path = "INAF iPadTests";
+			sourceTree = "<group>";
+		};
+		03DEDAC919337AB3001823F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDACA19337AB3001823F4 /* INAF iPadTests-Info.plist */,
+				03DEDACB19337AB3001823F4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03DEDADD19337C8C001823F4 /* One */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAD819337AC7001823F4 /* ViewControllerOne.h */,
+				03DEDAD919337AC7001823F4 /* ViewControllerOne.m */,
+				03DEDADA19337AC7001823F4 /* ViewControllerOne.xib */,
+				03DEDAF819338225001823F4 /* ViewControllerInfo.h */,
+				03DEDAF919338225001823F4 /* ViewControllerInfo.m */,
+				03DEDAFA19338225001823F4 /* ViewControllerInfo.xib */,
+				03DEDAFD193382A7001823F4 /* ViewControllerCredits.h */,
+				03DEDAFE193382A7001823F4 /* ViewControllerCredits.m */,
+				03DEDAFF193382A7001823F4 /* ViewControllerCredits.xib */,
+			);
+			name = One;
+			sourceTree = "<group>";
+		};
+		03DEDADE19337C94001823F4 /* Two */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAF119337CF0001823F4 /* ViewControllerTwo.h */,
+				03DEDAF219337CF0001823F4 /* ViewControllerTwo.m */,
+				03DEDAF319337CF0001823F4 /* ViewControllerTwo.xib */,
+				03E67B201935F4F000C0E4AB /* DetailNewsViewController.h */,
+				03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */,
+				03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */,
+			);
+			name = Two;
+			sourceTree = "<group>";
+		};
+		03DEDADF19337C9C001823F4 /* Three */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDAEC19337CE5001823F4 /* ViewControllerThree.h */,
+				03DEDAED19337CE5001823F4 /* ViewControllerThree.m */,
+				03DEDAEE19337CE5001823F4 /* ViewControllerThree.xib */,
+				0386A1E11933BBD50043347F /* News.h */,
+				0386A1E21933BBD50043347F /* News.m */,
+				034DF0921934ED7600886FFD /* ParserThumbnail.h */,
+				034DF0931934ED7600886FFD /* ParserThumbnail.m */,
+				034DF0951934EE0E00886FFD /* ParserImages.h */,
+				034DF0961934EE0E00886FFD /* ParserImages.m */,
+				034DF0981934F22900886FFD /* EventsCell.h */,
+				034DF0991934F22900886FFD /* EventsCell.m */,
+				034DF09B1934F23500886FFD /* EventsCell.xib */,
+				034DF09D1934F49800886FFD /* DetailEventsViewController.h */,
+				034DF09E1934F49800886FFD /* DetailEventsViewController.m */,
+				034DF09F1934F49800886FFD /* DetailEventsViewController.xib */,
+			);
+			name = Three;
+			sourceTree = "<group>";
+		};
+		03DEDAE019337CA1001823F4 /* Four */ = {
+			isa = PBXGroup;
+			children = (
+				03DEDB0719338765001823F4 /* Video.h */,
+				03DEDB0819338765001823F4 /* Video.m */,
+				03DEDAE719337CD8001823F4 /* ViewControllerFour.h */,
+				03DEDAE819337CD8001823F4 /* ViewControllerFour.m */,
+				03DEDAE919337CD8001823F4 /* ViewControllerFour.xib */,
+				03DEDB0219338651001823F4 /* VideoCell.h */,
+				03DEDB0319338651001823F4 /* VideoCell.m */,
+				03DEDB051933865F001823F4 /* VideoCell.xib */,
+				03DEDB0A19338FB0001823F4 /* DetailVideoViewController.h */,
+				03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */,
+				03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */,
+				03DEDB0F19339D0F001823F4 /* ViewControllerVideoYoutube.h */,
+				03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */,
+				03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */,
+			);
+			name = Four;
+			sourceTree = "<group>";
+		};
+		03DEDAE119337CA5001823F4 /* Five */ = {
+			isa = PBXGroup;
+			children = (
+				0386A1E01933B8550043347F /* Jobs */,
+				0386A1DF1933B84F0043347F /* Maps */,
+				0386A1DE1933B8490043347F /* Apps */,
+				03DEDAE219337CC6001823F4 /* ViewControllerFive.h */,
+				03DEDAE319337CC6001823F4 /* ViewControllerFive.m */,
+				03DEDAE419337CC6001823F4 /* ViewControllerFive.xib */,
+			);
+			name = Five;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03DEDA9F19337AB3001823F4 /* INAF iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03DEDAD219337AB3001823F4 /* Build configuration list for PBXNativeTarget "INAF iPad" */;
+			buildPhases = (
+				03DEDA9C19337AB3001823F4 /* Sources */,
+				03DEDA9D19337AB3001823F4 /* Frameworks */,
+				03DEDA9E19337AB3001823F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "INAF iPad";
+			productName = "INAF iPad";
+			productReference = 03DEDAA019337AB3001823F4 /* INAF iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		03DEDAC019337AB3001823F4 /* INAF iPadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03DEDAD519337AB3001823F4 /* Build configuration list for PBXNativeTarget "INAF iPadTests" */;
+			buildPhases = (
+				03DEDABD19337AB3001823F4 /* Sources */,
+				03DEDABE19337AB3001823F4 /* Frameworks */,
+				03DEDABF19337AB3001823F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03DEDAC719337AB3001823F4 /* PBXTargetDependency */,
+			);
+			name = "INAF iPadTests";
+			productName = "INAF iPadTests";
+			productReference = 03DEDAC119337AB3001823F4 /* INAF iPadTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03DEDA9819337AB3001823F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Nicolo' Parmiggiani";
+				TargetAttributes = {
+					03DEDAC019337AB3001823F4 = {
+						TestTargetID = 03DEDA9F19337AB3001823F4;
+					};
+				};
+			};
+			buildConfigurationList = 03DEDA9B19337AB3001823F4 /* Build configuration list for PBXProject "INAF iPad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 03DEDA9719337AB3001823F4;
+			productRefGroup = 03DEDAA119337AB3001823F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03DEDA9F19337AB3001823F4 /* INAF iPad */,
+				03DEDAC019337AB3001823F4 /* INAF iPadTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03DEDA9E19337AB3001823F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDAE619337CC6001823F4 /* ViewControllerFive.xib in Resources */,
+				03DEDAF719337F18001823F4 /* Assets in Resources */,
+				03DEDB061933865F001823F4 /* VideoCell.xib in Resources */,
+				03DEDADC19337AC7001823F4 /* ViewControllerOne.xib in Resources */,
+				03E67B241935F4F000C0E4AB /* DetailNewsViewController.xib in Resources */,
+				034DF0B0193504DB00886FFD /* AppsViewController.xib in Resources */,
+				034DF09C1934F23500886FFD /* EventsCell.xib in Resources */,
+				03DEDABC19337AB3001823F4 /* Images.xcassets in Resources */,
+				03DEDAEB19337CD8001823F4 /* ViewControllerFour.xib in Resources */,
+				034DF0AB193504C600886FFD /* JobsViewController.xib in Resources */,
+				034DF0A6193504B000886FFD /* MapsViewController.xib in Resources */,
+				034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */,
+				03DEDB01193382A7001823F4 /* ViewControllerCredits.xib in Resources */,
+				03DEDB0E19338FB0001823F4 /* DetailVideoViewController.xib in Resources */,
+				03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */,
+				03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */,
+				034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */,
+				03DEDAAE19337AB3001823F4 /* InfoPlist.strings in Resources */,
+				03DEDAF519337CF0001823F4 /* ViewControllerTwo.xib in Resources */,
+				03DEDAF019337CE5001823F4 /* ViewControllerThree.xib in Resources */,
+				03DEDAFC19338225001823F4 /* ViewControllerInfo.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03DEDABF19337AB3001823F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDACD19337AB3001823F4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03DEDA9C19337AB3001823F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDAE519337CC6001823F4 /* ViewControllerFive.m in Sources */,
+				03DEDB0419338651001823F4 /* VideoCell.m in Sources */,
+				03DEDADB19337AC7001823F4 /* ViewControllerOne.m in Sources */,
+				03DEDAFB19338225001823F4 /* ViewControllerInfo.m in Sources */,
+				03DEDAEA19337CD8001823F4 /* ViewControllerFour.m in Sources */,
+				03751C971940A45900FF31D5 /* AppTableCell.m in Sources */,
+				03DEDAEF19337CE5001823F4 /* ViewControllerThree.m in Sources */,
+				034DF0941934ED7600886FFD /* ParserThumbnail.m in Sources */,
+				034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */,
+				03E67B2719361AD000C0E4AB /* Telescope.m in Sources */,
+				03DEDAF419337CF0001823F4 /* ViewControllerTwo.m in Sources */,
+				034DF0AF193504DB00886FFD /* AppsViewController.m in Sources */,
+				034DF0AA193504C600886FFD /* JobsViewController.m in Sources */,
+				03DEDB1219339D0F001823F4 /* ViewControllerVideoYoutube.m in Sources */,
+				0386A1E31933BBD50043347F /* News.m in Sources */,
+				03DEDB0D19338FB0001823F4 /* DetailVideoViewController.m in Sources */,
+				03DEDAB419337AB3001823F4 /* AppDelegate.m in Sources */,
+				034DF0A01934F49800886FFD /* DetailEventsViewController.m in Sources */,
+				034DF0971934EE0E00886FFD /* ParserImages.m in Sources */,
+				03DEDB0919338765001823F4 /* Video.m in Sources */,
+				03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */,
+				034DF09A1934F22900886FFD /* EventsCell.m in Sources */,
+				034DF0B81935064500886FFD /* Annotation.m in Sources */,
+				03DEDAB019337AB3001823F4 /* main.m in Sources */,
+				034DF0B91935064500886FFD /* Istituto.m in Sources */,
+				034DF0A5193504B000886FFD /* MapsViewController.m in Sources */,
+				03DEDB00193382A7001823F4 /* ViewControllerCredits.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03DEDABD19337AB3001823F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DEDACF19337AB3001823F4 /* INAF_iPadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03DEDAC719337AB3001823F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03DEDA9F19337AB3001823F4 /* INAF iPad */;
+			targetProxy = 03DEDAC619337AB3001823F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		03DEDAAC19337AB3001823F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03DEDAAD19337AB3001823F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		03DEDACB19337AB3001823F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03DEDACC19337AB3001823F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		03DEDAD019337AB3001823F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		03DEDAD119337AB3001823F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03DEDAD319337AB3001823F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "INAF iPad/INAF iPad-Prefix.pch";
+				INFOPLIST_FILE = "INAF iPad/INAF iPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		03DEDAD419337AB3001823F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "INAF iPad/INAF iPad-Prefix.pch";
+				INFOPLIST_FILE = "INAF iPad/INAF iPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		03DEDAD619337AB3001823F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/INAF iPad.app/INAF iPad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "INAF iPad/INAF iPad-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "INAF iPadTests/INAF iPadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		03DEDAD719337AB3001823F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/INAF iPad.app/INAF iPad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "INAF iPad/INAF iPad-Prefix.pch";
+				INFOPLIST_FILE = "INAF iPadTests/INAF iPadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03DEDA9B19337AB3001823F4 /* Build configuration list for PBXProject "INAF iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03DEDAD019337AB3001823F4 /* Debug */,
+				03DEDAD119337AB3001823F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03DEDAD219337AB3001823F4 /* Build configuration list for PBXNativeTarget "INAF iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03DEDAD319337AB3001823F4 /* Debug */,
+				03DEDAD419337AB3001823F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03DEDAD519337AB3001823F4 /* Build configuration list for PBXNativeTarget "INAF iPadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03DEDAD619337AB3001823F4 /* Debug */,
+				03DEDAD719337AB3001823F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03DEDA9819337AB3001823F4 /* Project object */;
+}
