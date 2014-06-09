@@ -303,7 +303,7 @@ finish:
 
     
     load = 0;
-    self.title = @"Events";
+    self.title = @"News";
     
     [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
     

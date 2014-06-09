@@ -17,10 +17,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *bottApps;
 @property (strong, nonatomic) IBOutlet UIButton *bottMaps;
 @property (strong, nonatomic) IBOutlet UIButton *bottJobs;
+@property (strong, nonatomic) IBOutlet UIButton *bottProgettiDaTerra;
+@property (strong, nonatomic) IBOutlet UIButton *bottProgettiSpaziali;
 
 
 - (IBAction)openApps:(id)sender;
 - (IBAction)openMaps:(id)sender;
 - (IBAction)openJobs:(id)sender;
+- (IBAction)openProgettiSpaziali:(id)sender;
+
+- (IBAction)openProgettiDaTerra:(id)sender;
 
 @end

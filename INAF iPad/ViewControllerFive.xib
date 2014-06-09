@@ -9,6 +9,8 @@
                 <outlet property="bottApps" destination="DG9-oY-tl1" id="7mw-oc-h53"/>
                 <outlet property="bottJobs" destination="A5a-YI-s1e" id="Ask-E2-UP5"/>
                 <outlet property="bottMaps" destination="E8G-Pw-ifd" id="yFQ-Rp-vh3"/>
+                <outlet property="bottProgettiDaTerra" destination="gyL-iX-tSW" id="iXX-Ng-Tk7"/>
+                <outlet property="bottProgettiSpaziali" destination="oZs-8K-ddf" id="R2c-rv-IkI"/>
                 <outlet property="sfondoView" destination="fWq-Rq-RYn" id="I1U-ZM-ojA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,7 +30,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3BE-Qa-CBf">
-                    <rect key="frame" x="0.0" y="72" width="768" height="226"/>
+                    <rect key="frame" x="0.0" y="72" width="768" height="382"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -45,7 +47,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8G-Pw-ifd">
                     <rect key="frame" x="20" y="150" width="297" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Mappa">
+                    <state key="normal" title="Sedi">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -53,13 +55,33 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5a-YI-s1e">
-                    <rect key="frame" x="20" y="228" width="297" height="70"/>
+                    <rect key="frame" x="20" y="384" width="297" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Jobs">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="openJobs:" destination="-1" eventType="touchUpInside" id="Wyb-Hb-ZrA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZs-8K-ddf">
+                    <rect key="frame" x="20" y="306" width="297" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Progetti Spaziali">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openProgettiSpaziali:" destination="-1" eventType="touchUpInside" id="3yO-nm-gsb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyL-iX-tSW">
+                    <rect key="frame" x="20" y="228" width="297" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Progetti da Terra">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="openProgettiDaTerra:" destination="-1" eventType="touchUpInside" id="5ur-xW-Dha"/>
                     </connections>
                 </button>
             </subviews>

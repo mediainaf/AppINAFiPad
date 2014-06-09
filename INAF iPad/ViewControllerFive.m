@@ -12,6 +12,8 @@
 #import "AppsViewController.h"
 #import "JobsViewController.h"
 #import "MapsViewController.h"
+#import "EarthProjViewController.h"
+#import "SpaceProjViewController.h"
 
 
 
@@ -35,8 +37,10 @@
     self.title= @"More";
     
     [self.bottApps setImage:[UIImage imageNamed:@"Assets/bottoneApps.png"] forState:UIControlStateNormal];
-    [self.bottMaps setImage:[UIImage imageNamed:@"Assets/bottoneMaps.png"] forState:UIControlStateNormal];
+    [self.bottMaps setImage:[UIImage imageNamed:@"Assets/bottoneSedi.png"] forState:UIControlStateNormal];
     [self.bottJobs setImage:[UIImage imageNamed:@"Assets/bottoneJobs.png"] forState:UIControlStateNormal];
+    [self.bottProgettiDaTerra setImage:[UIImage imageNamed:@"Assets/bottoneTelescopi.png"] forState:UIControlStateNormal];
+    [self.bottProgettiSpaziali setImage:[UIImage imageNamed:@"Assets/bottoneSatelliti.png"] forState:UIControlStateNormal];
 
     
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
@@ -74,7 +78,21 @@
 
 }
 
+- (IBAction)openProgettiSpaziali:(id)sender
+{
+    SpaceProjViewController * space = [[SpaceProjViewController alloc] initWithNibName:@"SpaceProjViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:space animated:YES];
+}
 
+
+- (IBAction)openProgettiDaTerra:(id)sender
+{
+    EarthProjViewController * earth = [[EarthProjViewController alloc] initWithNibName:@"EarthProjViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:earth animated:YES];
+    
+}
 
 
 @end

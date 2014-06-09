@@ -185,7 +185,7 @@
     }
 }
 
--(void) apriEvento : (id) sender
+-(void) openInstitute : (id) sender
 {
     
     
@@ -287,32 +287,30 @@
         
         va.view.frame = calloutViewFrame;
         
-        va.view.layer.cornerRadius = 5;
-        va.view.layer.masksToBounds = YES;
+        //va.view.layer.cornerRadius = 5;
+        //va.view.layer.masksToBounds = YES;
+        // border radius
+        //[va.view.layer setCornerRadius:5.0f];
         
-        if(self.segmentController.selectedSegmentIndex == 0)
-        {
+        // border
+       // [va.view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+       // [va.view.layer setBorderWidth:0.5f];
+    
+        // drop shadow
+        [va.view.layer setShadowColor:[UIColor blackColor].CGColor];
+        [va.view.layer setShadowOpacity:0.8];
+        [va.view.layer setShadowRadius:3.0];
+        [va.view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+        Istituto * i = [istituti objectAtIndex:Tag];
         
-            Istituto * i = [istituti objectAtIndex:Tag];
+        [va.nome setText:i.name];
+        [va.phone setText:i.phone];
+        [va.link setText:i.website];
+        [va.address setText:i.address];
             
-            [va.nome setText:i.name];
-            [va.phone setText:i.phone];
-            [va.link setText:i.website];
-            [va.address setText:i.address];
-        }
-        else
-        {
-            Telescope * t = [telescopes objectAtIndex:Tag];
-            
-            [va.nome setText:t.name];
-            [va.phone setText:t.phone];
-            [va.link setText:t.link];
-            [va.address setText:t.address];
-
-        }
-        
         [view addSubview:va.view];
-        NSLog(@"select");
+  
         
         
     }
@@ -379,14 +377,13 @@
    // NSDictionary * telescopes = [NSDictionary dictionaryWithObjects:<#(NSArray *)#> forKeys:<#(NSArray *)#>];
     
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(apriEvento:) ];
+    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
     self.navigationItem.rightBarButtonItem.enabled=NO;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(apriEvento:) name:@"InfoAnnotation" object:nil];
     
-    self.title=@"Mappa";
+    self.title=@"Sedi";
     self.navigationController.navigationBar.tintColor=[UIColor blackColor];
     
     istituti = [[NSMutableArray alloc]init];
@@ -527,94 +524,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onChange:(id)sender
-{
-    UISegmentedControl * segment = sender;
-    if(segment.selectedSegmentIndex == 0)
-    {
-        
-            NSLog(@"apri mappa %d",self.mapView.hidden);
-            [self.mapView removeAnnotations:annotations];
-            [annotations removeAllObjects];
-        //[self.mapView setMapType:MKMapTypeStandard];
 
-            cont=-1;
-        
-        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(42, 12), MKCoordinateSpanMake(15, 15));
-
-        [self.mapView setRegion:region animated:YES];
-
-            
-            int j = -1;
-            
-            for(Istituto * i in istituti)
-            {
-                j++;
-                
-                
-                Annotation * newAnnotation = [[Annotation alloc] init];
-                
-                newAnnotation.coordinate= i.coord;
-                
-               // NSLog(@"%f %f",i.coord.latitude,i.coord.longitude);
-                
-                //newAnnotation.subtitle=i.descr;
-                newAnnotation.title =i.name;
-                
-                newAnnotation.link =i.website;
-                newAnnotation.tag=j;
-                // NSLog(@"%f %f",ev.center.latitude,ev.center.longitude);
-                
-                [annotations addObject:newAnnotation];
-                
-                
-                
-            }
-        [self.mapView addAnnotations:annotations];
-
-    }
-    else
-    {
-        
-        NSLog(@"apri mappa %d",[annotations count]);
-        [self.mapView removeAnnotations:annotations];
-        [annotations removeAllObjects];
-       // [self.mapView setMapType:MKMapTypeHybrid];
-               cont=-1;
-        
-       // MKCoordinateRegion worldRegion = MKCoordinateRegionForMapRect(MKMapRectWorld);
-        //self.mapView.region = worldRegion;
-        
-        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
-        [self.mapView setRegion:region animated:YES];
-        
-        int j = -1;
-        
-        for(Telescope * i in telescopes)
-        {
-            j++;
-            
-            
-            Annotation * newAnnotation = [[Annotation alloc] init];
-            
-            newAnnotation.coordinate= i.coord;
-            
-           // NSLog(@"%f %f",i.coord.latitude,i.coord.longitude);
-            
-            //newAnnotation.subtitle=i.descr;
-            newAnnotation.title =i.name;
-            
-            // NSLog(@"%f %f",ev.center.latitude,ev.center.longitude);
-            
-            [annotations addObject:newAnnotation];
-            
-            
-        }
-        
-
-        [self.mapView addAnnotations:annotations];
-
-    }
-    
-}
 @end

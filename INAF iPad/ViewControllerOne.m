@@ -503,7 +503,9 @@ finish:
     
     self.navigationItem.leftBarButtonItem= Credits;
     
-    UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/logoINAF1.png"];
+    // UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/logoINAF1.png"];
+    UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/starIcon.png"];
+
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
     

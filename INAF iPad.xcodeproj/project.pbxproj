@@ -26,6 +26,14 @@
 		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
 		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
 		0386A1E31933BBD50043347F /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386A1E21933BBD50043347F /* News.m */; };
+		03A3F4231945C4D70022D7AF /* EarthProjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F4211945C4D70022D7AF /* EarthProjViewController.m */; };
+		03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */; };
+		03A3F4281945C4E40022D7AF /* SpaceProjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F4261945C4E40022D7AF /* SpaceProjViewController.m */; };
+		03A3F4291945C4E40022D7AF /* SpaceProjViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F4271945C4E40022D7AF /* SpaceProjViewController.xib */; };
+		03A3F42E1945FF2E0022D7AF /* SpaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F42D1945FF2E0022D7AF /* SpaceTableViewCell.m */; };
+		03A3F4301945FF3A0022D7AF /* SpaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F42F1945FF3A0022D7AF /* SpaceTableViewCell.xib */; };
+		03A3F434194600970022D7AF /* SpaceMissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F432194600970022D7AF /* SpaceMissionViewController.m */; };
+		03A3F435194600970022D7AF /* SpaceMissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F433194600970022D7AF /* SpaceMissionViewController.xib */; };
 		03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C49BE119421D6300454BC2 /* LICENSE.txt */; };
 		03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
 		03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA519337AB3001823F4 /* CoreGraphics.framework */; };
@@ -108,6 +116,18 @@
 		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
 		0386A1E11933BBD50043347F /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		0386A1E21933BBD50043347F /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		03A3F4201945C4D70022D7AF /* EarthProjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthProjViewController.h; sourceTree = "<group>"; };
+		03A3F4211945C4D70022D7AF /* EarthProjViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthProjViewController.m; sourceTree = "<group>"; };
+		03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EarthProjViewController.xib; sourceTree = "<group>"; };
+		03A3F4251945C4E40022D7AF /* SpaceProjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceProjViewController.h; sourceTree = "<group>"; };
+		03A3F4261945C4E40022D7AF /* SpaceProjViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceProjViewController.m; sourceTree = "<group>"; };
+		03A3F4271945C4E40022D7AF /* SpaceProjViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceProjViewController.xib; sourceTree = "<group>"; };
+		03A3F42C1945FF2E0022D7AF /* SpaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceTableViewCell.h; sourceTree = "<group>"; };
+		03A3F42D1945FF2E0022D7AF /* SpaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceTableViewCell.m; sourceTree = "<group>"; };
+		03A3F42F1945FF3A0022D7AF /* SpaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceTableViewCell.xib; sourceTree = "<group>"; };
+		03A3F431194600970022D7AF /* SpaceMissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceMissionViewController.h; sourceTree = "<group>"; };
+		03A3F432194600970022D7AF /* SpaceMissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceMissionViewController.m; sourceTree = "<group>"; };
+		03A3F433194600970022D7AF /* SpaceMissionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpaceMissionViewController.xib; sourceTree = "<group>"; };
 		03C49BE119421D6300454BC2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		03DEDAA019337AB3001823F4 /* INAF iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "INAF iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DEDAA319337AB3001823F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -202,7 +222,7 @@
 			name = Apps;
 			sourceTree = "<group>";
 		};
-		0386A1DF1933B84F0043347F /* Maps */ = {
+		0386A1DF1933B84F0043347F /* Sedi */ = {
 			isa = PBXGroup;
 			children = (
 				034DF0B11935064500886FFD /* Annotation.h */,
@@ -218,7 +238,7 @@
 				03E67B2519361AD000C0E4AB /* Telescope.h */,
 				03E67B2619361AD000C0E4AB /* Telescope.m */,
 			);
-			name = Maps;
+			name = Sedi;
 			sourceTree = "<group>";
 		};
 		0386A1E01933B8550043347F /* Jobs */ = {
@@ -229,6 +249,32 @@
 				034DF0A9193504C600886FFD /* JobsViewController.xib */,
 			);
 			name = Jobs;
+			sourceTree = "<group>";
+		};
+		03A3F42A1945CB3D0022D7AF /* EarthProj */ = {
+			isa = PBXGroup;
+			children = (
+				03A3F4201945C4D70022D7AF /* EarthProjViewController.h */,
+				03A3F4211945C4D70022D7AF /* EarthProjViewController.m */,
+				03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */,
+			);
+			name = EarthProj;
+			sourceTree = "<group>";
+		};
+		03A3F42B1945CB4A0022D7AF /* SpaceProj */ = {
+			isa = PBXGroup;
+			children = (
+				03A3F4251945C4E40022D7AF /* SpaceProjViewController.h */,
+				03A3F4261945C4E40022D7AF /* SpaceProjViewController.m */,
+				03A3F4271945C4E40022D7AF /* SpaceProjViewController.xib */,
+				03A3F42C1945FF2E0022D7AF /* SpaceTableViewCell.h */,
+				03A3F42D1945FF2E0022D7AF /* SpaceTableViewCell.m */,
+				03A3F42F1945FF3A0022D7AF /* SpaceTableViewCell.xib */,
+				03A3F431194600970022D7AF /* SpaceMissionViewController.h */,
+				03A3F432194600970022D7AF /* SpaceMissionViewController.m */,
+				03A3F433194600970022D7AF /* SpaceMissionViewController.xib */,
+			);
+			name = SpaceProj;
 			sourceTree = "<group>";
 		};
 		03DEDA9719337AB3001823F4 = {
@@ -383,8 +429,10 @@
 		03DEDAE119337CA5001823F4 /* Five */ = {
 			isa = PBXGroup;
 			children = (
+				03A3F42B1945CB4A0022D7AF /* SpaceProj */,
+				03A3F42A1945CB3D0022D7AF /* EarthProj */,
 				0386A1E01933B8550043347F /* Jobs */,
-				0386A1DF1933B84F0043347F /* Maps */,
+				0386A1DF1933B84F0043347F /* Sedi */,
 				0386A1DE1933B8490043347F /* Apps */,
 				03DEDAE219337CC6001823F4 /* ViewControllerFive.h */,
 				03DEDAE319337CC6001823F4 /* ViewControllerFive.m */,
@@ -471,7 +519,9 @@
 			files = (
 				03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */,
 				03DEDAE619337CC6001823F4 /* ViewControllerFive.xib in Resources */,
+				03A3F4291945C4E40022D7AF /* SpaceProjViewController.xib in Resources */,
 				03DEDAF719337F18001823F4 /* Assets in Resources */,
+				03A3F4301945FF3A0022D7AF /* SpaceTableViewCell.xib in Resources */,
 				03DEDB061933865F001823F4 /* VideoCell.xib in Resources */,
 				03DEDADC19337AC7001823F4 /* ViewControllerOne.xib in Resources */,
 				03E67B241935F4F000C0E4AB /* DetailNewsViewController.xib in Resources */,
@@ -487,7 +537,9 @@
 				03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */,
 				03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */,
 				034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */,
+				03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */,
 				03DEDAAE19337AB3001823F4 /* InfoPlist.strings in Resources */,
+				03A3F435194600970022D7AF /* SpaceMissionViewController.xib in Resources */,
 				03DEDAF519337CF0001823F4 /* ViewControllerTwo.xib in Resources */,
 				03DEDAF019337CE5001823F4 /* ViewControllerThree.xib in Resources */,
 				03DEDAFC19338225001823F4 /* ViewControllerInfo.xib in Resources */,
@@ -517,8 +569,10 @@
 				03751C971940A45900FF31D5 /* AppTableCell.m in Sources */,
 				03DEDAEF19337CE5001823F4 /* ViewControllerThree.m in Sources */,
 				034DF0941934ED7600886FFD /* ParserThumbnail.m in Sources */,
+				03A3F42E1945FF2E0022D7AF /* SpaceTableViewCell.m in Sources */,
 				034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */,
 				03E67B2719361AD000C0E4AB /* Telescope.m in Sources */,
+				03A3F4231945C4D70022D7AF /* EarthProjViewController.m in Sources */,
 				03DEDAF419337CF0001823F4 /* ViewControllerTwo.m in Sources */,
 				034DF0AF193504DB00886FFD /* AppsViewController.m in Sources */,
 				034DF0AA193504C600886FFD /* JobsViewController.m in Sources */,
@@ -530,11 +584,13 @@
 				034DF0971934EE0E00886FFD /* ParserImages.m in Sources */,
 				03DEDB0919338765001823F4 /* Video.m in Sources */,
 				03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */,
+				03A3F4281945C4E40022D7AF /* SpaceProjViewController.m in Sources */,
 				034DF09A1934F22900886FFD /* EventsCell.m in Sources */,
 				034DF0B81935064500886FFD /* Annotation.m in Sources */,
 				03DEDAB019337AB3001823F4 /* main.m in Sources */,
 				034DF0B91935064500886FFD /* Istituto.m in Sources */,
 				034DF0A5193504B000886FFD /* MapsViewController.m in Sources */,
+				03A3F434194600970022D7AF /* SpaceMissionViewController.m in Sources */,
 				03DEDB00193382A7001823F4 /* ViewControllerCredits.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
