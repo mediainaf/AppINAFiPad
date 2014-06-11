@@ -97,15 +97,21 @@
         // NSLog(@"img piccola %@ ",imageLinkSmall );
        //  NSLog(@"content %@ ",content );
         
-        NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
-        imagesArray = [parserImages parseText:content];
+        NSArray * imagesAndVideoArray = [[NSArray alloc] init];
+        imagesAndVideoArray = [parserImages parseText:content];
         
-        NSLog(@"url %d titolo %@", [imagesArray count],title);
+        NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
+        imagesArray = [imagesAndVideoArray objectAtIndex:0];
+        NSMutableArray * videos = [[NSMutableArray alloc] init];
+        videos = [imagesAndVideoArray objectAtIndex:1];
+        
+        NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
         
         News * n = [[News alloc] init];
         // manca autore data link
         n.title = title;
         n.images = imagesArray;
+        n.videos = videos;
         n.thumbnail = linkThumbnail;
         // news.linkImageBig = imageLinkBig;
         n.author = author;
@@ -378,23 +384,49 @@ finish:
             dispatch_async(queue, ^{
                 //This is what you will load lazily
                 
-                NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [n.images objectAtIndex:0]]];
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                NSData   *data;
+                if([n.images count]>0)
+                {
+                    data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [n.images objectAtIndex:0]]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageWithData:data];
+                        [images setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            [cell.indicator startAnimating];
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
+                }
+                else
+                {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
+                        [images setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            [cell.indicator startAnimating];
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
+
+                }
                     
-                    UIImage * image = [UIImage imageWithData:data];
-                    [images setObject:image forKey:identifier];
-                    //cell.thumbnail.image = image;
-                    [cell setNeedsLayout];
-                    [UIView setAnimationsEnabled:NO];
-                    
-                    [self.collectionView performBatchUpdates:^{
-                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                         [cell.indicator startAnimating];
-                    } completion:^(BOOL finished) {
-                        [UIView setAnimationsEnabled:YES];
-                    }];
-                    
-                }); 
+               
             });
             
         }

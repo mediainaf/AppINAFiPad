@@ -37,10 +37,7 @@
     
     float width = 768.0f;
     float height = 704.0f;
-    
-    NSString *youTubeToken = @"1zTqaJG1IEU";
-    
-    UIWebView *wv = [UIWebView new];
+   
     self.webView.frame = CGRectMake(60, 60, width, height);
     
     NSMutableString *html = [NSMutableString string];

@@ -149,8 +149,15 @@
         // NSLog(@"img piccola %@ ",imageLinkSmall );
         //  NSLog(@"content %@ ",content );
         
+        NSArray * imagesAndVideo = [[NSArray alloc] init];
+        
+        imagesAndVideo = [parserImages parseText:content];
+
+        
         NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
-        imagesArray = [parserImages parseText:content];
+        imagesArray = [imagesAndVideo objectAtIndex:0];
+        NSMutableArray * videos = [[NSMutableArray alloc] init];
+        videos = [imagesAndVideo objectAtIndex:1];
         
         NSLog(@"url %d titolo %@", [imagesArray count],title);
         
@@ -158,6 +165,7 @@
         // manca autore data link
         n.title = title;
         n.images = imagesArray;
+        n.videos = videos;
         n.thumbnail = linkThumbnail;
         // news.linkImageBig = imageLinkBig;
         n.author = author;
@@ -383,24 +391,47 @@ finish:
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
             dispatch_async(queue, ^{
                 //This is what you will load lazily
-                
-                NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [n.images objectAtIndex:0]]];
-                dispatch_sync(dispatch_get_main_queue(), ^{
+                NSData   *data;
+                if([n.images count]>0)
+                {
+                    data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [n.images objectAtIndex:0]]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageWithData:data];
+                        [images setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            [cell.indicator startAnimating];
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
+                }
+                else
+                {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
+                        [images setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            [cell.indicator startAnimating];
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
                     
-                    UIImage * image = [UIImage imageWithData:data];
-                    [images setObject:image forKey:identifier];
-                    //cell.thumbnail.image = image;
-                    [cell setNeedsLayout];
-                    [UIView setAnimationsEnabled:NO];
-                    
-                    [self.collectionView performBatchUpdates:^{
-                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                        [cell.indicator stopAnimating];
-                    } completion:^(BOOL finished) {
-                        [UIView setAnimationsEnabled:YES];
-                    }];
-                    
-                });
+                }
             });
             
         }

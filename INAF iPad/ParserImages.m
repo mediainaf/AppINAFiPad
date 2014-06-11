@@ -15,7 +15,9 @@
 {
     NSXMLParser * parser;
     NSString * imPath;
+    NSString * video;
     NSMutableArray * images;
+    NSMutableArray * videos;
 }
 
 @end
@@ -30,7 +32,7 @@
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     
-    //NSLog(@"elemento %@",elementName);
+   // NSLog(@"elemento %@",elementName);
     
   //  NSLog(@"%@",attributeDict);
     if([elementName isEqualToString:@"img"]){
@@ -42,20 +44,31 @@
         [images addObject:imPath];
         //  NSLog(@"%@",imPath);
     }
+    if([elementName isEqualToString:@"iframe"]){
+        
+          NSLog(@"elemento2");
+        
+        video=[attributeDict valueForKey:@"src"];
+        //   NSLog(@"url %@", imPath );
+        [videos addObject:video];
+        //  NSLog(@"%@",imPath);
+    }
+    
     
     
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-   //   NSLog(@"character %@",string);
+      NSLog(@"character %@",string);
 }
 
--(NSMutableArray *)parseText:(NSString *)text
+-(NSArray *)parseText:(NSString *)text
 {
    // NSLog(@"inizio1");
     
     images = [[NSMutableArray alloc] init];
+    videos = [[NSMutableArray alloc] init];
     
     
     NSMutableString * textForParsing = [[NSMutableString alloc ] init];
@@ -63,6 +76,10 @@
     
     
     [textForParsing replaceOccurrencesOfString:@"&nbsp" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [textForParsing length])];
+  
+    
+    [textForParsing replaceOccurrencesOfString:@"allowfullscreen" withString:@"tag=\"allowfullscreen\"" options:NSLiteralSearch range:NSMakeRange(0, [textForParsing length])];
+
     
   //  NSLog(@"text %@",textForParsing);
         NSData* data =[textForParsing dataUsingEncoding:NSUTF8StringEncoding];
@@ -77,7 +94,9 @@
    
    // NSLog(@"inizio 3 %d",[images count]);
     
-    return  images;
+    NSArray * returnArray = [NSArray arrayWithObjects:images,videos, nil];
+    
+    return returnArray ;
 }
 
 

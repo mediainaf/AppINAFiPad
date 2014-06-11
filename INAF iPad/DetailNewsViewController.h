@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "News.h"
 
-@interface DetailNewsViewController : UIViewController
+@interface DetailNewsViewController : UIViewController <UIWebViewDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UILabel *newsTitle;
@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *date;
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 @property (strong, nonatomic) IBOutlet UILabel *author;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 
 @end
