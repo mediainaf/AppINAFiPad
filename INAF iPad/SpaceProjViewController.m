@@ -11,6 +11,7 @@
 #import "SpaceProjViewController.h"
 #import "SpaceMissionViewController.h"
 #import "SpaceTableViewCell.h"
+#import "MapOrbitViewController.h"
 
 @interface SpaceProjViewController ()
 
@@ -29,9 +30,34 @@
 
 NSArray * titoli;
 
+-(void) openMap
+{
+    MapOrbitViewController * map = [[MapOrbitViewController alloc] initWithNibName:@"MapOrbitViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:map animated:YES];
+
+}
 - (void)viewDidLoad
 {
+    
+    
+    UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconOrbit.png"];
+    
+    
+    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    
+    [bottone addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+    
+    [bottone setFrame:CGRectMake(310, 2, 30, 30)];
+    
+    UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
+    
+    self.navigationItem.rightBarButtonItem=buttonBar;
 
+    
+    
     titoli = [NSArray arrayWithObjects:@"Soho",@"Cassini Huygens",@"Cluster",@"Mars Express",@"Rosetta",@"Mars Orbiter",@"Venus Express",@"Stereo",@"Dawn",@"Score", nil];
     
     self.title = @"Progetti Spaziali";

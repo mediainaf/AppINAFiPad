@@ -260,8 +260,7 @@
         
         */
         
-        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(42, 12), MKCoordinateSpanMake(15, 15));
-        [self.mapView setRegion:region animated:YES];
+      
         
         
         

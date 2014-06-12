@@ -351,7 +351,7 @@ finish:
         pickerView.delegate=self;
         pickerView.dataSource=self;
         pickerView.showsSelectionIndicator=YES;
-        [pickerView selectRow:pickerRowSelected inComponent:segmentSelected animated:YES];
+        [pickerView selectRow:pickerRowSelected inComponent:0 animated:YES];
         [popOverView addSubview:pickerView];
         
         toolBar =[[UIToolbar alloc] initWithFrame:CGRectMake([popOverView frame].origin.x, [popOverView frame].origin.y, [popOverView frame].size.width, 44)];
@@ -493,7 +493,7 @@ finish:
     
     
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
+    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData:) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
     

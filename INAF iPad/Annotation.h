@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #include <MapKit/MapKit.h>
-@interface Annotation : NSObject
+@interface Annotation : NSObject <MKAnnotation>
 
 @property(nonatomic,assign) CLLocationCoordinate2D  coordinate;
 @property(nonatomic,strong) NSString * title;
