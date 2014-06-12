@@ -10,8 +10,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewControllerTwo : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,NSXMLParserDelegate>
+@interface ViewControllerTwo : UIViewController <UICollectionViewDataSource,UIPopoverControllerDelegate,UICollectionViewDelegate,NSXMLParserDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIImageView *loadingView;
 
 @end

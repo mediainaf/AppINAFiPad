@@ -46,7 +46,7 @@
     }
     if([elementName isEqualToString:@"iframe"]){
         
-          NSLog(@"elemento2");
+     //     NSLog(@"elemento2");
         
         video=[attributeDict valueForKey:@"src"];
         //   NSLog(@"url %@", imPath );
@@ -60,7 +60,7 @@
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-      NSLog(@"character %@",string);
+     // NSLog(@"character %@",string);
 }
 
 -(NSArray *)parseText:(NSString *)text

@@ -209,8 +209,7 @@
         
         
         n.content = [self stringByDecodingXMLEntities:finalContent];
-        NSLog(@"%@",n.content);
-        
+                
         [news addObject:n];
         
         

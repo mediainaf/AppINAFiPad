@@ -18,6 +18,20 @@
 
 @interface ViewControllerTwo ()
 {
+    UIPopoverController * popOverController;
+    UIToolbar * toolBar;
+    NSArray * telescopes;
+    NSArray * telescopesTag;
+    NSArray * institutes;
+    NSArray * institutesTag;
+    NSArray * satellites;
+    NSArray * satellitesTag;
+    UIPickerView * pickerView;
+    int popAperto;
+    UISegmentedControl *segmentedControl;
+    int pickerRowSelected;
+    int segmentSelected;
+    
     NSXMLParser * parser;
     
     NSMutableArray * news;
@@ -264,10 +278,12 @@
 finish:
     return result;
 }
--(void) loadData
+
+-(void) loadData : (NSString *) url
 {
     
-    NSString * url = @"http://www.media.inaf.it/feed/";
+    [news removeAllObjects];
+    [images removeAllObjects];
     
     parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
     
@@ -282,6 +298,7 @@ finish:
     [parser parse];
     
     [self.collectionView reloadData];
+    self.loadingView.alpha = 0.0;
     
 }
 
@@ -290,22 +307,199 @@ finish:
 {
     if(load ==0 )
     {
+        self.loadingView.alpha = 1.0;
+
         load =1;
-    
-        [self loadData];
+        pickerRowSelected = 0;
+        segmentedControl =0;
+
+        [self loadData:@"http://www.media.inaf.it/feed/"];
+        
     }
 }
 
+-(void) segmentChanged : (id) segment
+{
+    segmentSelected = segmentedControl.selectedSegmentIndex;
+    [pickerView reloadAllComponents];
+}
 
+-(void) apriFiltri
+{
+    if(!popOverController.popoverVisible)
+    {
+        NSLog(@"apri pop");
+        popAperto=1;
+         pickerView=[[UIPickerView alloc]init];
+        
+        toolBar = [[UIToolbar alloc] init];
+        
+        UIViewController * popOverContent = [[UIViewController alloc] init];
+        UIView * popOverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 ,446 , 300)];
+        
+        
+        segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Sedi",@"Progetti da Terra",@"Progetti Spaziali", nil]];
+        
+        segmentedControl.frame = CGRectMake(41, 68, 364, 30);
+        segmentedControl.tintColor = [UIColor blackColor];
 
+        [segmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents: UIControlEventValueChanged];
+        segmentedControl.selectedSegmentIndex = segmentSelected;
+        [popOverView addSubview:segmentedControl];
+        
+        pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0,104, 446, 216)];
+        pickerView.delegate=self;
+        pickerView.dataSource=self;
+        pickerView.showsSelectionIndicator=YES;
+        [pickerView selectRow:pickerRowSelected inComponent:segmentSelected animated:YES];
+        [popOverView addSubview:pickerView];
+        
+        toolBar =[[UIToolbar alloc] initWithFrame:CGRectMake([popOverView frame].origin.x, [popOverView frame].origin.y, [popOverView frame].size.width, 44)];
+        
+        if([[UIDevice currentDevice].systemVersion hasPrefix:@"7"])
+        {
+            toolBar.tintColor=[UIColor blackColor];
+        }
+        
+        
+        UIBarButtonItem * flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem * done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chiudiPop)];
+        
+        [toolBar setItems:[NSArray arrayWithObjects:flexSpace,done, nil]];
+        
+        [popOverView addSubview:toolBar];
+        [popOverContent setView:popOverView];
+        
+        popOverController = [[UIPopoverController alloc] initWithContentViewController:popOverContent];
+        popOverController.popoverContentSize = CGSizeMake(446,300);
+         popOverController.delegate=self;
+        
+        [popOverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    else
+    {
+        
+    }
+
+}
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    pickerRowSelected = row;
+}
+
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if([segmentedControl selectedSegmentIndex] == 0)
+        return [institutes count];
+    if([segmentedControl selectedSegmentIndex] == 1)
+        return [telescopes count];
+    if([segmentedControl selectedSegmentIndex] == 2)
+        return [satellites count];
+    
+    return  0;
+}
+-(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    if([segmentedControl selectedSegmentIndex] == 0)
+        return [institutes objectAtIndex:row];
+    if([segmentedControl selectedSegmentIndex] == 1)
+        return [telescopes objectAtIndex:row];
+    if([segmentedControl selectedSegmentIndex] == 2)
+        return [satellites objectAtIndex:row];
+    
+    return @"";
+}
+-(CGFloat) pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return 400;
+}
+-(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    NSLog(@"should dismis pop");
+    
+    return  YES;
+    
+}
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    NSLog(@"dismis pop");
+    
+}
+
+-(void) chiudiPop
+{
+    [popOverController dismissPopoverAnimated:YES];
+    
+    self.loadingView.alpha = 1.0;
+    
+    double delayInSeconds = 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+       
+        if([segmentedControl selectedSegmentIndex] == 0)
+        {
+            if(pickerRowSelected == 0)
+                [self loadData:@"http://www.media.inaf.it/feed/"];
+            else
+                [self loadData:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/",[institutesTag objectAtIndex:pickerRowSelected]]];
+        }
+        if([segmentedControl selectedSegmentIndex] == 1)
+        {
+            if(pickerRowSelected == 0)
+                [self loadData:@"http://www.media.inaf.it/feed/"];
+            else
+                [self loadData:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/",[telescopesTag objectAtIndex:pickerRowSelected]]];
+        }
+        if([segmentedControl selectedSegmentIndex] == 2)
+        {
+            if(pickerRowSelected == 0)
+                [self loadData:@"http://www.media.inaf.it/feed/"];
+            else
+                [self loadData:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/",[satellitesTag objectAtIndex:pickerRowSelected]]];
+        }
+
+        
+    });
+    
+    
+    
+
+}
 - (void)viewDidLoad
 {
+    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+    self.loadingView.alpha = 0.0;
+    
+   
+
+    telescopes = [NSArray arrayWithObjects:@"Tutte le news",@"VLT Survey Telescope",@"REM (Rapid Eye Mount)",@"Large Binocular Telescope (LBT)",nil];
+    satellites = [NSArray arrayWithObjects:@"Tutte le news",@"SOHO",@"Cassini Huygens",@"Cluster",@"Mars Express",@"Rosetta", nil];
+    institutes = [NSArray arrayWithObjects:@"Tutte le news",@"Osservatorio di Torino",@"Osservatorio di Brera",@"IASF Milano",@"Osservatorio di Padova",@"Osservatorio di Trieste",@"Osservatorio di Bologna",@"IRA Bologna", nil];
+    
+    //,@"IASF Bologna",@"Osservatorio di Arcetri (FI)",@"Osservatorio di Teramo",@"Osservatorio di Roma",@"IAPS Roma",@"Osservatorio di Capodimonte (NA)",@"Osservatorio di Cagliari",@"Osservatorio di Palermo",@"IASF Palermo",@"Osservatorio di Catania"
+    
+    institutesTag = [NSArray arrayWithObjects:@"",@"oa_torino",@"oa_brera",@"iasf_milano",@"oa_padova",@"oa_trieste",@"oa_bologna",@"ira_bologna", nil];
+    satellitesTag = [NSArray arrayWithObjects:@"",@"soho",@"cassini",@"cluster",@"mars-express",@"rosetta", nil];
+    telescopesTag = [NSArray arrayWithObjects:@"",@"vst",@"rem",@"lbt",nil];
+    
+    
     
     
     
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
+    
+    UIBarButtonItem * filtri = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(apriFiltri) ];
+    
+    self.navigationItem.leftBarButtonItem= filtri ;
 
     
     load = 0;

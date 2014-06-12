@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerTwo">
             <connections>
                 <outlet property="collectionView" destination="Y68-vK-hdF" id="2NS-dy-SBZ"/>
+                <outlet property="loadingView" destination="6re-Ox-4Xc" id="Uyg-GO-rrT"/>
                 <outlet property="sfondoView" destination="foU-IY-1Et" id="1QA-lM-8z5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,6 +37,10 @@
                         <outlet property="delegate" destination="-1" id="Vyx-4d-0CX"/>
                     </connections>
                 </collectionView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6re-Ox-4Xc">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="924"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
