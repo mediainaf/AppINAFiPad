@@ -47,6 +47,7 @@
 		03B45DB0194B420A006785B1 /* WebcamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B45DAE194B420A006785B1 /* WebcamViewController.xib */; };
 		03B45DB4194B46DB006785B1 /* WebcamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DB3194B46DB006785B1 /* WebcamCell.m */; };
 		03B45DB6194B46EA006785B1 /* WebcamCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B45DB5194B46EA006785B1 /* WebcamCell.xib */; };
+		03B45DB9194B5843006785B1 /* AllSatellite.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DB8194B5843006785B1 /* AllSatellite.m */; };
 		03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C49BE119421D6300454BC2 /* LICENSE.txt */; };
 		03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
 		03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA519337AB3001823F4 /* CoreGraphics.framework */; };
@@ -161,6 +162,8 @@
 		03B45DB2194B46DB006785B1 /* WebcamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebcamCell.h; sourceTree = "<group>"; };
 		03B45DB3194B46DB006785B1 /* WebcamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebcamCell.m; sourceTree = "<group>"; };
 		03B45DB5194B46EA006785B1 /* WebcamCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamCell.xib; sourceTree = "<group>"; };
+		03B45DB7194B5843006785B1 /* AllSatellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllSatellite.h; sourceTree = "<group>"; };
+		03B45DB8194B5843006785B1 /* AllSatellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllSatellite.m; sourceTree = "<group>"; };
 		03C49BE119421D6300454BC2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		03DEDAA019337AB3001823F4 /* INAF iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "INAF iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DEDAA319337AB3001823F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -318,6 +321,8 @@
 				03A578611949E9B80008BEB9 /* MapOrbitViewController.xib */,
 				03A578641949EC2D0008BEB9 /* Satellite.h */,
 				03A578651949EC2D0008BEB9 /* Satellite.m */,
+				03B45DB7194B5843006785B1 /* AllSatellite.h */,
+				03B45DB8194B5843006785B1 /* AllSatellite.m */,
 			);
 			name = SpaceProj;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 				034DF0A01934F49800886FFD /* DetailEventsViewController.m in Sources */,
 				034DF0971934EE0E00886FFD /* ParserImages.m in Sources */,
 				03DEDB0919338765001823F4 /* Video.m in Sources */,
+				03B45DB9194B5843006785B1 /* AllSatellite.m in Sources */,
 				03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */,
 				03A3F4281945C4E40022D7AF /* SpaceProjViewController.m in Sources */,
 				034DF09A1934F22900886FFD /* EventsCell.m in Sources */,

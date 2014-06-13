@@ -12,8 +12,15 @@
 #import "SpaceMissionViewController.h"
 #import "SpaceTableViewCell.h"
 #import "MapOrbitViewController.h"
+#import "AllSatellite.h"
+#import "InternetMoreViewController.h"
 
 @interface SpaceProjViewController ()
+{
+    NSMutableDictionary *cachedImages;
+    int load;
+    NSMutableArray * satellites;
+}
 
 @end
 
@@ -22,9 +29,13 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
+        
         // Custom initialization
+    
     }
+    
     return self;
 }
 
@@ -32,17 +43,79 @@ NSArray * titoli;
 
 -(void) openMap
 {
+    
     MapOrbitViewController * map = [[MapOrbitViewController alloc] initWithNibName:@"MapOrbitViewController" bundle:nil];
     
     [self.navigationController pushViewController:map animated:YES];
 
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    if(load == 0)
+    {
+        load=1;
+        
+        NSString * url = [NSString stringWithFormat: @"http://app.media.inaf.it/GetSatellites.php"];
+        
+        NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        
+        NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        
+        
+        NSLog(@"%@",url);
+        
+        NSArray *jsonArray ;
+        if (response) {
+            
+            NSError *e = nil;
+            jsonArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error: &e];
+            
+        }
+        
+        [satellites removeAllObjects];
+        
+        for(NSDictionary * d in jsonArray)
+        {
+            
+            if([[d valueForKeyPath:@"showonapp"] isEqualToString:@"0"] )
+            {
+                
+            }
+            else
+            {
+                NSString *name = [d valueForKey:@"name"];
+                NSString *tag = [d valueForKey:@"tag"];
+                NSString *phase = [d valueForKey:@"phase"];
+                NSString *scope = [d valueForKey:@"scope"];
+                NSString *img = [d valueForKey:@"imgbase"];
+                
+                AllSatellite * t = [[AllSatellite alloc]init];
+                
+                NSLog(@"%@ %@", name,img);
+                
+                t.name=name;
+                t.scope=scope;
+                t.img=img;
+                t.phase=phase;
+                t.tag=tag;
+ 
+                [satellites addObject:t];
+            }
+        }
+        
+        [self.tableView reloadData];
+        
+    }
+}
 - (void)viewDidLoad
 {
+    load = 0;
     
+    cachedImages = [[NSMutableDictionary alloc] init];
+    
+    satellites = [[NSMutableArray alloc] init];
     
     UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconOrbit.png"];
-    
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
@@ -55,20 +128,25 @@ NSArray * titoli;
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     
     self.navigationItem.rightBarButtonItem=buttonBar;
-
-    
     
     titoli = [NSArray arrayWithObjects:@"Soho",@"Cassini Huygens",@"Cluster",@"Mars Express",@"Rosetta",@"Mars Orbiter",@"Venus Express",@"Stereo",@"Dawn",@"Score", nil];
     
     self.title = @"Progetti Spaziali";
+    
     self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1.jpg"];
+    
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([satellites count] >0)
+        return [satellites count];
     return 10;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -79,29 +157,94 @@ NSArray * titoli;
         cell= [[SpaceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.backgroundColor = [UIColor clearColor];
+    //cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
     
-    cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    cell.title.text = [titoli objectAtIndex:indexPath.row];
-    cell.thumbnail.image = [UIImage imageNamed:[NSString stringWithFormat:@"Assets/%d.jpg",indexPath.row+1]];
-    cell.thumbnail.backgroundColor = [UIColor clearColor];
-    
-    
-    
+    if([satellites count] >0)
+    {
+        
+        
+        AllSatellite * s = [satellites objectAtIndex:indexPath.row];
+        
+        cell.title.text = s.name;
+        
+        NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,
+                                indexPath.row];
+        
+        
+        if([cachedImages objectForKey:identifier] != nil)
+        {
+            cell.thumbnail.image = [cachedImages valueForKey:identifier];
+           //[cell.indicator stopAnimating];
+            NSLog(@"metti immagine");
+            
+        }
+        else
+        {
+            cell.thumbnail.image = nil;
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
+            dispatch_async(queue, ^{
+                //This is what you will load lazily
+                
+                NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://www.media.inaf.it/wp-content/themes/mediainaf/images/tags/%@.jpg",s.img]]];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    
+                    UIImage * image = [UIImage imageWithData:data];
+                    
+                    if(image != nil)
+                    {
+                        [cachedImages setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                       
+                        [self.tableView beginUpdates];
+                        
+                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                        [self.tableView endUpdates];
+
+                    
+
+                    }
+                    else
+                    {
+                        UIImage * image = [UIImage imageNamed:@"Assets/satelliteIcon.jpeg"];
+                        [cachedImages setObject:image forKey:identifier];
+                        
+                        [cell setNeedsLayout];
+                        [self.tableView beginUpdates];
+                        
+                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                        [self.tableView endUpdates];
+                        
+
+                        
+                       
+
+
+                    }
+                });
+            });
+            
+            }
+    }
     return cell;
     
-
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
     
-    SpaceMissionViewController * spaceMissionDetail = [[SpaceMissionViewController alloc] initWithNibName:@"SpaceMissionViewController" bundle:nil];
+    AllSatellite * s =[satellites objectAtIndex:indexPath.row];
     
-    [self.navigationController pushViewController:spaceMissionDetail animated:YES];
+    internet.url = [NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/",s.tag];
+    
+    [self.navigationController pushViewController:internet animated:YES];
+    
+    
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-     NSLog(@"seleziona");
-
+    
+   
     
 }
 - (void)didReceiveMemoryWarning
