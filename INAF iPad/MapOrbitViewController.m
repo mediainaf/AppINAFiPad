@@ -503,14 +503,14 @@ void getLatLong(double *lat, double *lon)
     
     [self.mapView setMapType:MKMapTypeHybrid];
     
-    UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconaMarker.png"];
+    UIImage * buttonMarker = [UIImage imageNamed:@"Assets/iconaMarker.png"];
     
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
     
     [bottone addTarget:self action:@selector(openSatellites) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+    [bottone setImage:buttonMarker forState:UIControlStateNormal];
     
     [bottone setFrame:CGRectMake(310, 2, 30, 30)];
     

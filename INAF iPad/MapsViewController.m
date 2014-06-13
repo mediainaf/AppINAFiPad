@@ -322,9 +322,9 @@
    // NSDictionary * telescopes = [NSDictionary dictionaryWithObjects:<#(NSArray *)#> forKeys:<#(NSArray *)#>];
     
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
+    UIBarButtonItem * action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
     
-    self.navigationItem.rightBarButtonItem= refresh ;
+    self.navigationItem.rightBarButtonItem= action ;
     self.navigationItem.rightBarButtonItem.enabled=NO;
     
     

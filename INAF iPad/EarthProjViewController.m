@@ -13,6 +13,7 @@
 #import "Annotation.h"
 #import "ViewControllerAnnotation.h"
 #import "InternetMoreViewController.h"
+#import "WebcamViewController.h"
 
 
 @interface EarthProjViewController ()
@@ -77,24 +78,6 @@
     }
     return center;
 }
-/*
--(void) openTelescope : (id) sender
-{
-    
-    
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Cancel" otherButtonTitles:
-                            @"Detail",
-                            @"Zoom",
-                            @"Webcam",
-                            @"Show In Navigator",
-                            
-                            nil];
-    popup.tag = 1;
-  //  [popup showInView:[UIApplication sharedApplication].keyWindow];
-    [popup showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
-    
-}
-*/
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
    /* for (UIView *subview in view.subviews ){
@@ -427,7 +410,13 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-
+-(void) openWebcam
+{
+    WebcamViewController * webcam = [[WebcamViewController alloc] initWithNibName:@"WebcamViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:webcam animated:YES];
+    
+}
 - (void)viewDidLoad
 {
   /*
@@ -437,6 +426,22 @@
     self.navigationItem.rightBarButtonItem.enabled=NO;
    */
     
+    UIImage * cameraIcon = [UIImage imageNamed:@"Assets/cameraIcon.png"];
+    
+    
+    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    
+    [bottone addTarget:self action:@selector(openWebcam) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bottone setImage:cameraIcon forState:UIControlStateNormal];
+    
+    [bottone setFrame:CGRectMake(310, 2, 30, 30)];
+    
+    UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
+    
+    self.navigationItem.rightBarButtonItem=buttonBar;
+    
+
     self.title = @"Progetti da Terra";
     
     [self.mapView setMapType:MKMapTypeHybrid];
