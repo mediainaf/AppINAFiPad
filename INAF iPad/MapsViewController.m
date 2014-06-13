@@ -18,6 +18,7 @@
 
 #import "ViewControllerAnnotation.h"
 #import "Telescope.h"
+#import "InternetMoreViewController.h"
 
 
 @interface MapsViewController ()
@@ -126,37 +127,22 @@
     NSLog(@"navigate");
     
 }
--(void) OpenLink
-{ /*
-    InternetNewsViewController * internet = [[InternetNewsViewController alloc] initWithNibName:@"InternetNewsViewController" bundle:nil];
+-(void) detail
+{
+   InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
     
     Istituto * istituto = [istituti objectAtIndex:Tag];
     
-    internet.link = istituto.website;
+    internet.url = istituto.website;
     
     [self.navigationController pushViewController:internet animated:YES];
     
     NSLog(@"link");
-    */
+    
     
 }
--(void) Detail
+-(void) news
 {
-    /*
-    DetailMapViewController * detail = [[DetailMapViewController alloc] initWithNibName:@"DetailMapViewController" bundle:nil];
-    
-    Istituto * istituto = [istituti objectAtIndex:Tag];
-    
-    detail.nameS=istituto.name;
-    detail.phoneS=istituto.phone;
-    detail.webpageS=istituto.website;
-    //detail.descrS=istituto.descr;
-    detail.addressS=istituto.address;
-    
-    NSLog(@"%@",istituto.descr);
-    
-    [self.navigationController pushViewController:detail animated:YES];
-    */
     
 }
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -165,10 +151,10 @@
         case 1: {
             switch (buttonIndex) {
                 case 0:
-                    [self Detail];
+                    [self detail];
                     break;
                 case 1:
-                    [self OpenLink];
+                    [self news];
                     break;
                 case 2:
                     [self Call];
@@ -191,7 +177,7 @@
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Detail",
-                            @"Open Link",
+                            @"News",
                             @"Call Phone Number",
                             @"Show In Navigator",
                             
@@ -331,47 +317,6 @@
     [self.mapView setMapType:MKMapTypeHybrid];
 
     
-    Telescope * VLT = [[Telescope alloc] init]; VLT.name = @"Very Large Telescope";
-    CLLocationCoordinate2D VLTcord; VLTcord.latitude =-24.627222; VLTcord.longitude = -70.404167;
-    VLT.coord = VLTcord;
-   
-    Telescope * REM = [[Telescope alloc] init]; VLT.name = @"Rapid Eye Mount";
-    CLLocationCoordinate2D REMcoord; REMcoord.latitude = -29.261167; REMcoord.longitude = -70.731333;
-    REM.coord = REMcoord;
-
-    Telescope * LBT = [[Telescope alloc] init]; VLT.name = @"Large Binocular Telescope";
-    CLLocationCoordinate2D LBTcoord; LBTcoord.latitude = 32.701389; LBTcoord.longitude = -109.889444;
-    LBT.coord = LBTcoord;
-    
-    Telescope * SRT = [[Telescope alloc] init]; VLT.name = @"Sardinia Radio Telescope";
-    CLLocationCoordinate2D SRTcoord; SRTcoord.latitude = 39.492778; SRTcoord.longitude = 9.245;
-    SRT.coord = SRTcoord;
-    
-    Telescope * TNG = [[Telescope alloc] init]; VLT.name = @"Telescopio Nazionale Galileo";
-    CLLocationCoordinate2D TNGcoord; TNGcoord.latitude = 28.754; TNGcoord.longitude = -17.889056;
-    TNG.coord = TNGcoord;
-    
-    Telescope * RM = [[Telescope alloc] init]; VLT.name = @"Radiotelescopio di Medicina";
-    CLLocationCoordinate2D RMcoord; RMcoord.latitude = 44.524018; RMcoord.longitude = 11.645412;
-    RM.coord = RMcoord;
-    
-    Telescope * MAGIC = [[Telescope alloc] init]; VLT.name = @"Major Atmospheric Gamma-ray Imaging Cherenkov Telescope";
-    CLLocationCoordinate2D MAGICcoord; MAGICcoord.latitude = 28.761944; MAGICcoord.longitude = -17.89;
-    MAGIC.coord = MAGICcoord;
-    
-    Telescope * CDN = [[Telescope alloc] init]; VLT.name = @"Croce Del Nord";
-    CLLocationCoordinate2D CDNcoord; CDNcoord.latitude = 44.52359; CDNcoord.longitude = 11.64576;
-    CDN.coord = CDNcoord;
-    
-    Telescope * RDN = [[Telescope alloc] init]; VLT.name = @"Radiotelescopio di Noto";
-    CLLocationCoordinate2D RDNcoord; RDNcoord.latitude = 36.87585; RDNcoord.longitude = 14.98890;
-    RDN.coord = RDNcoord;
-
-    NSArray * telescopesArray = [NSArray arrayWithObjects:VLT,REM,LBT,SRT,TNG,RM,MAGIC,CDN,RDN, nil];
-   
-    telescopes = [[NSMutableArray alloc] init];
-    [telescopes addObjectsFromArray:telescopesArray];
-
     annotations = [[NSMutableArray alloc] init];
     
    // NSDictionary * telescopes = [NSDictionary dictionaryWithObjects:<#(NSArray *)#> forKeys:<#(NSArray *)#>];

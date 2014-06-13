@@ -16,6 +16,7 @@
 #import "DetailNewsViewController.h"
 
 
+
 @interface ViewControllerTwo ()
 {
     UIPopoverController * popOverController;

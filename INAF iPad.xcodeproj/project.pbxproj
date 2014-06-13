@@ -25,6 +25,10 @@
 		034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */; };
 		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
 		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
+		037812B9194B13C900C38026 /* NewsInternetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037812B7194B13C900C38026 /* NewsInternetViewController.m */; };
+		037812BA194B13C900C38026 /* NewsInternetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037812B8194B13C900C38026 /* NewsInternetViewController.xib */; };
+		037812C3194B1DF100C38026 /* InternetMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037812C1194B1DF100C38026 /* InternetMoreViewController.m */; };
+		037812C4194B1DF100C38026 /* InternetMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037812C2194B1DF100C38026 /* InternetMoreViewController.xib */; };
 		0386A1E31933BBD50043347F /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386A1E21933BBD50043347F /* News.m */; };
 		03A3F4231945C4D70022D7AF /* EarthProjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F4211945C4D70022D7AF /* EarthProjViewController.m */; };
 		03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */; };
@@ -117,6 +121,12 @@
 		03751C931940A43B00FF31D5 /* AppTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableCell.xib; sourceTree = "<group>"; };
 		03751C951940A45900FF31D5 /* AppTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTableCell.h; sourceTree = "<group>"; };
 		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
+		037812B6194B13C900C38026 /* NewsInternetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsInternetViewController.h; sourceTree = "<group>"; };
+		037812B7194B13C900C38026 /* NewsInternetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsInternetViewController.m; sourceTree = "<group>"; };
+		037812B8194B13C900C38026 /* NewsInternetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsInternetViewController.xib; sourceTree = "<group>"; };
+		037812C0194B1DF100C38026 /* InternetMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetMoreViewController.h; sourceTree = "<group>"; };
+		037812C1194B1DF100C38026 /* InternetMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetMoreViewController.m; sourceTree = "<group>"; };
+		037812C2194B1DF100C38026 /* InternetMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternetMoreViewController.xib; sourceTree = "<group>"; };
 		0386A1E11933BBD50043347F /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		0386A1E21933BBD50043347F /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		03A3F4201945C4D70022D7AF /* EarthProjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthProjViewController.h; sourceTree = "<group>"; };
@@ -243,8 +253,6 @@
 				034DF0A2193504B000886FFD /* MapsViewController.h */,
 				034DF0A3193504B000886FFD /* MapsViewController.m */,
 				034DF0A4193504B000886FFD /* MapsViewController.xib */,
-				03E67B2519361AD000C0E4AB /* Telescope.h */,
-				03E67B2619361AD000C0E4AB /* Telescope.m */,
 			);
 			name = Sedi;
 			sourceTree = "<group>";
@@ -262,9 +270,14 @@
 		03A3F42A1945CB3D0022D7AF /* EarthProj */ = {
 			isa = PBXGroup;
 			children = (
+				03E67B2519361AD000C0E4AB /* Telescope.h */,
+				03E67B2619361AD000C0E4AB /* Telescope.m */,
 				03A3F4201945C4D70022D7AF /* EarthProjViewController.h */,
 				03A3F4211945C4D70022D7AF /* EarthProjViewController.m */,
 				03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */,
+				037812C0194B1DF100C38026 /* InternetMoreViewController.h */,
+				037812C1194B1DF100C38026 /* InternetMoreViewController.m */,
+				037812C2194B1DF100C38026 /* InternetMoreViewController.xib */,
 			);
 			name = EarthProj;
 			sourceTree = "<group>";
@@ -392,6 +405,9 @@
 				03E67B201935F4F000C0E4AB /* DetailNewsViewController.h */,
 				03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */,
 				03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */,
+				037812B6194B13C900C38026 /* NewsInternetViewController.h */,
+				037812B7194B13C900C38026 /* NewsInternetViewController.m */,
+				037812B8194B13C900C38026 /* NewsInternetViewController.xib */,
 			);
 			name = Two;
 			sourceTree = "<group>";
@@ -552,6 +568,7 @@
 				03DEDB01193382A7001823F4 /* ViewControllerCredits.xib in Resources */,
 				03DEDB0E19338FB0001823F4 /* DetailVideoViewController.xib in Resources */,
 				03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */,
+				037812BA194B13C900C38026 /* NewsInternetViewController.xib in Resources */,
 				03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */,
 				034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */,
 				03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */,
@@ -560,6 +577,7 @@
 				03DEDAF519337CF0001823F4 /* ViewControllerTwo.xib in Resources */,
 				03DEDAF019337CE5001823F4 /* ViewControllerThree.xib in Resources */,
 				03DEDAFC19338225001823F4 /* ViewControllerInfo.xib in Resources */,
+				037812C4194B1DF100C38026 /* InternetMoreViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +616,7 @@
 				0386A1E31933BBD50043347F /* News.m in Sources */,
 				03DEDB0D19338FB0001823F4 /* DetailVideoViewController.m in Sources */,
 				03DEDAB419337AB3001823F4 /* AppDelegate.m in Sources */,
+				037812C3194B1DF100C38026 /* InternetMoreViewController.m in Sources */,
 				034DF0A01934F49800886FFD /* DetailEventsViewController.m in Sources */,
 				034DF0971934EE0E00886FFD /* ParserImages.m in Sources */,
 				03DEDB0919338765001823F4 /* Video.m in Sources */,
@@ -611,6 +630,7 @@
 				034DF0A5193504B000886FFD /* MapsViewController.m in Sources */,
 				03A3F434194600970022D7AF /* SpaceMissionViewController.m in Sources */,
 				03DEDB00193382A7001823F4 /* ViewControllerCredits.m in Sources */,
+				037812B9194B13C900C38026 /* NewsInternetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

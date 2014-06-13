@@ -12,6 +12,8 @@
 #import "Telescope.h"
 #import "Annotation.h"
 #import "ViewControllerAnnotation.h"
+#import "InternetMoreViewController.h"
+
 
 @interface EarthProjViewController ()
 {
@@ -75,39 +77,96 @@
     }
     return center;
 }
+/*
 -(void) openTelescope : (id) sender
 {
     
     
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Cancel" otherButtonTitles:
                             @"Detail",
-                            @"Open Link",
+                            @"Zoom",
                             @"Webcam",
-                            @"Call Phone Number",
                             @"Show In Navigator",
                             
                             nil];
     popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];
-   
+  //  [popup showInView:[UIApplication sharedApplication].keyWindow];
+    [popup showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     
 }
+*/
+
+-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+   /* for (UIView *subview in view.subviews ){
+        self.navigationItem.rightBarButtonItem.enabled=NO;
+        [subview removeFromSuperview];
+    }*/
+}
+
+-(void) detail
+{
+    InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
+   
+     Telescope * t = [telescopes objectAtIndex:Tag];
+    
+    internet.url = [NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/",t.tag];
+    
+    [self.navigationController pushViewController:internet animated:YES];
+}
+-(void) zoom
+{
+    Telescope * t = [telescopes objectAtIndex:Tag];
+    
+    CLLocationCoordinate2D cord ;
+    cord.latitude=t.coord.latitude;
+    cord.longitude=t.coord.longitude;
+    
+    MKCoordinateRegion region;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.01;
+    span.longitudeDelta = 0.01;
+    region.span = span;
+    region.center = cord;
+    
+    [self.mapView setRegion:region animated:TRUE];
+    [self.mapView regionThatFits:region];
+
+    
+}
+-(void) news
+{
+    
+}
+-(void) navigate
+{
+    MKPlacemark* place = [[MKPlacemark alloc] initWithCoordinate: location addressDictionary: nil];
+    MKMapItem* destination = [[MKMapItem alloc] initWithPlacemark: place];
+    destination.name = @"Name Here!";
+    NSArray* items = [[NSArray alloc] initWithObjects: destination, nil];
+    NSDictionary* options = [[NSDictionary alloc] initWithObjectsAndKeys:
+                             MKLaunchOptionsDirectionsModeDriving,
+                             MKLaunchOptionsDirectionsModeKey, nil];
+    [MKMapItem openMapsWithItems: items launchOptions: options];
+    
+
+}
+
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-   /* switch (popup.tag) {
+    switch (popup.tag) {
         case 1: {
             switch (buttonIndex) {
                 case 0:
-                    [self Detail];
+                    [self detail];
                     break;
                 case 1:
-                    [self OpenLink];
+                    [self news];
                     break;
                 case 2:
-                    [self Call];
+                    [self zoom];
                     break;
                 case 3:
-                    [self Navigate];
+                    [self navigate];
                     break;
                     
             }
@@ -115,18 +174,23 @@
         }
         default:
             break;
-    }*/
+    }
 }
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     
     
     if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
-        self.navigationItem.rightBarButtonItem.enabled=YES;
+      
+        //self.navigationItem.rightBarButtonItem.enabled=YES;
+        
         NSLog(@"%d",view.tag);
         Tag=view.tag;
         
+        /*
         Annotation * v = (Annotation *)view;
         ;
+        
         
         
         CLLocationCoordinate2D cord ;
@@ -142,7 +206,10 @@
         
         [self.mapView setRegion:region animated:TRUE];
         [self.mapView regionThatFits:region];
+         
+         */
         
+        /*
         va = [[ViewControllerAnnotation alloc] initWithNibName:@"ViewControllerAnnotation" bundle:nil];
         
         //SMCalloutView *calloutView = (SMCalloutView *)[[[NSBundle mainBundle] loadNibNamed:@"CalloutView" owner:self options:nil] objectAtIndex:0];
@@ -162,15 +229,33 @@
         Telescope * t = [telescopes objectAtIndex:Tag];
         
         [va.nome setText:t.name];
-        [va.phone setText:t.phone];
-        [va.link setText:t.link];
-        [va.address setText:t.address];
+        
         
         [view addSubview:va.view];
         
-        
+        */
         
     }
+    
+}
+-(void) telescopeTouched : (id) selector
+{
+    UIButton * b = selector;
+    
+    int  telescopeID = b.tag;
+    
+    NSLog(@"id %d",telescopeID);
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Detail",
+                            @"News",
+                            @"Zoom",
+                            @"Show In Navigator",
+                            
+                            nil];
+    popup.tag = 1;
+      [popup showInView:[UIApplication sharedApplication].keyWindow];
+
     
 }
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -194,6 +279,25 @@
         customPinView.draggable=YES;
         customPinView.tag=an.tag;
         
+        
+        
+        UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        bottone.tag = an.tag+1;
+        
+        // NSLog(@" tag %d",bottone.tag);
+        
+        [bottone addTarget:self action:@selector(telescopeTouched:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        customPinView.rightCalloutAccessoryView=bottone;
+        customPinView.enabled = YES;
+        customPinView.canShowCallout = YES;
+        customPinView.multipleTouchEnabled = NO;
+
+        
+        //[bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+        
         return customPinView;
     }
     
@@ -206,7 +310,7 @@
     {
         load=1;
         
-       /* NSString * url = [NSString stringWithFormat: @"http://app.media.inaf.it/GetLocations.php"];
+        NSString * url = [NSString stringWithFormat: @"http://app.media.inaf.it/GetTelescopes.php"];
         
         NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         
@@ -223,44 +327,53 @@
             
         }
         
+        [telescopes removeAllObjects];
+        
         for(NSDictionary * d in jsonArray)
         {
             
-            NSString *ID = [d valueForKey:@"id"];
-            NSString *name = [d valueForKey:@"name"];
-            NSString *descr = [d valueForKey:@"descr"];
-            NSString *website = [d valueForKey:@"website"];
-            NSString *address = [d valueForKey:@"address"];
-            NSString *phone = [d valueForKey:@"phone"];
-            NSString *coord = [d valueForKey:@"coordinates"];
-            
-            Istituto * i = [[Istituto alloc]init];
-            
-            i.ID=ID;
-            i.name=name;
-            i.descr=descr;
-            i.address=address;
-            i.website=website;
-            i.phone=phone;
-            
-            NSArray * elementi = [coord componentsSeparatedByString:@","];
-            
-            
-            
-            CLLocationCoordinate2D coordinate;
-            coordinate.latitude = [[elementi objectAtIndex:1] floatValue];
-            coordinate.longitude = [[elementi objectAtIndex:0] floatValue];
-            
-            i.coord = coordinate;
-            
-            NSLog(@"%f %f",coordinate.longitude,i.coord.longitude);
-            
-            [istituti addObject:i];
+            if([[d valueForKeyPath:@"showonapp"] isEqualToString:@"0"] )
+            {
+                
+            }
+            else
+            {
+                NSString *name = [d valueForKey:@"name"];
+                NSString *tag = [d valueForKey:@"tag"];
+                NSString *latitude = [d valueForKey:@"latitude"];
+                NSString *longitude = [d valueForKey:@"longitude"];
+                NSString *phase = [d valueForKey:@"phase"];
+                NSString *scope = [d valueForKey:@"scope"];
+                NSString *img = [d valueForKey:@"imgbase"];
+                
+                Telescope * t = [[Telescope alloc]init];
+                
+                
+                t.name=name;
+                t.scope=scope;
+                t.img=img;
+                t.phase=phase;
+                t.tag=tag;
+                
+                
+                
+                
+                
+                CLLocationCoordinate2D coordinate;
+                coordinate.latitude = [latitude floatValue];
+                coordinate.longitude = [longitude floatValue];
+                
+                t.coord = coordinate;
+                
+                
+                
+                [telescopes addObject:t];
+            }
         }
         
-        */
         
-      
+        
+        
         
         
         
@@ -270,12 +383,13 @@
         
         {
             NSLog(@"apri mappa %d",self.mapView.hidden);
+            
             [self.mapView removeAnnotations:annotations];
             [annotations removeAllObjects];
             
             MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
             [self.mapView setRegion:region animated:YES];
-
+            
             
             cont=-1;
             int j = -1;
@@ -294,7 +408,7 @@
                 //newAnnotation.subtitle=i.descr;
                 newAnnotation.title =i.name;
                 
-                newAnnotation.link =i.link;
+                
                 newAnnotation.tag=j;
                 // NSLog(@"%f %f",ev.center.latitude,ev.center.longitude);
                 
@@ -305,7 +419,7 @@
             [self.mapView addAnnotations:annotations];
             
         }
-        NSLog(@"%d",[annotations count]);
+        NSLog(@"%lu",(unsigned long)[annotations count]);
         
     }
     
@@ -316,10 +430,12 @@
 
 - (void)viewDidLoad
 {
+  /*
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openTelescope:) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
     self.navigationItem.rightBarButtonItem.enabled=NO;
+   */
     
     self.title = @"Progetti da Terra";
     

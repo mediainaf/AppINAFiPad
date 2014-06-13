@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "News.h"
 
-@interface DetailEventsViewController : UIViewController
+@interface DetailEventsViewController : UIViewController <UIActionSheetDelegate>
 
 @property (nonatomic,strong) News * event;
 @property (strong, nonatomic) IBOutlet UILabel *titleEvent;

@@ -9,6 +9,7 @@
 // found in the LICENSE file.
 
 #import "DetailNewsViewController.h"
+#import "NewsInternetViewController.h"
 
 @interface DetailNewsViewController ()
 
@@ -24,9 +25,53 @@
     }
     return self;
 }
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        NSString *titolo = self.news.title;
+        NSString* spazio = @"";
+        NSURL   *imageToShare = [NSURL URLWithString:self.news.link];
+        
+        NSArray *postItems = [NSArray arrayWithObjects:titolo,spazio,imageToShare, nil];
+        
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                                initWithActivityItems:postItems
+                                                applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+        
+    }
+    if(buttonIndex == 1)
+        
+    {
+        NewsInternetViewController * internetViewController = [[NewsInternetViewController alloc] initWithNibName:@"NewsInternetViewController" bundle:nil];
+        
+        internetViewController.url =self.news.link;
+        
+        [self.navigationController pushViewController:internetViewController animated:YES];
+        
+        NSLog(@"Apri link");
+    }
+}
+-(void) action
+{
+    UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
+    
+    action.tintColor = [UIColor blackColor];
+    
+    action.actionSheetStyle =UIActionSheetStyleBlackOpaque ;
+    
+    [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
 
+}
 - (void)viewDidLoad
 {
+    
+    UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];
+    
+    [self.navigationItem setRightBarButtonItem:apriImmagine animated:YES];
     
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo4.jpg"];
     self.sfondoView.alpha = 0.6;

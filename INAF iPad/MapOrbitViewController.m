@@ -328,7 +328,7 @@ void getLatLong(double *lat, double *lon)
     MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
                                                                     reuseIdentifier:@"annotationIdentifier"];
     annotationView.canShowCallout = YES;
-    [annotationView setSelected:YES];
+    //[annotationView setSelected:YES];
     
     
     Annotation * a = annotation;

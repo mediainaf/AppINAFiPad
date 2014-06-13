@@ -9,6 +9,7 @@
 // found in the LICENSE file.
 
 #import "DetailEventsViewController.h"
+#import "NewsInternetViewController.h"
 
 @interface DetailEventsViewController ()
 
@@ -24,9 +25,48 @@
     }
     return self;
 }
-
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        NSString *titolo = self.event.title;
+        NSString* spazio = @"";
+        NSURL   *imageToShare = [NSURL URLWithString:self.event.link];
+        
+        NSArray *postItems = [NSArray arrayWithObjects:titolo,spazio,imageToShare, nil];
+        
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                                initWithActivityItems:postItems
+                                                applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+        
+    }
+    if(buttonIndex == 1)
+    {
+        NewsInternetViewController * internetViewController = [[NewsInternetViewController alloc] initWithNibName:@"NewsInternetViewController" bundle:nil];
+        
+        internetViewController.url =self.event.link;
+        
+        [self.navigationController pushViewController:internetViewController animated:YES];
+        
+        NSLog(@"Apri link");
+    }
+}
+-(void) action
+{
+    UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
+    [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+}
 - (void)viewDidLoad
 {
+    
+    
+    UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];
+    
+    [self.navigationItem setRightBarButtonItem:apriImmagine animated:YES];
+
+    
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
     self.sfondoView.alpha = 0.6;
     

@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "News.h"
 
-@interface DetailNewsViewController : UIViewController <UIWebViewDelegate>
+@interface DetailNewsViewController : UIViewController <UIActionSheetDelegate,UIWebViewDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UILabel *newsTitle;

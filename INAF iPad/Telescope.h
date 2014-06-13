@@ -14,9 +14,10 @@
 @interface Telescope : NSObject
 
 @property (nonatomic,strong) NSString * name;
-@property (nonatomic,strong) NSString * link;
-@property (nonatomic,strong) NSString * address;
-@property (nonatomic,strong) NSString * phone;
+@property (nonatomic,strong) NSString * img;
+@property (nonatomic,strong) NSString * tag;
+@property (nonatomic,strong) NSString * phase;
+@property (nonatomic,strong) NSString * scope;
 
 @property (nonatomic) CLLocationCoordinate2D coord;
 
