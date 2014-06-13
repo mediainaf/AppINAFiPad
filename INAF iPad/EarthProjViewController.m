@@ -143,13 +143,13 @@
                     [self detail];
                     break;
                 case 1:
-                    [self news];
-                    break;
-                case 2:
                     [self zoom];
                     break;
-                case 3:
+                case 2:
                     [self navigate];
+                    break;
+              //  case 3:
+                //    [self navigate];
                     break;
                     
             }
@@ -231,7 +231,7 @@
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Detail",
-                            @"News",
+                            //@"News",
                             @"Zoom",
                             @"Show In Navigator",
                             
@@ -330,7 +330,7 @@
                 NSString *img = [d valueForKey:@"imgbase"];
                 
                 Telescope * t = [[Telescope alloc]init];
-                
+                NSLog(@"%@ %@",name,tag);
                 
                 t.name=name;
                 t.scope=scope;

@@ -129,7 +129,13 @@
 }
 -(void) detail
 {
-   InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
+   
+    
+    
+}
+-(void) openWebSite
+{
+    InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
     
     Istituto * istituto = [istituti objectAtIndex:Tag];
     
@@ -138,12 +144,6 @@
     [self.navigationController pushViewController:internet animated:YES];
     
     NSLog(@"link");
-    
-    
-}
--(void) news
-{
-    
 }
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
@@ -154,7 +154,7 @@
                     [self detail];
                     break;
                 case 1:
-                    [self news];
+                    [self openWebSite];
                     break;
                 case 2:
                     [self Call];
@@ -177,7 +177,7 @@
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Detail",
-                            @"News",
+                            @"Official WebSite",
                             @"Call Phone Number",
                             @"Show In Navigator",
                             

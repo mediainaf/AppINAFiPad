@@ -321,8 +321,12 @@ finish:
 
 -(void) segmentChanged : (id) segment
 {
+    
+ 
+    
     segmentSelected = segmentedControl.selectedSegmentIndex;
     [pickerView reloadAllComponents];
+    [pickerView selectRow:0 inComponent:0 animated:YES];
 }
 
 -(void) apriFiltri
@@ -480,15 +484,165 @@ finish:
     
    
 
-    telescopes = [NSArray arrayWithObjects:@"Tutte le news",@"VLT Survey Telescope",@"REM (Rapid Eye Mount)",@"Large Binocular Telescope (LBT)",nil];
-    satellites = [NSArray arrayWithObjects:@"Tutte le news",@"SOHO",@"Cassini Huygens",@"Cluster",@"Mars Express",@"Rosetta", nil];
-    institutes = [NSArray arrayWithObjects:@"Tutte le news",@"Osservatorio di Torino",@"Osservatorio di Brera",@"IASF Milano",@"Osservatorio di Padova",@"Osservatorio di Trieste",@"Osservatorio di Bologna",@"IRA Bologna", nil];
+    telescopes = [NSArray arrayWithObjects:
+                  @"Tutte le news",
+                  @"Antenna di Medicina (BO)",
+                  @"Antenna di Noto (SR)",
+                  @"Croce del Nord (Medicina - BO)",
+                  @"Large Binocular Telescope",
+                  @"Magic",
+                  @"Rapid Eye Mount",
+                  @"Sardinia Radio Telescope",
+                  @"Telescopio Nazionale Galileo",
+                  @"VLT Survey Telescope",
+                  nil];
+    
+    // 42
+    satellites = [NSArray arrayWithObjects:
+                  @"Tutte le news",
+                  @"AGILE",
+                  @"BepiColombo",
+                  @"Boomerang-B2k",
+                  @"Cassini-Huygens",
+                  @"Chandra",
+                  @"CHEOPS",
+                  @"CLUSTER",
+                  @"CoRoT",
+                  @"DAWN",
+                  @"EChO",
+                  @"EJSM-Laplace/JUICE",
+                  @"ExoMars",
+                  @"EUCLID",
+                  @"Fermi",
+                  @"GAIA",
+                  @"GReAT",
+                  @"Herschel",
+                  @"Hinode",
+                  @"INTEGRAL",
+                  @"James Webb Space Telescope",
+                  @"JEM-EUSO",
+                  @"LISA/New Gravitational wave Obse",
+                  @"LISA-Pathfinder",
+                  @"LOFT",
+                  @"MarcoPolo-R",
+                  @"Mars Express",
+                  @"Mars Reconnaissance Orbiter",
+                  @"MIRAX",
+                  @"Olimpo",
+                  @"Phobos-Soil",
+                  @"Planck",
+                  @"PLATO",
+                  @"Proba-3",
+                  @"Rosetta",
+                  @"SCORE",
+                  @"SOHO",
+                  @"Solar Orbiter",
+                  @"SPICA",
+                  @"STEREO",
+                  @"Swift",
+                  @"Venus Express",
+                  @"XMM-Newton",
+                  
+                  
+                  nil];
+    
+    institutes = [NSArray arrayWithObjects:
+                  @"Tutte le news",
+                  @"IASF Bologna",
+                  @"IAPS Roma",
+                  @"IASF Milano",
+                  @"IASF Palermo",
+                  @"IRA Bologna",
+                  @"Osservatorio di Arcetri (FI)",
+                  @"Osservatorio di Bologna",
+                  @"Osservatorio di Brera",
+                  @"Osservatorio di Cagliari",
+                  @"Osservatorio di Capodimonte (NA)",
+                  @"Osservatorio di Catania",
+                  @"Osservatorio di Padova",
+                  @"Osservatorio di Palermo",
+                  @"Osservatorio di Roma",
+                  @"Osservatorio di Teramo",
+                  @"Osservatorio di Torino",
+                  @"Osservatorio di Trieste", nil];
     
     //,@"IASF Bologna",@"Osservatorio di Arcetri (FI)",@"Osservatorio di Teramo",@"Osservatorio di Roma",@"IAPS Roma",@"Osservatorio di Capodimonte (NA)",@"Osservatorio di Cagliari",@"Osservatorio di Palermo",@"IASF Palermo",@"Osservatorio di Catania"
     
-    institutesTag = [NSArray arrayWithObjects:@"",@"oa_torino",@"oa_brera",@"iasf_milano",@"oa_padova",@"oa_trieste",@"oa_bologna",@"ira_bologna", nil];
-    satellitesTag = [NSArray arrayWithObjects:@"",@"soho",@"cassini",@"cluster",@"mars-express",@"rosetta", nil];
-    telescopesTag = [NSArray arrayWithObjects:@"",@"vst",@"rem",@"lbt",nil];
+    institutesTag = [NSArray arrayWithObjects:@"",
+                     @"iasf_bologna",
+                     @"iaps_roma",
+                     @"iasf_milano",
+                     @"iasf_palermo",
+                     @"ira_bologna",
+                     @"oa_arcetri",
+                     @"oa_bologna",
+                     @"oa_brera",
+                     @"oa_cagliari",
+                     @"oa_napoli",
+                     @"oa_catania",
+                     @"oa_padova",
+                     @"oa_palermo",
+                     @"oa_roma",
+                     @"oa_teramo",
+                     @"oa_torino",
+                     @"oa_trieste",
+                     nil];
+    
+    satellitesTag = [NSArray arrayWithObjects:@"",
+                     @"agile",
+                     @"bepicolombo",
+                     @"boomerang",
+                     @"cassini",
+                     @"chandra",
+                     @"cheops",
+                     @"cluster",
+                     @"corot",
+                     @"dawn",
+                     @"echo",
+                     @"juice",
+                     @"exomars",
+                     @"euclid",
+                     @"fermi",
+                     @"gaia",
+                     @"great",
+                     @"herschel",
+                     @"hinode",
+                     @"integral",
+                     @"jwst",
+                     @"jem-euso",
+                     @"lisa",
+                     @"lisa-pathfinder",
+                     @"loft",
+                     @"marcopolo-r",
+                     @"mars-express",
+                     @"Reconnaissance Orbiter mars-orbiter",
+                     @"mirax",
+                     @"olimpo",
+                     @"phobos-soil",
+                     @"planck",
+                     @"plato",
+                     @"proba-3",
+                     @"rosetta",
+                     @"score",
+                     @"soho",
+                     @"solar-orbiter",
+                     @"spica",
+                     @"stereo",
+                     @"swift",
+                     @"venus-express",
+                     @"xmm",
+                     nil];
+    telescopesTag = [NSArray arrayWithObjects:@"",
+                     @"medicina",
+                     @"noto",
+                     @"croce-del-nord",
+                     @"lbt",
+                     @"magic",
+                     @"rem",
+                     @"srt",
+                     @"tng_canarie",
+                     @"vst",
+                     nil];
     
     
     

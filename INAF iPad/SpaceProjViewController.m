@@ -91,8 +91,8 @@ NSArray * titoli;
                 
                 AllSatellite * t = [[AllSatellite alloc]init];
                 
-                NSLog(@"%@ %@", name,img);
                 
+                NSLog(@"%@ %@",name,tag);
                 t.name=name;
                 t.scope=scope;
                 t.img=img;
