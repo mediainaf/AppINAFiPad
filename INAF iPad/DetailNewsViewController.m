@@ -93,25 +93,51 @@
         
         dispatch_async(queue, ^
                        {
-                           NSString *url = [self.news.images objectAtIndex:0];
+                           NSString * imageUrl =  [self.news.images objectAtIndex:0] ;
                            
-                           UIImage *img = nil;
+                           NSArray * elements = [ imageUrl componentsSeparatedByString:@"/"];
                            
-                           NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+                           int number = [elements count];
                            
-                           img = [[UIImage alloc] initWithData:data];
+                           NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
                            
-                           dispatch_async(dispatch_get_main_queue(), ^
-                                          {
-                                              NSLog(@"load image");
-                                              
-                                              
-                                              //UIImage * image = [self imageWithImage:img];
-                                              
-                                              self.image.image=img;
-                                              
-                                          });//end
-                       });//end
+                           NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                           
+                           NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+                          
+                           self.image.image = nil;
+
+                           if(response != nil)
+                           {
+                               
+                               NSError * jsonParsingError = nil;
+                               
+                               NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+                               
+                               NSDictionary * json = [jsonElement objectForKey:@"response"];
+                               
+                               NSString * urlImage = [json objectForKey:@"urlResizedImage"];
+                               
+                               NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+
+            
+                              
+                               dispatch_async(dispatch_get_main_queue(), ^
+                                              {
+                                                  NSLog(@"load image");
+                                                  
+                                                  UIImage * img = [[UIImage alloc] initWithData:dataImmagine];
+                                                  
+                                                  self.image.image=img;
+                                                  
+                                              });//end
+                           }
+                           
+                        });//end
+                       
+        
+        
+        
     }
     else if([self.news.videos count] >0)
     {

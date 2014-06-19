@@ -74,34 +74,102 @@
     self.summary.text = self.event.summary;
     
     
-    char const * s = [@"s"  UTF8String];
     
     
     
-    dispatch_queue_t queue = dispatch_queue_create(s, 0);
-    
-    dispatch_async(queue, ^
-                   {
-                       NSString *url = [self.event.images objectAtIndex:0];
-                       
-                       UIImage *img = nil;
-                       
-                       NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-                       
-                       img = [[UIImage alloc] initWithData:data];
-                       
-                       dispatch_async(dispatch_get_main_queue(), ^
-                                      {
-                                          NSLog(@"load image");
-                                          
-                                          
-                                          //UIImage * image = [self imageWithImage:img];
-                                          
-                                          self.image.image=img;
-                                          
-                                      });//end
-                   });//end
-    
+    if([self.event.images count] >0)
+    {
+        NSLog(@"1");
+        
+        
+        [self.image setHidden:NO];
+        char const * s = [@"s"  UTF8String];
+        
+        dispatch_queue_t queue = dispatch_queue_create(s, 0);
+        
+        dispatch_async(queue, ^
+                       {
+                           NSString * imageUrl =  [self.event.images objectAtIndex:0] ;
+                           
+                           NSArray * elements = [ imageUrl componentsSeparatedByString:@"/"];
+                           
+                           int number = [elements count];
+                           
+                           NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
+                           
+                           NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                           
+                           NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+                           
+                           self.image.image = nil;
+                           
+                           if(response != nil)
+                           {
+                               
+                               NSError * jsonParsingError = nil;
+                               
+                               NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+                               
+                               NSDictionary * json = [jsonElement objectForKey:@"response"];
+                               
+                               NSString * urlImage = [json objectForKey:@"urlResizedImage"];
+                               
+                               NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                               
+                               
+                               
+                               dispatch_async(dispatch_get_main_queue(), ^
+                                              {
+                                                  NSLog(@"load image");
+                                                  
+                                                  UIImage * img = [[UIImage alloc] initWithData:dataImmagine];
+                                                  
+                                                  self.image.image=img;
+                                                  
+                                              });//end
+                           }
+                           
+                       });//end
+        
+        
+        
+        
+    }
+    else if([self.event.videos count] >0)
+    {
+        NSLog(@"2");
+        
+        [self.webView setHidden:NO];
+        
+        NSMutableString *html = [NSMutableString string];
+        [html appendString:@"<html>"];
+        [html appendString:@"<head>"];
+        [html appendString:@"<style type=\"text/css\">"];
+        [html appendString:@"body {"];
+        [html appendString:@"background-color: transparent;"];
+        [html appendString:@"color: white;"];
+        [html appendString:@"margin: 0;"];
+        [html appendString:@"}"];
+        [html appendString:@"</style>"];
+        [html appendString:@"</head>"];
+        [html appendString:@"<body>"];
+        [html appendFormat:@"<iframe id=\"ytplayer\" type=\"text/html\" width=\"%0.0f\" height=\"%0.0f\" src=\"%@\" frameborder=\"0\"/>", self.webView.frame.size.width, self.webView.frame.size.height, [self.event.videos objectAtIndex:0]];
+        [html appendString:@"</body>"];
+        [html appendString:@"</html>"];
+        
+        //[self.indicator stopAnimating];
+        
+        [self.webView loadHTMLString:html baseURL:nil];
+        
+        
+    }
+    else
+    {
+        NSLog(@"3");
+        [self.image setHidden:NO];
+        self.image.image = [UIImage imageNamed:@"Assets/newsDefault.png"];
+        
+    }
     
     self.content.text = self.event.content;
     self.author.text = self.event.author;

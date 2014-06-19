@@ -11,8 +11,9 @@
 #import <UIKit/UIKit.h>
 #import "News.h"
 
-@interface DetailEventsViewController : UIViewController <UIActionSheetDelegate>
+@interface DetailEventsViewController : UIViewController <UIActionSheetDelegate,UIWebViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic,strong) News * event;
 @property (strong, nonatomic) IBOutlet UILabel *titleEvent;
 @property (strong, nonatomic) IBOutlet UIImageView *image;

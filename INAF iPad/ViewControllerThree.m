@@ -292,26 +292,58 @@
             dispatch_async(queue, ^{
                 //This is what you will load lazily
                 
-                NSData   *data;
+                //NSData   *data;
                 if([n.images count]>0)
                 {
-                    data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [n.images objectAtIndex:0]]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
+                    
+                    NSString * imageUrl =  [n.images objectAtIndex:0] ;
+                    
+                    NSArray * elements = [ imageUrl componentsSeparatedByString:@"/"];
+                    
+                    int number = [elements count];
+                    
+                    NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
+                    
+                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                    
+                    NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+                    
+                    if(response != nil)
+                    {
                         
-                        UIImage * image = [UIImage imageWithData:data];
-                        [images setObject:image forKey:identifier];
-                        //cell.thumbnail.image = image;
-                        [cell setNeedsLayout];
-                        [UIView setAnimationsEnabled:NO];
+                        NSError * jsonParsingError = nil;
                         
-                        [self.collectionView performBatchUpdates:^{
-                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                            [cell.indicator startAnimating];
-                        } completion:^(BOOL finished) {
-                            [UIView setAnimationsEnabled:YES];
-                        }];
+                        NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
                         
-                    });
+                        NSDictionary * json = [jsonElement objectForKey:@"response"];
+                        
+                        NSString * urlImage = [json objectForKey:@"urlResizedImage"];
+                        
+                        NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                        
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            
+                            NSLog(@"%@",[n.images objectAtIndex:0]);
+                            
+                            
+                            
+                            UIImage * image = [UIImage imageWithData:dataImmagine];
+                            [images setObject:image forKey:identifier];
+                            //cell.thumbnail.image = image;
+                            [cell setNeedsLayout];
+                            [UIView setAnimationsEnabled:NO];
+                            
+                            [self.collectionView performBatchUpdates:^{
+                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                [cell.indicator startAnimating];
+                            } completion:^(BOOL finished) {
+                                [UIView setAnimationsEnabled:YES];
+                            }];
+                            
+                        });
+                    }
+                    
+
                 }
                 else
                 {
