@@ -354,12 +354,6 @@
             }
         }
         
-        
-        
-        
-        
-        
-        
         MKUserLocation * userlocation = self.mapView.userLocation;
         self.mapView.showsUserLocation=YES;
         

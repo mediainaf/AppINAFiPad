@@ -477,6 +477,20 @@ finish:
     
 
 }
+-(void) reloadData : (id) selector
+{
+    
+        self.loadingView.alpha = 1.0;
+        
+        load =1;
+        pickerRowSelected = 0;
+        segmentedControl =0;
+        
+        [self loadData:@"http://www.media.inaf.it/feed/"];
+        
+    
+
+}
 - (void)viewDidLoad
 {
     self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
@@ -662,7 +676,7 @@ finish:
 
     
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData:) ];
+    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData:) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
     
