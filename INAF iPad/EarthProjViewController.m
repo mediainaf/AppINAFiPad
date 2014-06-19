@@ -426,7 +426,7 @@
     self.navigationItem.rightBarButtonItem.enabled=NO;
    */
     
-    UIImage * cameraIcon = [UIImage imageNamed:@"Assets/cameraIcon.png"];
+    UIImage * cameraIcon = [UIImage imageNamed:@"Assets/iconaVideo7.png"];
     
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];

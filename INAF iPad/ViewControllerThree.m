@@ -238,7 +238,7 @@
     news = [[NSMutableArray alloc] init];
     images = [[NSMutableDictionary alloc] init];
     
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
+    //self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
     self.sfondoView.alpha = 0.6;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

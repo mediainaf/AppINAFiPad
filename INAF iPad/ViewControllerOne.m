@@ -596,7 +596,7 @@ finish:
         
         self.logoInaf.image=image;
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=320&height=209&deviceName=iphone"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
         NSURLConnection * connection = [[NSURLConnection alloc ] initWithRequest:request delegate:self];
         

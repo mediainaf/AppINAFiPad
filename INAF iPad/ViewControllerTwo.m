@@ -645,17 +645,28 @@ finish:
                      nil];
     
     
+    UIImage * iconaFiltri = [UIImage imageNamed:@"Assets/iconaFiltri.png"];
     
+    
+    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    
+    [bottone addTarget:self action:@selector(apriFiltri) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bottone setImage:iconaFiltri forState:UIControlStateNormal];
+    
+    [bottone setFrame:CGRectMake(310, 2, 30, 30)];
+    
+    UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
+    
+    self.navigationItem.leftBarButtonItem=buttonBar;
+
     
     
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData:) ];
     
     self.navigationItem.rightBarButtonItem= refresh ;
     
-    UIBarButtonItem * filtri = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(apriFiltri) ];
-    
-    self.navigationItem.leftBarButtonItem= filtri ;
-
+  
     
     load = 0;
     self.title = @"News";
@@ -676,8 +687,9 @@ finish:
     
     news = [[NSMutableArray alloc] init];
     images = [[NSMutableDictionary alloc] init];
+    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
+    //self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo4.jpg"];
     
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo4.jpg"];
     self.sfondoView.alpha = 0.6;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

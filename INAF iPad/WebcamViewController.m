@@ -17,6 +17,9 @@
     NSMutableDictionary *cachedImages;
 
     NSArray * webcamLink;
+    
+    NSTimer * timer;
+
 
 }
 
@@ -34,11 +37,58 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    
+    [timer fire];
    // [self.collectionView reloadData];
 }
+-(void) reloadWebcam
+{
+    for(int i =0;i <15 ;i++)
+    {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
+        dispatch_async(queue, ^{
+            //This is what you will load lazily
+            
+            NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[webcamLink objectAtIndex:i ] ]];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                
+                NSLog(@"immagine scaricata");
+                
+                NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,i];
+                
 
+                
+                UIImage * image = [UIImage imageWithData:data];
+                [cachedImages setObject:image forKey:identifier];
+                //cell.thumbnail.image = image;
+              
+                [UIView setAnimationsEnabled:NO];
+                
+                [self.collectionView performBatchUpdates:^{
+                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:i inSection:0]]];
+                    
+                } completion:^(BOOL finished) {
+                    [UIView setAnimationsEnabled:YES];
+                }];
+                
+            });
+        });
+
+    }
+   // [self.collectionView reloadData];
+    
+    NSLog(@"reload");
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [timer invalidate];
+}
 - (void)viewDidLoad
 {
+
+    timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(reloadWebcam) userInfo:nil repeats:YES];
+    
     
     cachedImages = [[NSMutableDictionary alloc] init];
     
@@ -126,7 +176,7 @@
     {
         cell.webcam.image = [cachedImages valueForKey:identifier];
         [cell.indicator stopAnimating];
-        NSLog(@"metti immagine");
+      //  NSLog(@"metti immagine");
         
     }
     else
@@ -138,6 +188,8 @@
             
             NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[webcamLink objectAtIndex:indexPath.row ] ]];
             dispatch_sync(dispatch_get_main_queue(), ^{
+                
+          //      NSLog(@"immagine scaricata");
                 
                 UIImage * image = [UIImage imageWithData:data];
                 [cachedImages setObject:image forKey:identifier];

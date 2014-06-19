@@ -73,7 +73,8 @@
     
     [self.navigationItem setRightBarButtonItem:apriImmagine animated:YES];
     
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo4.jpg"];
+    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
+    //self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo4.jpg"];
     self.sfondoView.alpha = 0.6;
     
     self.newsTitle.text = self.news.title;
