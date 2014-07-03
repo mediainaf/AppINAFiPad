@@ -81,11 +81,18 @@
         
         j.title = title;
         j.description = description;
-        j.link = link;
+        
+        NSString * link2  = link;
+       
+            
+            link2 = [link2 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            link2 = [link2 stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+         j.link = link2;
         
         NSString * date2 = [date  substringToIndex:10];
         
-        NSLog(@"link %@",link);
+        NSLog(@"link %@",link2);
 
         j.date = date2;
         
