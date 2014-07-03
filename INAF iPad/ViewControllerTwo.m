@@ -275,7 +275,7 @@
         
     }
     while (![scanner isAtEnd]);
-    
+
 finish:
     return result;
 }
@@ -299,8 +299,7 @@ finish:
     [parser parse];
     
     [self.collectionView reloadData];
-    self.loadingView.alpha = 0.0;
-    
+     [self.loadingView setHidden:YES];
 }
 
 
@@ -308,7 +307,7 @@ finish:
 {
     if(load ==0 )
     {
-        self.loadingView.alpha = 1.0;
+       [self.loadingView setHidden:NO];
 
         load =1;
         pickerRowSelected = 0;
@@ -442,7 +441,7 @@ finish:
 {
     [popOverController dismissPopoverAnimated:YES];
     
-    self.loadingView.alpha = 1.0;
+    [self.loadingView setHidden:NO];
     
     double delayInSeconds = 0.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -480,13 +479,13 @@ finish:
 -(void) reloadData : (id) selector
 {
     
-        self.loadingView.alpha = 1.0;
+         [self.loadingView setHidden:NO];
         
         load =1;
         pickerRowSelected = 0;
         segmentedControl =0;
         
-        [self loadData:@"http://www.media.inaf.it/feed/"];
+        [self loadData:@"http://www.media.inaf.it/feed/?paged=5"];
         
     
 
@@ -494,7 +493,8 @@ finish:
 - (void)viewDidLoad
 {
     self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
-    self.loadingView.alpha = 0.0;
+  
+    [self.loadingView setHidden:NO];
     
    
 

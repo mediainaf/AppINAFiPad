@@ -9,10 +9,13 @@
 // found in the LICENSE file.
 
 #import "DetailVideoViewController.h"
-#import "ViewControllerVideoYoutube.h"
+
 
 @interface DetailVideoViewController ()
-
+{
+    int actionSheetOpen;
+    UIActionSheet * action;
+}
 @end
 
 @implementation DetailVideoViewController
@@ -59,16 +62,34 @@
     
     
 }
--(void) apriVideo
+-(void) action
 {
-    ViewControllerVideoYoutube * youtube = [[ViewControllerVideoYoutube alloc] initWithNibName:@"ViewControllerVideoYoutube" bundle:nil];
+   
+        
+        NSString *titolo = self.video.title;
+        NSString* spazio = @" ";
+        NSURL   *imageToShare = [NSURL URLWithString:self.video.link];
+        UIImage * image = self.thumbnail;
     
-    youtube.video = self.video;
+        NSArray *postItems = [NSArray arrayWithObjects:titolo,spazio,image,imageToShare, nil];
+        
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                                initWithActivityItems:postItems
+                                                applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
     
-  //  [self presentViewController:youtube animated:YES completion:nil];
 }
 - (void)viewDidLoad
 {
+    
+    actionSheetOpen=0;
+    
+    UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];
+    
+    [self.navigationItem setRightBarButtonItem:apriImmagine animated:YES];
+
+    
     NSLog(@"load");
     
     self.thumbnailView.image=self.thumbnail;
@@ -86,7 +107,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [action dismissWithClickedButtonIndex:5 animated:NO];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

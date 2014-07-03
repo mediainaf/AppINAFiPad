@@ -51,6 +51,9 @@
 }
 -(void) loadData
 {
+    [self.loadingView setHidden:YES];
+
+    
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json"]];
     
     NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
@@ -124,12 +127,18 @@
     
     [self.collectionView reloadData];
     
+    [self.loadingView setHidden:YES];
+
+    
     
     
 }
 - (void)viewDidLoad
 {
+    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
+    [self.loadingView setHidden:NO];
+
     
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
     

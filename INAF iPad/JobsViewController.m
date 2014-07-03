@@ -9,9 +9,18 @@
 // found in the LICENSE file.
 
 #import "JobsViewController.h"
+#import "InternetMoreViewController.h"
+#import "Job.h"
+#import "JobsTableViewCell.h"
 
 @interface JobsViewController ()
-
+{
+    NSMutableArray * jobs;
+    int load;
+    NSXMLParser * parser;
+    
+    NSMutableString *title,*description,*link,*date,*currentElement;
+}
 @end
 
 @implementation JobsViewController
@@ -24,13 +33,177 @@
     }
     return self;
 }
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+    NSLog(@"current element %@",currentElement);
+    currentElement = [elementName copy];
+    if ([elementName isEqualToString:@"item"]) {
+        
+        title = [[NSMutableString alloc] init];
+        
+        date = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc] init];
+        
+        link = [[NSMutableString alloc] init];
+        
+        // inizializza tutti gli elementi
+    }
+    
+    
+}
+
+
+-(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    if ([currentElement isEqualToString:@"title"]){
+        [title appendString:string];
+    } else if ([currentElement isEqualToString:@"link"]) {
+        [link appendString:string];
+    }
+     else if ([currentElement isEqualToString:@"dc:date"]) {
+        [date appendString:string];
+    } else if ([currentElement isEqualToString:@"description"]) {
+        [description appendString:string];
+    }
+    
+    
+}
+
+-(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if ([elementName isEqualToString:@"item"]) {
+        /* salva tutte le proprietà del feed letto nell'elemento "item", per
+         poi inserirlo nell'array "elencoFeed" */
+        
+        
+        
+        Job * j = [[Job alloc] init];
+        
+        j.title = title;
+        j.description = description;
+        j.link = link;
+        
+        NSString * date2 = [date  substringToIndex:10];
+        
+        NSLog(@"link %@",link);
+
+        j.date = date2;
+        
+        [jobs addObject:j];
+        
+        //
+        // NSLog(@"autore %@",imageLinkBig);
+        
+        
+        
+        
+        //  news.titolo =
+        
+    }
+    
+}
+-(void) loadData : (NSString *) url
+{
+    
+    [jobs removeAllObjects];
+    
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+    
+    [parser setDelegate:self];
+    
+    // settiamo alcune proprietà
+    [parser setShouldProcessNamespaces:NO];
+    [parser  setShouldReportNamespacePrefixes:NO];
+    [ parser  setShouldResolveExternalEntities:NO];
+    
+    // avviamo il parsing del feed RSS
+    [parser parse];
+    
+    [self.tableView reloadData];
+    //[self.loadingView setHidden:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if(load == 0)
+    {
+        load = 1;
+        
+         [self loadData:@"http://www.inaf.it/it/lavora-con-noi/concorsi-inaf/RSS"];
+        
+        
+    }
+    
+}
 
 - (void)viewDidLoad
 {
+    load = 0;
+    
+    self.title = @"Jobs";
+    
+    jobs = [[NSMutableArray alloc] init];
+    
+    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo6.jpg"];
+    self.sfondoView.alpha = 0.5;
+    
+    self.tableView.rowHeight = 80;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if([jobs count] >0)
+        return [jobs count];
+    return 13;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    JobsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil)
+    {
+        cell= [[JobsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.backgroundColor = [UIColor clearColor];
+    //cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    //cell.backgroundColor=[UIColor colorWithWhite:0.9 alpha:0.7];
+    
+    if([jobs count] >0)
+    {
+        
+        
+        Job * j = [jobs objectAtIndex:indexPath.row];
+        
+        
+        cell.title.text = j.title;
+               // cell.detailTextLabel.text = j.description;
+        
+    }
+    return cell;
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
+    
+    Job * j =[jobs objectAtIndex:indexPath.row];
+    
+    internet.url = [NSString stringWithFormat:@"%@",j.link];
+    
+    [self.navigationController pushViewController:internet animated:YES];
+    
+    
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

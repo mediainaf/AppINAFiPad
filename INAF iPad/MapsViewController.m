@@ -150,16 +150,16 @@
     switch (popup.tag) {
         case 1: {
             switch (buttonIndex) {
-                case 0:
+                /*case 0:
                     [self detail];
-                    break;
-                case 1:
+                    break;*/
+                case 0:
                     [self openWebSite];
                     break;
-                case 2:
+                case 1:
                     [self Call];
                     break;
-                case 3:
+                case 2:
                     [self Navigate];
                     break;
                     
@@ -176,7 +176,7 @@
     
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select Sharing option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                            @"Detail",
+                           
                             @"Official WebSite",
                             @"Call Phone Number",
                             @"Show In Navigator",

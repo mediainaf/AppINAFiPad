@@ -10,6 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JobsViewController : UIViewController
+@interface JobsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,NSXMLParserDelegate>
+@property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

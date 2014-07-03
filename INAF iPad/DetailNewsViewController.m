@@ -12,7 +12,10 @@
 #import "NewsInternetViewController.h"
 
 @interface DetailNewsViewController ()
-
+{
+    int actionSheetOpen;
+    UIActionSheet * action;
+}
 @end
 
 @implementation DetailNewsViewController
@@ -27,6 +30,8 @@
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    actionSheetOpen = 0;
+    
     if(buttonIndex == 0)
     {
         NSString *titolo = self.news.title;
@@ -56,18 +61,24 @@
 }
 -(void) action
 {
-    UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
-    
-    action.tintColor = [UIColor blackColor];
-    
-    action.actionSheetStyle =UIActionSheetStyleBlackOpaque ;
-    
-    [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
-    
+    if(actionSheetOpen == 0)
+    {
+        actionSheetOpen = 1;
+        
+         action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
+        
+        action.tintColor = [UIColor blackColor];
+        
+        action.actionSheetStyle =UIActionSheetStyleBlackOpaque ;
+        
+        [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    }
 
 }
 - (void)viewDidLoad
 {
+    
+    actionSheetOpen = 0;
     
     UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];
     
@@ -182,6 +193,11 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [action dismissWithClickedButtonIndex:5 animated:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning

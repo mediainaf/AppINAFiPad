@@ -179,6 +179,8 @@
 
 -(void) loadData
 {
+    [self.loadingView setHidden:NO];
+
     
     NSString * url = @"http://www.media.inaf.it/category/eventi/feed/?paged=10";
     
@@ -195,6 +197,9 @@
     [parser parse];
 
     [self.collectionView reloadData];
+    
+    [self.loadingView setHidden:YES];
+
     
 }
 
@@ -215,7 +220,9 @@
 {
     
     
+    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
+    [self.loadingView setHidden:NO];
     
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
     

@@ -29,6 +29,9 @@
 		037812BA194B13C900C38026 /* NewsInternetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037812B8194B13C900C38026 /* NewsInternetViewController.xib */; };
 		037812C3194B1DF100C38026 /* InternetMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037812C1194B1DF100C38026 /* InternetMoreViewController.m */; };
 		037812C4194B1DF100C38026 /* InternetMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037812C2194B1DF100C38026 /* InternetMoreViewController.xib */; };
+		037DCF421965AEA500BCBCCE /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 037DCF411965AEA500BCBCCE /* Job.m */; };
+		037DCF451965B58200BCBCCE /* JobsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037DCF441965B58200BCBCCE /* JobsTableViewCell.m */; };
+		037DCF471965B59200BCBCCE /* JobsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037DCF461965B59200BCBCCE /* JobsTableViewCell.xib */; };
 		0386A1E31933BBD50043347F /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386A1E21933BBD50043347F /* News.m */; };
 		03A3F4231945C4D70022D7AF /* EarthProjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F4211945C4D70022D7AF /* EarthProjViewController.m */; };
 		03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F4221945C4D70022D7AF /* EarthProjViewController.xib */; };
@@ -81,8 +84,6 @@
 		03DEDB0919338765001823F4 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB0819338765001823F4 /* Video.m */; };
 		03DEDB0D19338FB0001823F4 /* DetailVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */; };
 		03DEDB0E19338FB0001823F4 /* DetailVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */; };
-		03DEDB1219339D0F001823F4 /* ViewControllerVideoYoutube.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */; };
-		03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */; };
 		03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */; };
 		03E67B241935F4F000C0E4AB /* DetailNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */; };
 		03E67B2719361AD000C0E4AB /* Telescope.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E67B2619361AD000C0E4AB /* Telescope.m */; };
@@ -134,6 +135,11 @@
 		037812C0194B1DF100C38026 /* InternetMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetMoreViewController.h; sourceTree = "<group>"; };
 		037812C1194B1DF100C38026 /* InternetMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetMoreViewController.m; sourceTree = "<group>"; };
 		037812C2194B1DF100C38026 /* InternetMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternetMoreViewController.xib; sourceTree = "<group>"; };
+		037DCF401965AEA500BCBCCE /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
+		037DCF411965AEA500BCBCCE /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
+		037DCF431965B58200BCBCCE /* JobsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsTableViewCell.h; sourceTree = "<group>"; };
+		037DCF441965B58200BCBCCE /* JobsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsTableViewCell.m; sourceTree = "<group>"; };
+		037DCF461965B59200BCBCCE /* JobsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobsTableViewCell.xib; sourceTree = "<group>"; };
 		0386A1E11933BBD50043347F /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		0386A1E21933BBD50043347F /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		03A3F4201945C4D70022D7AF /* EarthProjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthProjViewController.h; sourceTree = "<group>"; };
@@ -211,9 +217,6 @@
 		03DEDB0A19338FB0001823F4 /* DetailVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVideoViewController.h; sourceTree = "<group>"; };
 		03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVideoViewController.m; sourceTree = "<group>"; };
 		03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVideoViewController.xib; sourceTree = "<group>"; };
-		03DEDB0F19339D0F001823F4 /* ViewControllerVideoYoutube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerVideoYoutube.h; sourceTree = "<group>"; };
-		03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerVideoYoutube.m; sourceTree = "<group>"; };
-		03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerVideoYoutube.xib; sourceTree = "<group>"; };
 		03E67B201935F4F000C0E4AB /* DetailNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNewsViewController.h; sourceTree = "<group>"; };
 		03E67B211935F4F000C0E4AB /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNewsViewController.m; sourceTree = "<group>"; };
 		03E67B221935F4F000C0E4AB /* DetailNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNewsViewController.xib; sourceTree = "<group>"; };
@@ -281,6 +284,11 @@
 				034DF0A7193504C600886FFD /* JobsViewController.h */,
 				034DF0A8193504C600886FFD /* JobsViewController.m */,
 				034DF0A9193504C600886FFD /* JobsViewController.xib */,
+				037DCF401965AEA500BCBCCE /* Job.h */,
+				037DCF411965AEA500BCBCCE /* Job.m */,
+				037DCF431965B58200BCBCCE /* JobsTableViewCell.h */,
+				037DCF441965B58200BCBCCE /* JobsTableViewCell.m */,
+				037DCF461965B59200BCBCCE /* JobsTableViewCell.xib */,
 			);
 			name = Jobs;
 			sourceTree = "<group>";
@@ -485,9 +493,6 @@
 				03DEDB0A19338FB0001823F4 /* DetailVideoViewController.h */,
 				03DEDB0B19338FB0001823F4 /* DetailVideoViewController.m */,
 				03DEDB0C19338FB0001823F4 /* DetailVideoViewController.xib */,
-				03DEDB0F19339D0F001823F4 /* ViewControllerVideoYoutube.h */,
-				03DEDB1019339D0F001823F4 /* ViewControllerVideoYoutube.m */,
-				03DEDB1119339D0F001823F4 /* ViewControllerVideoYoutube.xib */,
 			);
 			name = Four;
 			sourceTree = "<group>";
@@ -606,10 +611,10 @@
 				034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */,
 				03DEDB01193382A7001823F4 /* ViewControllerCredits.xib in Resources */,
 				03DEDB0E19338FB0001823F4 /* DetailVideoViewController.xib in Resources */,
-				03DEDB1319339D0F001823F4 /* ViewControllerVideoYoutube.xib in Resources */,
 				037812BA194B13C900C38026 /* NewsInternetViewController.xib in Resources */,
 				03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */,
 				034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */,
+				037DCF471965B59200BCBCCE /* JobsTableViewCell.xib in Resources */,
 				03B45DAB194B3F48006785B1 /* NewsForSubjectViewController.xib in Resources */,
 				03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */,
 				03DEDAAE19337AB3001823F4 /* InfoPlist.strings in Resources */,
@@ -654,7 +659,6 @@
 				03DEDAF419337CF0001823F4 /* ViewControllerTwo.m in Sources */,
 				034DF0AF193504DB00886FFD /* AppsViewController.m in Sources */,
 				034DF0AA193504C600886FFD /* JobsViewController.m in Sources */,
-				03DEDB1219339D0F001823F4 /* ViewControllerVideoYoutube.m in Sources */,
 				03A578621949E9B80008BEB9 /* MapOrbitViewController.m in Sources */,
 				0386A1E31933BBD50043347F /* News.m in Sources */,
 				03DEDB0D19338FB0001823F4 /* DetailVideoViewController.m in Sources */,
@@ -670,11 +674,13 @@
 				03A578661949EC2D0008BEB9 /* Satellite.m in Sources */,
 				034DF0B81935064500886FFD /* Annotation.m in Sources */,
 				03DEDAB019337AB3001823F4 /* main.m in Sources */,
+				037DCF421965AEA500BCBCCE /* Job.m in Sources */,
 				034DF0B91935064500886FFD /* Istituto.m in Sources */,
 				034DF0A5193504B000886FFD /* MapsViewController.m in Sources */,
 				03A3F434194600970022D7AF /* SpaceMissionViewController.m in Sources */,
 				03DEDB00193382A7001823F4 /* ViewControllerCredits.m in Sources */,
 				037812B9194B13C900C38026 /* NewsInternetViewController.m in Sources */,
+				037DCF451965B58200BCBCCE /* JobsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
