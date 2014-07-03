@@ -154,7 +154,7 @@
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo6.jpg"];
     self.sfondoView.alpha = 0.5;
     
-    self.tableView.rowHeight = 80;
+    self.tableView.rowHeight = 100;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
