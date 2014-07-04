@@ -709,7 +709,7 @@ finish:
 
      
     
-    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+   // self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
   
     [self.loadingView setHidden:NO];
     

@@ -27,14 +27,59 @@
     }
     return self;
 }
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+       self.sfondoView.image = [UIImage imageNamed:@"Assets/cerisola1.jpg"];
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/cerisolaLand.jpg"];        }
+    }
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+    
+}
 
 - (void)viewDidLoad
 {
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        
+       self.sfondoView.image = [UIImage imageNamed:@"Assets/cerisola1.jpg"];
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+           self.sfondoView.image = [UIImage imageNamed:@"Assets/cerisolaLand.jpg"];
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+
     self.title=@"Apps";
     self.navigationController.navigationBar.tintColor=[UIColor blackColor];
-    
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/cerisola1.jpg"];
+ 
 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

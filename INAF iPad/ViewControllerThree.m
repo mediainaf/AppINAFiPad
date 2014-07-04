@@ -234,7 +234,7 @@
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
         [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
-        
+         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
         
@@ -260,7 +260,7 @@
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
             NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
-            
+             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             
@@ -298,7 +298,7 @@
         
         [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.collectionView setCollectionViewLayout:flowLayout];
-        
+         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         //[self.collectionView reloadData];
         
@@ -317,7 +317,7 @@
             [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
-            
+             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
             //  [self.collectionView reloadData];
             
         }
@@ -330,7 +330,7 @@
      object:nil];
 
     
-    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+    //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
     [self.loadingView setHidden:NO];
     

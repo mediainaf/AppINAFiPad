@@ -31,9 +31,56 @@
     }
     return self;
 }
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+             self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
+        }
+    }
+    
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+    
+}
 - (void)viewDidLoad
 {
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+
+    
+    if(orientation == 1 || orientation == 2)
+    {
+               
+         self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+
     self.title= @"More";
     
     [self.bottApps setImage:[UIImage imageNamed:@"Assets/bottoneApps.png"] forState:UIControlStateNormal];
@@ -43,7 +90,7 @@
     [self.bottProgettiSpaziali setImage:[UIImage imageNamed:@"Assets/bottoneSatelliti.png"] forState:UIControlStateNormal];
 
     
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
+   // self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
