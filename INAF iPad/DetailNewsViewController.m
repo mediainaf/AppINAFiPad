@@ -75,8 +75,53 @@
     }
 
 }
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.image setFrame:CGRectMake(10, 187, 748, 361)];
+
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            
+            NSLog(@"image %f %f",self.image.frame.size.height,self.image.frame.origin.y);
+            
+            [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+            
+        }
+    }
+}
 - (void)viewDidLoad
 {
+    
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.image setFrame:CGRectMake(10, 187, 748, 361)];
+
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
     
     actionSheetOpen = 0;
     
@@ -110,7 +155,7 @@
                            
                            int number = [elements count];
                            
-                           NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
+                           NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=748&height=361",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
                            
                            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                            

@@ -556,15 +556,119 @@ finish:
         load =1;
         pickerRowSelected = 0;
         segmentedControl =0;
+        page = 1;
+
         
         [self loadData:@"http://www.media.inaf.it/feed/"];
         
     
 
 }
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+       
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        [self.collectionView reloadData];
+
+
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+             //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+           
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            [self.collectionView reloadData];
+
+        }
+    }
+}
 - (void)viewDidLoad
 {
+    [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
+
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setCollectionViewLayout:flowLayout];
+    
+
+        [self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            [self.collectionView reloadData];
+            
+        }
+    }
   
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+    
+    
+    /*
+     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+     [flowLayout setItemSize:CGSizeMake(354, 414)];
+     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+     [flowLayout setMinimumLineSpacing:20.0];
+     [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+     // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+     
+     [self.collectionView setCollectionViewLayout:flowLayout];
+     
+     
+
+     */
     
     self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
   
@@ -759,18 +863,7 @@ finish:
     load = 0;
     self.title = @"News";
     
-    [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
     
-    
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(354, 414)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setMinimumLineSpacing:20.0];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-    // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    
-    [self.collectionView setCollectionViewLayout:flowLayout];
     
     
     news = [[NSMutableArray alloc] init];
