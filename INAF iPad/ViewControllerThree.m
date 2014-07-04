@@ -216,7 +216,7 @@
 
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
     
@@ -276,6 +276,10 @@
 {
     [self deviceOrientationDidChangeNotification:nil];
 
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    NSLog(@"rotate %d",fromInterfaceOrientation);
 }
 - (void)viewDidLoad
 {
