@@ -20,9 +20,10 @@
 @interface ViewControllerOne ()
 {
     NSXMLParser * parser;
-    
+    int newsNumber;
     NSMutableArray * news;
-    
+    UIImage * imageP;
+    UIImage * imageL;
     int load;
     
     NSMutableDictionary *images;
@@ -131,7 +132,7 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     
-    if([news count] == 2)
+    if([news count] == 3)
        [parser abortParsing];
     
     if ([elementName isEqualToString:@"item"]) {
@@ -250,10 +251,8 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if([news count]>0)
-        return  [news count];
-    
-    return 6 ;
+   
+    return 3 ;
 }
 - (NSString *)stringByDecodingXMLEntities: (NSString*) string {
   
@@ -381,6 +380,7 @@ finish:
         {
             cell.thumbnail.image = [images valueForKey:identifier];
             NSLog(@"metti immagine");
+            NSLog(@"%f ",cell.thumbnail.frame.size.height);
             [cell.indicator stopAnimating];
         }
         else
@@ -402,7 +402,7 @@ finish:
                     
                     NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
                     
-                    NSLog(@"%@",url);
+                  //  NSLog(@"%@",url);
                     
                     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                     
@@ -422,8 +422,8 @@ finish:
                         NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
                         
                         dispatch_sync(dispatch_get_main_queue(), ^{
-                            
-                            NSLog(@"%@",[n.images objectAtIndex:0]);
+                        
+                        //    NSLog(@"%@",[n.images objectAtIndex:0]);
                             
                             
                             
@@ -555,19 +555,131 @@ finish:
 }
 
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [self deviceOrientationDidChangeNotification:nil];
+}
 -(void)viewDidAppear:(BOOL)animated
 {
-    if(load ==0 )
+    
+    NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
+    
+        if(load ==0 )
     {
         load =1;
         
         [self loadData];
     }
 }
-
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+    
+        
+        [self.collectionView setFrame:CGRectMake(0, 468, self.view.frame.size.width, self.view.frame.size.height-468)];
+        
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        //[self.logoInaf setFrame:CGRectMake(0, 37, self.view.frame.size.width, self.view.frame.size.height- 529)];
+         [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
+        
+        NSLog(@"%f", self.view.frame.size.height);
+        
+         self.logoInaf.image=imageP;
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            [self.collectionView setFrame:CGRectMake(0, 280, self.view.frame.size.width,  self.view.frame.size.height-280)];
+        
+             
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
+         
+             self.logoInaf.image=imageL;
+        }
+    }
+}
 - (void)viewDidLoad
 {
+    
+    load = 0;
+    
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        
+        [self.collectionView setFrame:CGRectMake(0, 468, 768, 429)];
+        
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
+        
+        //[self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+                       
+            [self.collectionView setCollectionViewLayout:flowLayout];
+           [self.collectionView setFrame:CGRectMake(0, 280, self.view.frame.size.width,  self.view.frame.size.height-280)];
+            
+             [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
+            
+          //  [self.collectionView reloadData];
+            
+        }
+    }
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+
+    
+   
+    
+    //[self.collectionView setFrame:CGRectMake(0, 286, self.view.frame.size.width, 382)];
+    //[self.collectionView setFrame:CGRectMake(0, 458, 768, 429)];
+
+    
+    
     news = [[NSMutableArray alloc] init];
     images = [[NSMutableDictionary alloc] init];
     
@@ -611,7 +723,7 @@ finish:
     {
         NSLog(@"caso 1");
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipadp"]];
         
         NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         
@@ -629,26 +741,90 @@ finish:
         
         UIImage * image = [UIImage imageWithData:dataImmagine];
         
+        // landscape 2
+        
+        NSURLRequest *request2 = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=1024&height=260&deviceName=ipadl"]];
+        
+        NSData * response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:nil error:nil];
+        
+        NSError * jsonParsingError2 = nil;
+        
+        NSDictionary * jsonElement2 = [NSJSONSerialization JSONObjectWithData:response2 options:0 error:&jsonParsingError2];
+        
+        NSDictionary * json2 = [jsonElement2 objectForKey:@"response"];
+        
+        NSString * urlImage2 = [json2 objectForKey:@"urlMainSplashScreen"];
+        
+        
+        
+        NSData * dataImmagine2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage2]];
+        
+        UIImage * image2 = [UIImage imageWithData:dataImmagine2];
+
         
         NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
         NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-        
-        self.logoInaf.image=image;
-        
-        
         [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+        
+        pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+        pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+        [NSKeyedArchiver archiveRootObject:image2 toFile:pathIm2 ];
+
+        imageP = image; imageL = image2;
+    
+   
+        int orientation= [UIApplication sharedApplication].statusBarOrientation;
+        
+        if(orientation == 1 || orientation == 2)
+        {
+             self.logoInaf.image=image;
+        }
+        else
+        {
+            if(orientation == 3 || orientation == 4)
+            {
+                self.logoInaf.image=image2;
+                
+            }
+        }
+
+       
         
     }
     else
     {
         NSLog(@"caso 2");
         
-        NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+        NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
         NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-        
         UIImage * image =   [NSKeyedUnarchiver unarchiveObjectWithFile:pathIm2];
+
+        imageL = image;
         
-        self.logoInaf.image=image;
+        pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+        pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+        image =   [NSKeyedUnarchiver unarchiveObjectWithFile:pathIm2];
+        
+        imageP = image;
+
+        
+        int orientation= [UIApplication sharedApplication].statusBarOrientation;
+        
+        if(orientation == 1 || orientation == 2)
+        {
+            self.logoInaf.image=imageP;
+        }
+        else
+        {
+            if(orientation == 3 || orientation == 4)
+            {
+                
+                self.logoInaf.image=imageL;
+                
+            }
+        }
+        
+
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
@@ -661,6 +837,7 @@ finish:
     
     [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
     
+    /*
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(354, 414)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
@@ -669,6 +846,7 @@ finish:
     // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
     [self.collectionView setCollectionViewLayout:flowLayout];
+    */
 
     
     

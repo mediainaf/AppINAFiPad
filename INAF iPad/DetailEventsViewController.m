@@ -67,8 +67,59 @@
         [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     }
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+    
+}
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            
+            
+            
+            [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+            
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+            
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+    
     actionSheetOpen=0;
     
     UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];

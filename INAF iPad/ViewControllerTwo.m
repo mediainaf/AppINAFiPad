@@ -136,6 +136,7 @@
     [parser parse];
     
     [self.collectionView reloadData];
+   
     [self.loadingView setHidden:YES];
 
 }
@@ -568,6 +569,12 @@ finish:
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
+    NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
+    
+    NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
+    
+
+    
     if(orientation == 1 || orientation == 2)
     {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -577,13 +584,18 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-       
-        [self.collectionView setCollectionViewLayout:flowLayout];
+        //[self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
         
-        [self.collectionView reloadData];
+       self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+                [self.collectionView setCollectionViewLayout:flowLayout];
+        
+       // [self.collectionView reloadData];
+        [self.collectionView setFrame:CGRectMake(0, 0, 768, 924)];
 
-
+        
+        NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
+        NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
     }
     else
     {
@@ -596,14 +608,32 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            //[self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
+            
+            
+            NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
+            NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
+            
+            
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+           [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
            
+            NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
+
+            
             [self.collectionView setCollectionViewLayout:flowLayout];
             
-            [self.collectionView reloadData];
+          //  [self.collectionView reloadData];
 
         }
     }
+    
+   
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+
 }
 - (void)viewDidLoad
 {
@@ -622,11 +652,12 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
         [self.collectionView setCollectionViewLayout:flowLayout];
     
+        self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
 
-        [self.collectionView reloadData];
+        //[self.collectionView reloadData];
         
         
     }
@@ -640,12 +671,12 @@ finish:
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             
-            [self.collectionView reloadData];
-            
+          //  [self.collectionView reloadData];
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
         }
     }
   

@@ -44,8 +44,6 @@
 		03A578621949E9B80008BEB9 /* MapOrbitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A578601949E9B80008BEB9 /* MapOrbitViewController.m */; };
 		03A578631949E9B80008BEB9 /* MapOrbitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A578611949E9B80008BEB9 /* MapOrbitViewController.xib */; };
 		03A578661949EC2D0008BEB9 /* Satellite.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A578651949EC2D0008BEB9 /* Satellite.m */; };
-		03B45DAA194B3F48006785B1 /* NewsForSubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DA8194B3F48006785B1 /* NewsForSubjectViewController.m */; };
-		03B45DAB194B3F48006785B1 /* NewsForSubjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B45DA9194B3F48006785B1 /* NewsForSubjectViewController.xib */; };
 		03B45DAF194B420A006785B1 /* WebcamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DAD194B420A006785B1 /* WebcamViewController.m */; };
 		03B45DB0194B420A006785B1 /* WebcamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B45DAE194B420A006785B1 /* WebcamViewController.xib */; };
 		03B45DB4194B46DB006785B1 /* WebcamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DB3194B46DB006785B1 /* WebcamCell.m */; };
@@ -159,9 +157,6 @@
 		03A578611949E9B80008BEB9 /* MapOrbitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapOrbitViewController.xib; sourceTree = "<group>"; };
 		03A578641949EC2D0008BEB9 /* Satellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Satellite.h; sourceTree = "<group>"; };
 		03A578651949EC2D0008BEB9 /* Satellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Satellite.m; sourceTree = "<group>"; };
-		03B45DA7194B3F48006785B1 /* NewsForSubjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsForSubjectViewController.h; sourceTree = "<group>"; };
-		03B45DA8194B3F48006785B1 /* NewsForSubjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsForSubjectViewController.m; sourceTree = "<group>"; };
-		03B45DA9194B3F48006785B1 /* NewsForSubjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsForSubjectViewController.xib; sourceTree = "<group>"; };
 		03B45DAC194B420A006785B1 /* WebcamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebcamViewController.h; sourceTree = "<group>"; };
 		03B45DAD194B420A006785B1 /* WebcamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebcamViewController.m; sourceTree = "<group>"; };
 		03B45DAE194B420A006785B1 /* WebcamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamViewController.xib; sourceTree = "<group>"; };
@@ -305,9 +300,6 @@
 				037812C0194B1DF100C38026 /* InternetMoreViewController.h */,
 				037812C1194B1DF100C38026 /* InternetMoreViewController.m */,
 				037812C2194B1DF100C38026 /* InternetMoreViewController.xib */,
-				03B45DA7194B3F48006785B1 /* NewsForSubjectViewController.h */,
-				03B45DA8194B3F48006785B1 /* NewsForSubjectViewController.m */,
-				03B45DA9194B3F48006785B1 /* NewsForSubjectViewController.xib */,
 			);
 			name = EarthProj;
 			sourceTree = "<group>";
@@ -615,7 +607,6 @@
 				03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */,
 				034DF0A11934F49800886FFD /* DetailEventsViewController.xib in Resources */,
 				037DCF471965B59200BCBCCE /* JobsTableViewCell.xib in Resources */,
-				03B45DAB194B3F48006785B1 /* NewsForSubjectViewController.xib in Resources */,
 				03A3F4241945C4D70022D7AF /* EarthProjViewController.xib in Resources */,
 				03DEDAAE19337AB3001823F4 /* InfoPlist.strings in Resources */,
 				03A3F435194600970022D7AF /* SpaceMissionViewController.xib in Resources */,
@@ -651,7 +642,6 @@
 				03DEDAEF19337CE5001823F4 /* ViewControllerThree.m in Sources */,
 				034DF0941934ED7600886FFD /* ParserThumbnail.m in Sources */,
 				03B45DAF194B420A006785B1 /* WebcamViewController.m in Sources */,
-				03B45DAA194B3F48006785B1 /* NewsForSubjectViewController.m in Sources */,
 				03A3F42E1945FF2E0022D7AF /* SpaceTableViewCell.m in Sources */,
 				034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */,
 				03E67B2719361AD000C0E4AB /* Telescope.m in Sources */,

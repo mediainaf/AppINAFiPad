@@ -75,13 +75,18 @@
     }
 
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+
+}
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if(orientation == 1 || orientation == 2)
     {
-        [self.image setFrame:CGRectMake(10, 187, 748, 361)];
+        [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
 
     }
     else
@@ -89,7 +94,7 @@
         if(orientation == 3 || orientation == 4)
         {
             
-            NSLog(@"image %f %f",self.image.frame.size.height,self.image.frame.origin.y);
+           
             
             [self.image setFrame:CGRectMake(243, 135, 538, 260)];
             
@@ -105,7 +110,7 @@
     
     if(orientation == 1 || orientation == 2)
     {
-        [self.image setFrame:CGRectMake(10, 187, 748, 361)];
+          [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
 
     }
     else
@@ -185,6 +190,24 @@
                                                   UIImage * img = [[UIImage alloc] initWithData:dataImmagine];
                                                   
                                                   self.image.image=img;
+                                                  
+                                                  int orientation= [UIApplication sharedApplication].statusBarOrientation;
+                                                  
+                                                  
+                                                  
+                                                  if(orientation == 1 || orientation == 2)
+                                                  {
+                                                      [self.image setFrame:CGRectMake(10, 187, 748, 361)];
+                                                      
+                                                  }
+                                                  else
+                                                  {
+                                                      if(orientation == 3 || orientation == 4)
+                                                      {
+                                                          [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+                                                          
+                                                      }
+                                                  }
                                                   
                                               });//end
                            }
