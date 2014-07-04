@@ -80,6 +80,8 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     if ([currentElement isEqualToString:@"title"]){
+        
+        NSLog(@"%@",title);
         [title appendString:string];
     } else if ([currentElement isEqualToString:@"link"]) {
         [link appendString:string];
@@ -112,7 +114,14 @@
 {
     page++;
     
-    [self.loadingView setHidden:NO];
+    
+    title = [[NSMutableString alloc] init];
+    author = [[NSMutableString alloc] init];
+    date = [[NSMutableString alloc] init];
+    summary = [[NSMutableString alloc] init];
+    content = [[NSMutableString alloc] init];
+    link = [[NSMutableString alloc] init];
+
     
     parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
     
@@ -138,6 +147,8 @@
       
             
               NSLog(@"reload");
+              [self.loadingView setHidden:NO];
+
               
               [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
            
@@ -159,6 +170,7 @@
         /* salva tutte le proprietà del feed letto nell'elemento "item", per
          poi inserirlo nell'array "elencoFeed" */
         
+     //   NSLog(@"%@",title);
         
         ParserImages * parserImages = [[ParserImages alloc] init];
         ParserThumbnail * parserThumbnail = [[ParserThumbnail alloc] init];
@@ -178,7 +190,7 @@
         NSMutableArray * videos = [[NSMutableArray alloc] init];
         videos = [imagesAndVideoArray objectAtIndex:1];
         
-        NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
+        //NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
         
         News * n = [[News alloc] init];
         // manca autore data link
@@ -797,7 +809,8 @@ finish:
         
         cell.title.textColor=[UIColor blackColor];
         cell.title.text = n.title;
-        //sNSLog(@"%lu",(unsigned long)[notizie count]);
+        
+       // NSLog(@"%@",n.title);
         cell.date.text = n.date;
         cell.description.text = n.summary;
         cell.author.text = [NSString stringWithFormat:@"di %@",n.author];
@@ -853,7 +866,7 @@ finish:
                         
                         dispatch_sync(dispatch_get_main_queue(), ^{
                            
-                            NSLog(@"%@",[n.images objectAtIndex:0]);
+                          //  NSLog(@"%@",[n.images objectAtIndex:0]);
                             
                            
                             
