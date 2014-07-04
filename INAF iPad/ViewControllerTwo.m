@@ -36,8 +36,9 @@
     NSXMLParser * parser;
     
     NSMutableArray * news;
-    
+    UIImageView * pullUpView;
     int load;
+    int page;
     
     NSMutableDictionary *images;
     
@@ -93,6 +94,69 @@
     }
     
     
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.isDragging) {
+      
+        //CGFloat thresholdToRelease = [self.loadingView frame].origin.y - [scrollView bounds].size.height;
+       // CGFloat thresholdToLoad = thresholdToRelease + [self.loadingView frame].size.height;
+        
+        if ([scrollView contentOffset].y >= 30) {
+          //  [[self.loadingView indicateThresholdRearched];
+         //   NSLog(@"thresholdToLoad");
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    
+          if ([scrollView contentOffset].y >= self.collectionView.contentSize.height-self.view.frame.size.height){
+      
+              
+              NSLog(@"reload");
+              
+           page++;
+              
+           [self.loadingView setHidden:NO];
+           
+           parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+           
+           [parser setDelegate:self];
+           
+           // settiamo alcune proprietà
+           [parser setShouldProcessNamespaces:NO];
+           [parser  setShouldReportNamespacePrefixes:NO];
+           [ parser  setShouldResolveExternalEntities:NO];
+           
+           // avviamo il parsing del feed RSS
+           [parser parse];
+           
+           [self.collectionView reloadData];
+           [self.loadingView setHidden:YES];
+
+           
+        /*if (!performingAction) {
+            
+            [[self.loadingView startLoading];
+            
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.5];
+            [self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, [[self.loadingView frame].size.height, 0)];
+            [UIView commitAnimations];
+    
+            /* do your things here */
+            //performingAction = YES;}
+        
+        }
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath == self.collectionView.indexPathsForVisibleItems.lastObject)
+    {
+        NSLog(@"fine");
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
@@ -312,7 +376,9 @@ finish:
         load =1;
         pickerRowSelected = 0;
         segmentedControl =0;
-
+        
+        
+        page = 1;
         [self loadData:@"http://www.media.inaf.it/feed/"];
         
     }
@@ -479,19 +545,21 @@ finish:
 -(void) reloadData : (id) selector
 {
     
-         [self.loadingView setHidden:NO];
+        [self.loadingView setHidden:NO];
         
         load =1;
         pickerRowSelected = 0;
         segmentedControl =0;
         
-        [self loadData:@"http://www.media.inaf.it/feed/?paged=5"];
+        [self loadData:@"http://www.media.inaf.it/feed/"];
         
     
 
 }
 - (void)viewDidLoad
 {
+  
+    
     self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
   
     [self.loadingView setHidden:NO];
@@ -748,7 +816,7 @@ finish:
         if([images objectForKey:identifier] != nil)
         {
             cell.thumbnail.image = [images valueForKey:identifier];
-            NSLog(@"metti immagine");
+            //NSLog(@"metti immagine");
              [cell.indicator stopAnimating];
         }
         else

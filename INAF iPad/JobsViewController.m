@@ -80,7 +80,13 @@
         Job * j = [[Job alloc] init];
         
         j.title = title;
-        j.description = description;
+       
+        
+        NSString  * desc = [description stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        
+         j.description = desc ;
+        
         
         NSString * link2  = link;
        
@@ -187,6 +193,7 @@
         
         
         cell.title.text = j.title;
+       // cell.description.text = j.description;
                // cell.detailTextLabel.text = j.description;
         
     }

@@ -11,4 +11,5 @@
 @interface JobsTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *title;
 
+
 @end

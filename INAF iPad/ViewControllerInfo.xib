@@ -18,7 +18,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Title" id="gph-J8-aen">
+                        <navigationItem title="Info" id="gph-J8-aen">
                             <barButtonItem key="rightBarButtonItem" systemItem="stop" id="VGx-Ge-dge">
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
