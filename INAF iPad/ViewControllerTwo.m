@@ -567,6 +567,9 @@ finish:
 }
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
+    
+   
+    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
@@ -591,34 +594,38 @@ finish:
                 [self.collectionView setCollectionViewLayout:flowLayout];
         
        // [self.collectionView reloadData];
-        [self.collectionView setFrame:CGRectMake(0, 0, 768, 924)];
+        //[self.collectionView setFrame:CGRectMake(0, 0, 768, 924)];
 
         
-        NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
-        NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
+       // NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
+      //  NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
             UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-             //[flowLayout setItemSize:CGSizeMake(354, 414)];
-            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            
+           // [flowLayout setItemSize:CGSizeMake(314, 367)];
+            
+            [flowLayout setItemSize:CGSizeMake(354, 414)];
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
-            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 105, 20, 105)];
+            
+            
             
             //[self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
             
             
-            NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
-            NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
+           // NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
+           // NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
             
             
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
-           [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+        //   [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
            
-            NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
+           // NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
 
             
             [self.collectionView setCollectionViewLayout:flowLayout];
@@ -630,6 +637,7 @@ finish:
     
    
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self deviceOrientationDidChangeNotification:nil];
@@ -652,7 +660,7 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+      //  [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
         [self.collectionView setCollectionViewLayout:flowLayout];
     
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
@@ -666,12 +674,12 @@ finish:
         if(orientation == 3 || orientation == 4)
         {
             UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-            //[flowLayout setItemSize:CGSizeMake(354, 414)];
-            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setItemSize:CGSizeMake(354, 414)];
+           // [flowLayout setItemSize:CGSizeMake(314, 367)];
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
-            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-            [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 105, 20, 105)];
+         //   [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             
@@ -696,10 +704,10 @@ finish:
      // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
      
      [self.collectionView setCollectionViewLayout:flowLayout];
-     
+     */
      
 
-     */
+     
     
     self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
   
