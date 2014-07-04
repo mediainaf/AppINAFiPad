@@ -108,45 +108,39 @@
     }
 }
 
+-(void) changePage
+{
+    page++;
+    
+    [self.loadingView setHidden:NO];
+    
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+    
+    [parser setDelegate:self];
+    
+    // settiamo alcune proprietà
+    [parser setShouldProcessNamespaces:NO];
+    [parser  setShouldReportNamespacePrefixes:NO];
+    [ parser  setShouldResolveExternalEntities:NO];
+    
+    // avviamo il parsing del feed RSS
+    [parser parse];
+    
+    [self.collectionView reloadData];
+    [self.loadingView setHidden:YES];
+
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
     
           if ([scrollView contentOffset].y >= self.collectionView.contentSize.height-self.view.frame.size.height){
       
-              
+            
               NSLog(@"reload");
               
-           page++;
-              
-           [self.loadingView setHidden:NO];
+              [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
            
-           parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
-           
-           [parser setDelegate:self];
-           
-           // settiamo alcune proprietà
-           [parser setShouldProcessNamespaces:NO];
-           [parser  setShouldReportNamespacePrefixes:NO];
-           [ parser  setShouldResolveExternalEntities:NO];
-           
-           // avviamo il parsing del feed RSS
-           [parser parse];
-           
-           [self.collectionView reloadData];
-           [self.loadingView setHidden:YES];
-
-           
-        /*if (!performingAction) {
-            
-            [[self.loadingView startLoading];
-            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.5];
-            [self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, [[self.loadingView frame].size.height, 0)];
-            [UIView commitAnimations];
-    
-            /* do your things here */
-            //performingAction = YES;}
         
         }
     
