@@ -37,7 +37,13 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.med.ira.inaf.it/webcam.jpg"] encoding:NSUTF8StringEncoding error:nil];
+    if(!response1)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
     [timer fire];
    // [self.collectionView reloadData];
 }
@@ -59,17 +65,20 @@
 
                 
                 UIImage * image = [UIImage imageWithData:data];
-                [cachedImages setObject:image forKey:identifier];
-                //cell.thumbnail.image = image;
+                if(image)
+                {
+                    [cachedImages setObject:image forKey:identifier];
+                    //cell.thumbnail.image = image;
               
-                [UIView setAnimationsEnabled:NO];
-                
-                [self.collectionView performBatchUpdates:^{
-                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:i inSection:0]]];
+                    [UIView setAnimationsEnabled:NO];
                     
-                } completion:^(BOOL finished) {
-                    [UIView setAnimationsEnabled:YES];
-                }];
+                    [self.collectionView performBatchUpdates:^{
+                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:i inSection:0]]];
+                        
+                    } completion:^(BOOL finished) {
+                        [UIView setAnimationsEnabled:YES];
+                    }];
+                }
                 
             });
         });
@@ -86,6 +95,10 @@
 }
 - (void)viewDidLoad
 {
+    
+    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadWebcam)];
+    
+    self.navigationItem.rightBarButtonItem= button;
 
     timer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(reloadWebcam) userInfo:nil repeats:YES];
     
@@ -192,17 +205,20 @@
           //      NSLog(@"immagine scaricata");
                 
                 UIImage * image = [UIImage imageWithData:data];
-                [cachedImages setObject:image forKey:identifier];
-                //cell.thumbnail.image = image;
-                [cell setNeedsLayout];
-                [UIView setAnimationsEnabled:NO];
-                
-                [self.collectionView performBatchUpdates:^{
-                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                if(image)
+                {
+                    [cachedImages setObject:image forKey:identifier];
+                    //cell.thumbnail.image = image;
+                    [cell setNeedsLayout];
+                    [UIView setAnimationsEnabled:NO];
                     
-                } completion:^(BOOL finished) {
-                    [UIView setAnimationsEnabled:YES];
+                    [self.collectionView performBatchUpdates:^{
+                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                        
+                    } completion:^(BOOL finished) {
+                        [UIView setAnimationsEnabled:YES];
                 }];
+                }
                 
             });
         });

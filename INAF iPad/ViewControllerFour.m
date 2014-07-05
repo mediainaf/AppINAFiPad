@@ -54,6 +54,13 @@
     [self.loadingView setHidden:YES];
 
     
+    NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json"] encoding:NSUTF8StringEncoding error:nil];
+    if(!response1)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json"]];
     
     NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
@@ -233,24 +240,51 @@
                 //This is what you will load lazily
                 
                 NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:v.thumbnail]];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    
-                    UIImage * image = [UIImage imageWithData:data];
-                    [cachedImages setObject:image forKey:identifier];
-                    //cell.thumbnail.image = image;
-                    [cell setNeedsLayout];
-                    [UIView setAnimationsEnabled:NO];
-                    
-                    [self.collectionView performBatchUpdates:^{
-                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                        cell.play.hidden=NO;
+               
+                if(data)
+                {
+                
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageWithData:data];
+                        if(image)
+                            [cachedImages setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            cell.play.hidden=NO;
 
-                    } completion:^(BOOL finished) {
-                        [UIView setAnimationsEnabled:YES];
-                    }];
-                    
-                });
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
+                }
+                else
+                {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        
+                        UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
+                        if(image)
+                            [cachedImages setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
+                        
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            [cell.play setHidden:NO];
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                        
+                    });
+                }
             });
+            
             
         }
 

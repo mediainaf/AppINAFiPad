@@ -64,33 +64,7 @@
 {
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"recive data");
-    
-    NSError * jsonParsingError = nil;
-    
-    NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-    
-    NSDictionary * json = [jsonElement objectForKey:@"response"];
-    
-    NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
-    
-    
-    
-    NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
-    
-    UIImage * image = [UIImage imageWithData:dataImmagine];
-    
-    NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
-    NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-    
-    
-    [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
-    
-    
-    
-}
+
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     currentElement = [elementName copy];
@@ -233,6 +207,13 @@
     
     NSString * url = @"http://www.media.inaf.it/feed/";
     
+    NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+    if(!response)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+        
     parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
     
     [parser setDelegate:self];
@@ -428,7 +409,8 @@ finish:
                             
                             
                             UIImage * image = [UIImage imageWithData:dataImmagine];
-                            [images setObject:image forKey:identifier];
+                             if(image)
+                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
                             [UIView setAnimationsEnabled:NO];
@@ -445,10 +427,13 @@ finish:
                     }
                     else
                     {
+                        
+                        
                         dispatch_sync(dispatch_get_main_queue(), ^{
                             
                             UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
-                            [images setObject:image forKey:identifier];
+                             if(image)
+                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
                             [UIView setAnimationsEnabled:NO];
@@ -470,7 +455,8 @@ finish:
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
                         UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
-                        [images setObject:image forKey:identifier];
+                        if(image)
+                            [images setObject:image forKey:identifier];
                         //cell.thumbnail.image = image;
                         [cell setNeedsLayout];
                         [UIView setAnimationsEnabled:NO];
@@ -824,13 +810,22 @@ finish:
             }
         }
         
-
+  
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
         NSURLConnection * connection = [[NSURLConnection alloc ] initWithRequest:request delegate:self];
         
         [connection start];
+        
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=1024&height=260&deviceName=ipad"]];
+        
+        connection = [[NSURLConnection alloc ] initWithRequest:request delegate:self];
+        
+        [connection start];
+
+        
+        
         
         
     }
@@ -858,6 +853,47 @@ finish:
     // Do any additional setup after loading the view from its nib.
 
     // Do any additional setup after loading the view from its nib.
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"recive data");
+    
+    NSError * jsonParsingError = nil;
+    
+    NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+    
+    NSDictionary * json = [jsonElement objectForKey:@"response"];
+    
+    NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
+    
+    
+    
+    NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+    
+    UIImage * image = [UIImage imageWithData:dataImmagine];
+    
+    
+    if(image.size.width == 1024)
+    {
+        NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+        NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+        
+        
+        [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+        
+    }
+    else
+    {
+        NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+        NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+        
+        
+        [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+    }
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

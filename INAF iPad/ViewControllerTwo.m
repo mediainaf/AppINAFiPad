@@ -354,6 +354,13 @@ finish:
 -(void) loadData : (NSString *) url
 {
     
+    NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+    if(!response)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     [news removeAllObjects];
     [images removeAllObjects];
     
@@ -960,6 +967,8 @@ finish:
         }
         else
         {
+           
+
             cell.thumbnail.image = nil;
             [cell.indicator startAnimating];
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
@@ -1003,7 +1012,8 @@ finish:
                            
                             
                             UIImage * image = [UIImage imageWithData:dataImmagine];
-                            [images setObject:image forKey:identifier];
+                             if(image)
+                                [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
                             [UIView setAnimationsEnabled:NO];
@@ -1023,7 +1033,8 @@ finish:
                         dispatch_sync(dispatch_get_main_queue(), ^{
                             
                             UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
-                            [images setObject:image forKey:identifier];
+                            if(image)
+                                [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
                             [UIView setAnimationsEnabled:NO];
@@ -1045,7 +1056,8 @@ finish:
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
                         UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
-                        [images setObject:image forKey:identifier];
+                        if(image)
+                            [images setObject:image forKey:identifier];
                         //cell.thumbnail.image = image;
                         [cell setNeedsLayout];
                         [UIView setAnimationsEnabled:NO];

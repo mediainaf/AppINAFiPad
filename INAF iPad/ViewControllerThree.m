@@ -184,6 +184,13 @@
     
     NSString * url = @"http://www.media.inaf.it/category/eventi/feed/?paged=10";
     
+    NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+    if(!response)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
     
     [parser setDelegate:self];
@@ -403,7 +410,7 @@
         }
         else
         {
-             [cell.indicator startAnimating];
+            [cell.indicator startAnimating];
             cell.thumbnail.image = nil;
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
             dispatch_async(queue, ^{
@@ -445,7 +452,8 @@
                             
                             
                             UIImage * image = [UIImage imageWithData:dataImmagine];
-                            [images setObject:image forKey:identifier];
+                             if(image)
+                                [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
                             [UIView setAnimationsEnabled:NO];
@@ -459,6 +467,29 @@
                             
                         });
                     }
+                    else
+                    {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            
+                            UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
+                            if(image)
+                                [images setObject:image forKey:identifier];
+                            //cell.thumbnail.image = image;
+                            [cell setNeedsLayout];
+                            [UIView setAnimationsEnabled:NO];
+                            
+                            [self.collectionView performBatchUpdates:^{
+                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                [cell.indicator startAnimating];
+                            } completion:^(BOOL finished) {
+                                [UIView setAnimationsEnabled:YES];
+                            }];
+                            
+                        });
+                        
+                        
+                    }
+
                     
 
                 }
@@ -467,7 +498,8 @@
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         
                         UIImage * image = [UIImage imageNamed:@"Assets/newsDefault.png"];
-                        [images setObject:image forKey:identifier];
+                         if(image)
+                            [images setObject:image forKey:identifier];
                         //cell.thumbnail.image = image;
                         [cell setNeedsLayout];
                         [UIView setAnimationsEnabled:NO];
