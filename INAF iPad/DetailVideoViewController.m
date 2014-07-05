@@ -98,7 +98,9 @@
     self.description.text = self.video.summary;
     [self.description setFont:[UIFont fontWithName:@"Helvetica" size:19.0]];
     
-    self.sfondoView.image=[UIImage imageNamed:@"Assets/lab1.jpg"];
+    //self.sfondoView.image=[UIImage imageNamed:@"Assets/lab1.jpg"];
+    
+    self.sfondoView.image=[UIImage imageNamed:@"Assets/cerisola2.jpg"];
     self.sfondoView.alpha = 0.6;
     self.title = self.video.title;
     

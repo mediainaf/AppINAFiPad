@@ -134,7 +134,7 @@
         NSMutableArray * videos = [[NSMutableArray alloc] init];
         videos = [imagesAndVideo objectAtIndex:1];
         
-        NSLog(@"url %d titolo %@", [imagesArray count],title);
+       // NSLog(@"url %d titolo %@", [imagesArray count],title);
         
         News * n = [[News alloc] init];
         // manca autore data link
@@ -360,8 +360,8 @@ finish:
         if([images objectForKey:identifier] != nil)
         {
             cell.thumbnail.image = [images valueForKey:identifier];
-            NSLog(@"metti immagine");
-            NSLog(@"%f ",cell.thumbnail.frame.size.height);
+           // NSLog(@"metti immagine");
+           // NSLog(@"%f ",cell.thumbnail.frame.size.height);
             [cell.indicator stopAnimating];
         }
         else
@@ -549,7 +549,7 @@ finish:
 -(void)viewDidAppear:(BOOL)animated
 {
     
-    NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
+  //  NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
     
         if(load ==0 )
     {
@@ -794,7 +794,10 @@ finish:
         imageP = image;
 
         
+        
         int orientation= [UIApplication sharedApplication].statusBarOrientation;
+        
+        NSLog(@"orientation %d",orientation);
         
         if(orientation == 1 || orientation == 2)
         {
@@ -872,12 +875,14 @@ finish:
     
     UIImage * image = [UIImage imageWithData:dataImmagine];
     
+    NSLog(@"width %f",image.size.height);
     
-    if(image.size.width == 1024)
+    if(image.size.height == 260)
     {
         NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
         NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
         
+        NSLog(@"scrivi1");
         
         [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
         
@@ -886,7 +891,8 @@ finish:
     {
         NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
         NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-        
+        NSLog(@"scrivi2");
+
         
         [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
     }
