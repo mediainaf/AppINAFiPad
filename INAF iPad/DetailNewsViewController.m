@@ -85,7 +85,7 @@
     rect.size.height = self.content.contentSize.height;
     self.content.frame   = rect;
     
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 560+self.content.frame.size.height+50)];
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.content.frame.origin.y+self.content.frame.size.height+50)];
     
     rect = self.date.frame;
     rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
@@ -104,6 +104,9 @@
 }
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.content.frame.origin.y+self.content.frame.size.height+50)];
+
+    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if(orientation == 1 || orientation == 2)
