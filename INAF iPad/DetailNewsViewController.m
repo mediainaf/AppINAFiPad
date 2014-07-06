@@ -75,6 +75,28 @@
     }
 
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    float textHeight = self.content.contentSize.height;
+    NSLog(@" altezza %f",textHeight);
+    
+    CGRect rect      = self.content.frame;
+    rect.size.height = self.content.contentSize.height;
+    self.content.frame   = rect;
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 560+self.content.frame.size.height+50)];
+    
+    rect = self.date.frame;
+    rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+    self.date.frame = rect;
+    
+    rect = self.author.frame;
+    rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+    self.author.frame = rect;
+
+    
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [self deviceOrientationDidChangeNotification:nil];

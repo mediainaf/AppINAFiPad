@@ -24,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *author;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
