@@ -427,18 +427,17 @@
     self.navigationItem.rightBarButtonItem.enabled=NO;
    */
     
-    //UIImage * cameraIcon = [UIImage imageNamed:@"Assets/iconaVideo7.png"];
-    
+    UIImage * cameraIcon = [UIImage imageNamed:@"Assets/iconaVideo7.png"];
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeSystem];
     
     [bottone addTarget:self action:@selector(openWebcam) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setTitle:@"Webcams" forState:UIControlStateNormal];
+    [bottone setTitle:@" Webcams" forState:UIControlStateNormal];
     
-    //[bottone setImage:cameraIcon forState:UIControlStateNormal];
+    [bottone setImage:cameraIcon forState:UIControlStateNormal];
     
-    [bottone setFrame:CGRectMake(310, 2, 100, 30)];
+    [bottone setFrame:CGRectMake(310, 2, 120, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     

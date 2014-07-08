@@ -503,6 +503,8 @@ void getLatLong(double *lat, double *lon)
     
     [self.mapView setMapType:MKMapTypeHybrid];
     
+    
+    
     UIImage * buttonMarker = [UIImage imageNamed:@"Assets/iconaMarker.png"];
     
     

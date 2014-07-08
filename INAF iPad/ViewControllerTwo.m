@@ -248,7 +248,7 @@
         
         n.content = [self stringByDecodingXMLEntities:finalContent];
         
-         [news addObject:n];
+        [news addObject:n];
         
         //
         // NSLog(@"autore %@",imageLinkBig);
@@ -579,18 +579,13 @@ finish:
     
 
 }
+
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
-   
     
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
-    NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
-    
-    NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
-    
-
     
     if(orientation == 1 || orientation == 2)
     {
@@ -601,56 +596,43 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        //[self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
-       self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        [self.collectionView setCollectionViewLayout:flowLayout];
         
-                [self.collectionView setCollectionViewLayout:flowLayout];
+        // [self.collectionView reloadData];
         
-       // [self.collectionView reloadData];
-        //[self.collectionView setFrame:CGRectMake(0, 0, 768, 924)];
-
         
-       // NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
-      //  NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
             UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-            
-           // [flowLayout setItemSize:CGSizeMake(314, 367)];
-            
-            [flowLayout setItemSize:CGSizeMake(354, 414)];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
-            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 105, 20, 105)];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
             
-            
-            //[self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
-            
-            
-           // NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
-           // NSLog(@"%f %f",self.collectionView.frame.size.height,self.collectionView.frame.size.width);
+            // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
             
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
-        //   [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
-           
-           // NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
-
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             
-          //  [self.collectionView reloadData];
-
+            //  [self.collectionView reloadData];
+            
         }
     }
     
-   
+    
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -690,8 +672,7 @@ finish:
     [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
 
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
-    
-    
+
     
     if(orientation == 1 || orientation == 2)
     {
@@ -702,11 +683,10 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-      //  [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.collectionView setCollectionViewLayout:flowLayout];
-    
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
-
+        
         //[self.collectionView reloadData];
         
         
@@ -716,17 +696,17 @@ finish:
         if(orientation == 3 || orientation == 4)
         {
             UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-            [flowLayout setItemSize:CGSizeMake(354, 414)];
-           // [flowLayout setItemSize:CGSizeMake(314, 367)];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
-            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 105, 20, 105)];
-         //   [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
-            
-          //  [self.collectionView reloadData];
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            //  [self.collectionView reloadData];
+            
         }
     }
   
@@ -918,18 +898,20 @@ finish:
                      nil];
     
     
-    //UIImage * iconaFiltri = [UIImage imageNamed:@"Assets/iconaFiltri.png"];
+    UIImage * iconaFiltri = [UIImage imageNamed:@"Assets/iconaFiltri.png"];
     
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeSystem];
     
     [bottone addTarget:self action:@selector(apriFiltri) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setTitle:@"Filters" forState:UIControlStateNormal];
+    [bottone setImage:iconaFiltri forState:UIControlStateNormal];
+
     
-    //[bottone setImage:iconaFiltri forState:UIControlStateNormal];
+    [bottone setTitle:@" Filters" forState:UIControlStateNormal];
     
-    [bottone setFrame:CGRectMake(310, 2, 100, 30)];
+    
+    [bottone setFrame:CGRectMake(10, 2, 100, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     
@@ -937,13 +919,11 @@ finish:
 
     
     
-    
     load = 0;
     self.title = @"News";
     
     
-    
-    
+
     news = [[NSMutableArray alloc] init];
     images = [[NSMutableDictionary alloc] init];
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo7.jpg"];
@@ -1048,14 +1028,18 @@ finish:
                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
-                            [UIView setAnimationsEnabled:NO];
-                            
-                            [self.collectionView performBatchUpdates:^{
-                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                                [cell.indicator startAnimating];
-                            } completion:^(BOOL finished) {
-                                [UIView setAnimationsEnabled:YES];
-                            }];
+                            if(indexPath.row  < [news count])
+                            {
+
+                                [UIView setAnimationsEnabled:NO];
+                                
+                                [self.collectionView performBatchUpdates:^{
+                                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                    [cell.indicator stopAnimating];
+                                } completion:^(BOOL finished) {
+                                    [UIView setAnimationsEnabled:YES];
+                                }];
+                            }
                             
                         });
                         
@@ -1069,14 +1053,18 @@ finish:
                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
-                            [UIView setAnimationsEnabled:NO];
-                            
-                            [self.collectionView performBatchUpdates:^{
-                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                                [cell.indicator startAnimating];
-                            } completion:^(BOOL finished) {
-                                [UIView setAnimationsEnabled:YES];
-                            }];
+                            if(indexPath.row  < [news count])
+                            {
+
+                                [UIView setAnimationsEnabled:NO];
+                                
+                                [self.collectionView performBatchUpdates:^{
+                                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                    [cell.indicator stopAnimating];
+                                } completion:^(BOOL finished) {
+                                    [UIView setAnimationsEnabled:YES];
+                                }];
+                            }
                             
                         });
                         
@@ -1096,7 +1084,7 @@ finish:
                         
                         [self.collectionView performBatchUpdates:^{
                             [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                            [cell.indicator startAnimating];
+                            [cell.indicator stopAnimating];
                         } completion:^(BOOL finished) {
                             [UIView setAnimationsEnabled:YES];
                         }];

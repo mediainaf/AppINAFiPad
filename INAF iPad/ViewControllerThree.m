@@ -18,6 +18,10 @@
 
 @interface ViewControllerThree ()
 {
+    
+    UIRefreshControl * refreshControl;
+    int page;
+    
     NSXMLParser * parser;
     
     int load;
@@ -182,7 +186,11 @@
     [self.loadingView setHidden:NO];
 
     
-    NSString * url = @"http://www.media.inaf.it/category/eventi/feed/?paged=10";
+    [news removeAllObjects];
+    [images removeAllObjects];
+
+    
+    NSString * url = @"http://www.media.inaf.it/category/eventi/feed/";
     
     NSString *response = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
     if(!response)
@@ -204,18 +212,79 @@
     [parser parse];
 
     [self.collectionView reloadData];
-    
+    [refreshControl endRefreshing];
     [self.loadingView setHidden:YES];
 
     
 }
-
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    
+    if ([scrollView contentOffset].y >= self.collectionView.contentSize.height-self.view.frame.size.height){
+        
+        
+        NSLog(@"reload");
+        
+        
+            [self.loadingView setHidden:NO];
+            
+            [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
+         
+        
+    }
+    
+}
+-(void) changePage
+{
+    page++;
+    
+    
+    title = [[NSMutableString alloc] init];
+    author = [[NSMutableString alloc] init];
+    date = [[NSMutableString alloc] init];
+    summary = [[NSMutableString alloc] init];
+    content = [[NSMutableString alloc] init];
+    link = [[NSMutableString alloc] init];
+    
+    
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/category/eventi/feed/?paged=%d",page]]];
+    
+    [parser setDelegate:self];
+    
+    // settiamo alcune proprietà
+    [parser setShouldProcessNamespaces:NO];
+    [parser  setShouldReportNamespacePrefixes:NO];
+    [ parser  setShouldResolveExternalEntities:NO];
+    
+    // avviamo il parsing del feed RSS
+    [parser parse];
+    
+    [self.collectionView reloadData];
+    
+    [self.loadingView setHidden:YES];
+    
+}
+-(void) reloadData : (id) selector
+{
+    
+    [self.loadingView setHidden:NO];
+    
+    load =1;
+    page = 1;
+    
+    
+    [self loadData];
+    
+    
+    
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
     if(load == 0)
 
     {
+        page = 1;
         load = 1;
         [self loadData];
     }
@@ -225,9 +294,6 @@
 {
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
-    NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
-    
-    NSLog(@"%f %f %f %f ",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.height,self.view.frame.size.width);
     
     
     
@@ -242,8 +308,6 @@
         
         [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
          self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
-        
-        NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
         
         [self.collectionView setCollectionViewLayout:flowLayout];
         
@@ -265,9 +329,9 @@
            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+          
             
-            NSLog(@"%f %f",self.collectionView.frame.origin.x,self.collectionView.frame.origin.y);
-             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             
@@ -288,8 +352,32 @@
 {
     NSLog(@"rotate %d",fromInterfaceOrientation);
 }
+-(void) refresh
+{
+    [self performSelector:@selector(reloadData:) withObject:nil afterDelay:0.5];
+}
 - (void)viewDidLoad
 {
+    
+    
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
+    [refreshControl setTintColor:[UIColor whiteColor]];
+    
+    self.collectionView.alwaysBounceVertical = YES;
+    
+    
+    
+    
+    [self.collectionView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+    
+
+    
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     
@@ -339,11 +427,11 @@
     
     //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
-    [self.loadingView setHidden:NO];
+    //[self.loadingView setHidden:NO];
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
+    //UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
     
-    self.navigationItem.rightBarButtonItem= refresh ;
+    //self.navigationItem.rightBarButtonItem= refresh ;
         load = 0;
     self.title = @"Events";
     
@@ -456,14 +544,18 @@
                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
-                            [UIView setAnimationsEnabled:NO];
-                            
-                            [self.collectionView performBatchUpdates:^{
-                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                                [cell.indicator startAnimating];
-                            } completion:^(BOOL finished) {
-                                [UIView setAnimationsEnabled:YES];
-                            }];
+                        
+                            if(indexPath.row  < [news count])
+                            {
+                                [UIView setAnimationsEnabled:NO];
+                                
+                                [self.collectionView performBatchUpdates:^{
+                                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                    [cell.indicator stopAnimating];
+                                } completion:^(BOOL finished) {
+                                    [UIView setAnimationsEnabled:YES];
+                                }];
+                            }
                             
                         });
                     }
@@ -476,14 +568,18 @@
                                 [images setObject:image forKey:identifier];
                             //cell.thumbnail.image = image;
                             [cell setNeedsLayout];
-                            [UIView setAnimationsEnabled:NO];
-                            
-                            [self.collectionView performBatchUpdates:^{
-                                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                                [cell.indicator startAnimating];
-                            } completion:^(BOOL finished) {
-                                [UIView setAnimationsEnabled:YES];
-                            }];
+                            if(indexPath.row  < [news count])
+                            {
+
+                                [UIView setAnimationsEnabled:NO];
+                                
+                                [self.collectionView performBatchUpdates:^{
+                                    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                                    [cell.indicator stopAnimating];
+                                } completion:^(BOOL finished) {
+                                    [UIView setAnimationsEnabled:YES];
+                                }];
+                            }
                             
                         });
                         
@@ -506,7 +602,7 @@
                         
                         [self.collectionView performBatchUpdates:^{
                             [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-                            [cell.indicator startAnimating];
+                            [cell.indicator stopAnimating];
                         } completion:^(BOOL finished) {
                             [UIView setAnimationsEnabled:YES];
                         }];
