@@ -28,17 +28,8 @@
     }
     return self;
 }
--(void)viewDidAppear:(BOOL)animated
+-(void) loadVideo
 {
-        //self.play.image = [UIImage imageNamed:@"Assets/play.png"];
-    
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(apriVideo)];
-    singleTap.numberOfTapsRequired = 1;
-    singleTap.numberOfTouchesRequired = 1;
-    [self.thumbnailView addGestureRecognizer:singleTap];
-    [self.thumbnailView setUserInteractionEnabled:YES];
-    
-    
     NSMutableString *html = [NSMutableString string];
     [html appendString:@"<html>"];
     [html appendString:@"<head>"];
@@ -59,6 +50,19 @@
     
     [self.webView loadHTMLString:html baseURL:nil];
 
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+        //self.play.image = [UIImage imageNamed:@"Assets/play.png"];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(apriVideo)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [self.thumbnailView addGestureRecognizer:singleTap];
+    [self.thumbnailView setUserInteractionEnabled:YES];
+    
+    
+    [self loadVideo];
     
     
 }
@@ -80,9 +84,65 @@
         [self presentViewController:activityVC animated:YES completion:nil];
     
 }
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
+        [self loadVideo];
+
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            
+          
+
+            [self.webView setFrame:CGRectMake(181, 10, 662, 435)];
+            [self loadVideo];
+
+            
+        }
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+    
+}
 - (void)viewDidLoad
 {
     
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
+        [self loadVideo];
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            [self.webView setFrame:CGRectMake(181, 10, 662, 512)];
+            [self loadVideo];
+
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+    
+
     actionSheetOpen=0;
     
     UIBarButtonItem * apriImmagine = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action)];

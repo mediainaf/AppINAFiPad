@@ -112,19 +112,54 @@
     if(orientation == 1 || orientation == 2)
     {
         [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
-
+        [self.webView setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
             
-           
+            
             
             [self.image setFrame:CGRectMake(243, 135, 538, 260)];
-            
+            if([self.news.videos count] >0)
+            {
+                
+                [self.webView setFrame:CGRectMake(243, 135, 538, 260)];
+                
+                [self loadVideo];
+            }
         }
     }
+}
+-(void) loadVideo
+{
+    
+    
+    [self.webView setHidden:NO];
+    
+    NSMutableString *html = [NSMutableString string];
+    [html appendString:@"<html>"];
+    [html appendString:@"<head>"];
+    [html appendString:@"<style type=\"text/css\">"];
+    [html appendString:@"body {"];
+    [html appendString:@"background-color: transparent;"];
+    [html appendString:@"color: white;"];
+    [html appendString:@"margin: 0;"];
+    [html appendString:@"}"];
+    [html appendString:@"</style>"];
+    [html appendString:@"</head>"];
+    [html appendString:@"<body>"];
+    [html appendFormat:@"<iframe id=\"ytplayer\" type=\"text/html\" width=\"%0.0f\" height=\"%0.0f\" src=\"%@\" frameborder=\"0\"/>", self.webView.frame.size.width, self.webView.frame.size.height, [self.news.videos objectAtIndex:0]];
+    [html appendString:@"</body>"];
+    [html appendString:@"</html>"];
+    
+    //[self.indicator stopAnimating];
+    
+    [self.webView loadHTMLString:html baseURL:nil];
+    
+
 }
 - (void)viewDidLoad
 {
@@ -135,15 +170,25 @@
     
     if(orientation == 1 || orientation == 2)
     {
-          [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
-
+        [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        [self.webView setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
+            
+            
+            
             [self.image setFrame:CGRectMake(243, 135, 538, 260)];
-
+            if([self.news.videos count] >0)
+            {
+                
+                [self.webView setFrame:CGRectMake(243, 135, 538, 260)];
+                
+                [self loadVideo];
+            }
         }
     }
     
@@ -252,31 +297,7 @@
     }
     else if([self.news.videos count] >0)
     {
-        NSLog(@"2");
-        
-        [self.webView setHidden:NO];
-        
-        NSMutableString *html = [NSMutableString string];
-        [html appendString:@"<html>"];
-        [html appendString:@"<head>"];
-        [html appendString:@"<style type=\"text/css\">"];
-        [html appendString:@"body {"];
-        [html appendString:@"background-color: transparent;"];
-        [html appendString:@"color: white;"];
-        [html appendString:@"margin: 0;"];
-        [html appendString:@"}"];
-        [html appendString:@"</style>"];
-        [html appendString:@"</head>"];
-        [html appendString:@"<body>"];
-        [html appendFormat:@"<iframe id=\"ytplayer\" type=\"text/html\" width=\"%0.0f\" height=\"%0.0f\" src=\"%@\" frameborder=\"0\"/>", self.webView.frame.size.width, self.webView.frame.size.height, [self.news.videos objectAtIndex:0]];
-        [html appendString:@"</body>"];
-        [html appendString:@"</html>"];
-        
-        //[self.indicator stopAnimating];
-        
-        [self.webView loadHTMLString:html baseURL:nil];
-
-        
+        [self loadVideo];
     }
     else
     {

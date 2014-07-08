@@ -19,9 +19,9 @@
     NSMutableArray * video;
     NSMutableDictionary *cachedImages;
     NSMutableDictionary *tableImages;
-    
-    
-    
+    UIRefreshControl *refreshControl;
+
+    int page;
     
 }
 
@@ -41,8 +41,8 @@
 {
     if(!load)
     {
+        page = 1;
         load=YES;
-        
         
         [self loadData];
         
@@ -135,21 +135,167 @@
     [self.collectionView reloadData];
     
     [self.loadingView setHidden:YES];
+    
+    [refreshControl endRefreshing];
 
     
     
     
 }
-- (void)viewDidLoad
+-(void) reloadData : (id) selector
 {
-    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
     [self.loadingView setHidden:NO];
+    
+    load =1;
+    page = 1;
+    
+    
+    [self loadData];
+    
+    
+    
+}
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 400)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        //[self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 354)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+    
+}
+-(void) refresh
+{
+    [self performSelector:@selector(reloadData:) withObject:nil afterDelay:0.5];
+}
+- (void)viewDidLoad
+{
+    
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 400)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        //[self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 354)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+    
+    /* UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+     [flowLayout setItemSize:CGSizeMake(354, 400)];
+     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+     [flowLayout setMinimumLineSpacing:20.0];
+     [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+     // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+     
+     [self.collectionView setCollectionViewLayout:flowLayout];
+     
+*/
 
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
     
-    self.navigationItem.rightBarButtonItem= refresh ;
+    [refreshControl setTintColor:[UIColor whiteColor]];
+    
+    self.collectionView.alwaysBounceVertical = YES;
+    
+    
+    
+    
+    [self.collectionView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+    
+    
+    self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+    
+    //[self.loadingView setHidden:NO];
+
+    
+   // UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData) ];
+    
+    //xself.navigationItem.rightBarButtonItem= refresh ;
 
     
     
@@ -157,15 +303,6 @@
     
     
     [self.collectionView registerClass:[VideoCell class] forCellWithReuseIdentifier:@"cvCell"];
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(354, 400)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setMinimumLineSpacing:20.0];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-    // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    
-    [self.collectionView setCollectionViewLayout:flowLayout];
     
     
     self.title=@"Video";
