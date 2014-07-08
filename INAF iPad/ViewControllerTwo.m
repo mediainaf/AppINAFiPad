@@ -678,9 +678,15 @@ finish:
     
     [refreshControl setTintColor:[UIColor whiteColor]];
     
-    self.collectionView.alwaysBounceVertical = YES;
+       self.collectionView.alwaysBounceVertical = YES;
     
     
+    
+    
+    [self.collectionView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+    
+
     [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
 
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
@@ -747,7 +753,7 @@ finish:
     
    // self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
   
-    [self.loadingView setHidden:NO];
+    //[self.loadingView setHidden:NO];
     
    
 
@@ -912,16 +918,18 @@ finish:
                      nil];
     
     
-    UIImage * iconaFiltri = [UIImage imageNamed:@"Assets/iconaFiltri.png"];
+    //UIImage * iconaFiltri = [UIImage imageNamed:@"Assets/iconaFiltri.png"];
     
     
-    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeSystem];
     
     [bottone addTarget:self action:@selector(apriFiltri) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setImage:iconaFiltri forState:UIControlStateNormal];
+    [bottone setTitle:@"Filters" forState:UIControlStateNormal];
     
-    [bottone setFrame:CGRectMake(310, 2, 30, 30)];
+    //[bottone setImage:iconaFiltri forState:UIControlStateNormal];
+    
+    [bottone setFrame:CGRectMake(310, 2, 100, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     

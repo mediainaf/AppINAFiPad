@@ -167,7 +167,7 @@
     self.sfondoView.image = [UIImage imageNamed:@"Assets/galileo6.jpg"];
     self.sfondoView.alpha = 0.5;
     
-    self.tableView.rowHeight = 100;
+    self.tableView.rowHeight = 120;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -198,7 +198,7 @@
         
         Job * j = [jobs objectAtIndex:indexPath.row];
         
-        
+        cell.date.text = j.date;
         cell.title.text = j.title;
        // cell.description.text = j.description;
                // cell.detailTextLabel.text = j.description;
