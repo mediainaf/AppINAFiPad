@@ -223,7 +223,7 @@ void getLatLong(double *lat, double *lon)
     
     if(ID !=0)
     {
-    
+        followSatellite =0 ;
         Annotation * a = [annotations objectAtIndex:ID-1];
         
         satelliteRegion.center.latitude = a.coordinate.latitude;
