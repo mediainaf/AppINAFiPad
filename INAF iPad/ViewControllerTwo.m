@@ -19,7 +19,7 @@
 
 @interface ViewControllerTwo ()
 {
-    
+    UIRefreshControl * refreshControl;
     NSString * tag;
     UIPopoverController * popOverController;
     UIToolbar * toolBar;
@@ -383,6 +383,8 @@ finish:
     
     [self.collectionView reloadData];
      [self.loadingView setHidden:YES];
+    [refreshControl endRefreshing];
+ 
 }
 
 
@@ -655,8 +657,30 @@ finish:
     [self deviceOrientationDidChangeNotification:nil];
 
 }
+-(void) refresh
+{
+    [self performSelector:@selector(reloadData:) withObject:nil afterDelay:0.5];
+}
 - (void)viewDidLoad
 {
+    /*
+    
+    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData:) ];
+    
+    self.navigationItem.rightBarButtonItem= refresh ;
+    
+*/
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
+    [refreshControl setTintColor:[UIColor whiteColor]];
+    
+    self.collectionView.alwaysBounceVertical = YES;
+    
+    
     [self.collectionView registerClass:[EventsCell class] forCellWithReuseIdentifier:@"cvCell"];
 
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
@@ -905,11 +929,6 @@ finish:
 
     
     
-    UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData:) ];
-    
-    self.navigationItem.rightBarButtonItem= refresh ;
-    
-  
     
     load = 0;
     self.title = @"News";
