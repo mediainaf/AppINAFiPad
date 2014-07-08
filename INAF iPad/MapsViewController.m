@@ -253,6 +253,8 @@
         cord.latitude=v.coordinate.latitude;
         cord.longitude=v.coordinate.longitude;
         
+        location = cord;
+        
         MKCoordinateRegion region;
         MKCoordinateSpan span;
         span.latitudeDelta = 1;

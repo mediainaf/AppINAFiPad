@@ -19,6 +19,8 @@
 
 @interface ViewControllerTwo ()
 {
+    
+    NSString * tag;
     UIPopoverController * popOverController;
     UIToolbar * toolBar;
     NSArray * telescopes;
@@ -148,10 +150,13 @@
       
             
               NSLog(@"reload");
-              [self.loadingView setHidden:NO];
+             
+              if(pickerRowSelected == 0)
+              {
+                  [self.loadingView setHidden:NO];
 
-              
-              [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
+                  [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
+              }
            
         
         }
