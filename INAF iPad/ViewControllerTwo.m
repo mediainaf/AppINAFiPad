@@ -384,12 +384,17 @@ finish:
     [self.collectionView reloadData];
      [self.loadingView setHidden:YES];
     [refreshControl endRefreshing];
+    
+    
  
 }
 
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
+  
+    
     if(load ==0 )
     {
        [self.loadingView setHidden:NO];
@@ -397,8 +402,6 @@ finish:
         load =1;
         pickerRowSelected = 0;
         segmentedControl =0;
-        
-        
         page = 1;
         [self loadData:@"http://www.media.inaf.it/feed/"];
         
@@ -585,7 +588,7 @@ finish:
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     
-    
+    NSLog(@"%f", [self.collectionView contentOffset].y);
     
     if(orientation == 1 || orientation == 2)
     {
@@ -630,17 +633,32 @@ finish:
         }
     }
     
-    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self deviceOrientationDidChangeNotification:nil];
+    
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
 
+    
+    [refreshControl removeFromSuperview];
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
+    [refreshControl setTintColor:[UIColor whiteColor]];
+    
+    self.collectionView.alwaysBounceVertical = YES;
+   
 }
 -(void) refresh
 {
+    
+    
     [self performSelector:@selector(reloadData:) withObject:nil afterDelay:0.5];
 }
 - (void)viewDidLoad
@@ -653,14 +671,7 @@ finish:
     
 */
     
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh)
-             forControlEvents:UIControlEventValueChanged];
-    [self.collectionView addSubview:refreshControl];
     
-    [refreshControl setTintColor:[UIColor whiteColor]];
-    
-       self.collectionView.alwaysBounceVertical = YES;
     
     
     

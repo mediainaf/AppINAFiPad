@@ -124,17 +124,17 @@ NSArray * titoli;
     
     
     
-    //UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconOrbit.png"];
+    UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconOrbit.png"];
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeSystem];
     
     [bottone addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setTitle:@"Satellites Orbits" forState:UIControlStateNormal];
+    [bottone setTitle:@" Satellites Orbits" forState:UIControlStateNormal];
     
-   // [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+    [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
     
-    [bottone setFrame:CGRectMake(310, 2, 150, 30)];
+    [bottone setFrame:CGRectMake(310, 2, 170, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     

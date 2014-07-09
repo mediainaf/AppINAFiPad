@@ -345,7 +345,22 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [self deviceOrientationDidChangeNotification:nil];
+    
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
+    
+    [refreshControl removeFromSuperview];
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
+    [refreshControl setTintColor:[UIColor whiteColor]];
+    
+    self.collectionView.alwaysBounceVertical = YES;
+
 
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -402,17 +417,7 @@
 - (void)viewDidLoad
 {
     
-    
-    
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh)
-             forControlEvents:UIControlEventValueChanged];
-    [self.collectionView addSubview:refreshControl];
-    
-    [refreshControl setTintColor:[UIColor whiteColor]];
-    
-    self.collectionView.alwaysBounceVertical = YES;
-    
+        
     
     
     
