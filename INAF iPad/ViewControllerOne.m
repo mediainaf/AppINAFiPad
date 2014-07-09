@@ -578,7 +578,7 @@ finish:
         //[self.logoInaf setFrame:CGRectMake(0, 37, self.view.frame.size.width, self.view.frame.size.height- 529)];
          [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
         
-        NSLog(@"%f", self.view.frame.size.height);
+        
         
          self.logoInaf.image=imageP;
         

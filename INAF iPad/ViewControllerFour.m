@@ -173,7 +173,7 @@
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
         [self.collectionView setCollectionViewLayout:flowLayout];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
@@ -191,7 +191,7 @@
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
@@ -240,7 +240,7 @@
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
         [self.collectionView setCollectionViewLayout:flowLayout];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
@@ -258,7 +258,7 @@
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-            [self.collectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+           [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];

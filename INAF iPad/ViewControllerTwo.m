@@ -585,6 +585,7 @@ finish:
 
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
+    
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     
@@ -592,6 +593,8 @@ finish:
     
     if(orientation == 1 || orientation == 2)
     {
+       
+        
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setItemSize:CGSizeMake(354, 414)];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
@@ -612,6 +615,8 @@ finish:
     {
         if(orientation == 3 || orientation == 4)
         {
+            
+            
             UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
             //[flowLayout setItemSize:CGSizeMake(354, 414)];
             [flowLayout setItemSize:CGSizeMake(314, 367)];
@@ -661,6 +666,7 @@ finish:
     
     [self performSelector:@selector(reloadData:) withObject:nil afterDelay:0.5];
 }
+
 - (void)viewDidLoad
 {
     /*
@@ -726,7 +732,7 @@ finish:
      selector:@selector(deviceOrientationDidChangeNotification:)
      name:UIDeviceOrientationDidChangeNotification
      object:nil];
-    
+   
     
     /*
      UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
