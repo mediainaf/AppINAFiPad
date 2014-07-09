@@ -545,12 +545,12 @@
     
    // NSDictionary * telescopes = [NSDictionary dictionaryWithObjects:<#(NSArray *)#> forKeys:<#(NSArray *)#>];
     
-    
+   /*
     UIBarButtonItem * action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
     
     self.navigationItem.rightBarButtonItem= action ;
     self.navigationItem.rightBarButtonItem.enabled=NO;
-    
+    */
     
     self.title=@"Sedi";
     self.navigationController.navigationBar.tintColor=[UIColor blackColor];
