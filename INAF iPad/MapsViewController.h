@@ -13,8 +13,11 @@
 
 
 
-@interface MapsViewController : UIViewController <MKMapViewDelegate,UIActionSheetDelegate>
+@interface MapsViewController : UIViewController <MKMapViewDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UIView *detailView;
+
+
 
 @end

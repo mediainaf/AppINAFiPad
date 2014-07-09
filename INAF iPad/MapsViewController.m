@@ -24,6 +24,7 @@
 @interface MapsViewController ()
 
 {
+    UIView * calloutView;
     UIButton *button;
     int load;
     NSMutableArray * istituti;
@@ -184,6 +185,7 @@
                             nil];
     popup.tag = 1;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
+    //[popup showFromTabBar:self.tabBarController.tabBar];
     
     /*
      
@@ -210,7 +212,7 @@
     //7
     else
     {
-        Annotation * an = annotation;
+                Annotation * an = annotation;
         
         
         
@@ -224,6 +226,59 @@
         customPinView.tag=an.tag;
         
         return customPinView;
+        /*
+        Annotation * an = annotation;
+        
+        
+        
+        MKPinAnnotationView* customPinView = [[MKPinAnnotationView alloc]
+                                              initWithAnnotation:annotation reuseIdentifier:@"current"];
+        cont++;
+        //customPinView.pinColor = MKPinAnnotationColorPurple;
+        //customPinView.animatesDrop = YES;
+        customPinView.highlighted=YES;
+        customPinView.draggable=YES;
+        customPinView.tag=an.tag;
+        
+        
+        
+        UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        bottone.tag = an.tag+1;
+        
+        // NSLog(@" tag %d",bottone.tag);
+        
+        [bottone addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
+        
+    
+        
+        customPinView.rightCalloutAccessoryView=bottone;
+        customPinView.enabled = YES;
+        customPinView.canShowCallout = YES;
+        customPinView.multipleTouchEnabled = NO;
+        
+        UIView *leftCAV = [[UIView alloc] initWithFrame:CGRectMake(0,0,23,23)];
+        
+        UILabel *l1 = [[UILabel alloc] init];
+        l1.text = @"Ciao";
+        UILabel *l2 = [[UILabel alloc] init];
+        l2.text = @"Ciao";
+        UILabel *l3 = [[UILabel alloc] init];
+        l3.text = @"Ciao";
+        
+        [leftCAV addSubview :  l1 ];
+        [leftCAV addSubview : l2];
+        [leftCAV addSubview : l3];
+        customPinView.leftCalloutAccessoryView = leftCAV;
+        
+
+        
+       
+        
+        //[bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+        
+        return customPinView;
+
+*/
     }
     
     
@@ -237,9 +292,153 @@
 {
     NSLog(@"tap");
 }
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     
+    NSLog(@"create");
     
+    if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
+       
+       
+        NSArray *viewsToRemove = [view.superview subviews];
+    
+        for (UIView *v in viewsToRemove) {
+            if(v.tag == 200)
+                [v removeFromSuperview];
+        }
+        
+        Annotation * v = (Annotation *)view;
+        ;
+        CLLocationCoordinate2D cord ;
+        cord.latitude=v.coordinate.latitude;
+        cord.longitude=v.coordinate.longitude;
+        
+        location = cord;
+        
+        MKCoordinateRegion region;
+        MKCoordinateSpan span;
+        span.latitudeDelta = 1;
+        span.longitudeDelta = 1;
+        region.span = span;
+        region.center = cord;
+        [self.mapView setRegion:region animated:TRUE];
+        [self.mapView regionThatFits:region];
+
+        
+        calloutView = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-364)/2,(self.view.frame.size.height -241)/2-(241/2)-50, 364, 241)];
+        
+        
+        
+        calloutView.tag = 200;
+        
+        calloutView.backgroundColor = [UIColor whiteColor];
+        [calloutView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [calloutView.layer setShadowOpacity:0.8];
+        [calloutView.layer setShadowRadius:3.0];
+        [calloutView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
+        
+        UIButton *button4 = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        button4.frame = CGRectMake(171, 206, 22, 22);
+       // [button4 setTitle:@"Info" forState:UIControlStateNormal];
+        [button4 addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
+        [calloutView addSubview:button4];
+        
+        UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(20, 2, 324, 61)];
+        title.font = [UIFont systemFontOfSize:20.0];
+        title.numberOfLines = 2;
+        title.minimumScaleFactor=0.5;
+        [calloutView addSubview:title];
+        
+        UILabel * phone = [[UILabel alloc] initWithFrame:CGRectMake(20,69, 324, 46)];
+        phone.font = [UIFont systemFontOfSize:16.0];
+        phone.numberOfLines = 2;
+        phone.minimumScaleFactor=0.5;
+        [calloutView addSubview:phone];
+        
+        UILabel * link = [[UILabel alloc] initWithFrame:CGRectMake(20,120, 324, 46)];
+        link.font = [UIFont systemFontOfSize:16.0];
+        link.numberOfLines = 1;
+        link.minimumScaleFactor=0.5;
+        [calloutView addSubview:link];
+        
+        UILabel * address = [[UILabel alloc] initWithFrame:CGRectMake(20,162, 324, 46)];
+        address.font = [UIFont systemFontOfSize:16.0];
+        address.numberOfLines = 1;
+        address.minimumScaleFactor=0.5;
+        [calloutView addSubview:address];
+
+
+        
+        Tag=view.tag;
+        
+        
+       
+        
+        
+        Istituto * i = [istituti objectAtIndex:Tag];
+        
+        [title setText:i.name];
+        [phone setText:i.phone];
+        [link setText:i.website];
+        [address setText:i.address];
+
+        
+        [view.superview addSubview:calloutView];
+        [view.superview bringSubviewToFront:calloutView];
+    }
+    /*
+     if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
+        
+         Tag=view.tag;
+         
+         Annotation * v = (Annotation *)view;
+         ;
+         CLLocationCoordinate2D cord ;
+         cord.latitude=v.coordinate.latitude;
+         cord.longitude=v.coordinate.longitude;
+         
+         location = cord;
+         
+         MKCoordinateRegion region;
+         MKCoordinateSpan span;
+         span.latitudeDelta = 1;
+         span.longitudeDelta = 1;
+         region.span = span;
+         region.center = cord;
+         [self.mapView setRegion:region animated:TRUE];
+         [self.mapView regionThatFits:region];
+         
+         va = [[ViewControllerAnnotation alloc] initWithNibName:@"ViewControllerAnnotation" bundle:nil];
+         CGRect calloutViewFrame = va.view.frame;
+         
+         calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 +8, -calloutViewFrame.size.height-10);
+         
+         va.view.frame = calloutViewFrame;
+         
+         [va.view.layer setShadowColor:[UIColor blackColor].CGColor];
+         [va.view.layer setShadowOpacity:0.8];
+         [va.view.layer setShadowRadius:3.0];
+         [va.view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+         
+         Istituto * i = [istituti objectAtIndex:Tag];
+         
+         [va.nome setText:i.name];
+         [va.phone setText:i.phone];
+         [va.link setText:i.website];
+         [va.address setText:i.address];
+
+         self.detailView.hidden = NO;
+         
+         [self.detailView  addSubview:va.view];
+         
+     }*/
+    
+    /*
     if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
         self.navigationItem.rightBarButtonItem.enabled=YES;
         NSLog(@"%d",view.tag);
@@ -296,21 +495,44 @@
         [va.phone setText:i.phone];
         [va.link setText:i.website];
         [va.address setText:i.address];
-            
+       
+        UIButton * button2 = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        
+        [button2 addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
+        
+        view.rightCalloutAccessoryView = button2;
+        
         [view addSubview:va.view];
   
         
         
-    }
+    }*/
     
 }
 //12
+-(void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    for(Annotation * a in annotations)
+    {
+        if (a.tag == Tag) {
+            
+            [self.mapView deselectAnnotation:a animated:YES];
+        }
+    }
+}
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    for (UIView *subview in view.subviews ){
-        self.navigationItem.rightBarButtonItem.enabled=NO;
-        [subview removeFromSuperview];
-    }
+    
+  
+    for (UIView *v in [view.superview subviews] ){
+        
+         NSLog(@"deselect");
+        
+        if (v.tag==200) {
+            [v removeFromSuperview];
+        }
+        
+          }
 }
 
 

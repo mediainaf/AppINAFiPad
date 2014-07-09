@@ -813,7 +813,7 @@ finish:
             }
         }
         
-  
+  /*
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
@@ -827,7 +827,7 @@ finish:
         
         [connection start];
 
-        
+        */
         
         
         
