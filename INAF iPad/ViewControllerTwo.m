@@ -582,7 +582,53 @@ finish:
     
 
 }
-
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        // [self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            
+            // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+            
+            
+            self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+   // [self.collectionView setContentOffset:CGPointZero];
+}
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     

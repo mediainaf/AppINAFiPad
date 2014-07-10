@@ -363,6 +363,7 @@
 
 
 }
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     NSLog(@"ruota");
@@ -409,6 +410,9 @@
             
         }
     }
+    
+   // [self.collectionView setContentOffset:CGPointZero];
+
 }
 -(void) refresh
 {
@@ -465,13 +469,13 @@
             
         }
     }
-    /*
+    
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(deviceOrientationDidChangeNotification:)
      name:UIDeviceOrientationDidChangeNotification
      object:nil];
-*/
+
     
     //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
     
