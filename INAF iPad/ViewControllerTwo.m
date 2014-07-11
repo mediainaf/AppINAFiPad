@@ -971,7 +971,7 @@ finish:
     [bottone setImage:iconaFiltri forState:UIControlStateNormal];
 
     
-    [bottone setTitle:@" Filters" forState:UIControlStateNormal];
+    [bottone setTitle:@" Cerca" forState:UIControlStateNormal];
     
     
     [bottone setFrame:CGRectMake(10, 2, 100, 30)];

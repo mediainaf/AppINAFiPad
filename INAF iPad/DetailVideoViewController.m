@@ -84,12 +84,39 @@
         [self presentViewController:activityVC animated:YES completion:nil];
     
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    NSLog(@"webview %f",self.webView.frame.origin.x);
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
+        [self loadVideo];
+        
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            
+            
+            
+            [self.webView setFrame:CGRectMake(181, 10, 662, 435)];
+            [self loadVideo];
+            
+            
+        }
+    }
+
+}
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if(orientation == 1 || orientation == 2)
     {
+        NSLog(@"portrait");
+        
         [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
         [self loadVideo];
 
@@ -99,7 +126,7 @@
         if(orientation == 3 || orientation == 4)
         {
             
-          
+            NSLog(@"landscape");
 
             [self.webView setFrame:CGRectMake(181, 10, 662, 435)];
             [self loadVideo];

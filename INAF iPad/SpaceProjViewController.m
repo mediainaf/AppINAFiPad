@@ -114,8 +114,65 @@ NSArray * titoli;
         
     }
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1.jpg"];
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1L.jpg"];
+        }
+    }
+}
+-(void)deviceOrientationDidChangeNotification :(NSNotification *) notification
+{
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1.jpg"];
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1L.jpg"];
+        }
+    }
+
+}
 - (void)viewDidLoad
 {
+    
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+         self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1.jpg"];
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+                    self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1L.jpg"];
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+
+    
     load = 0;
     
     cachedImages = [[NSMutableDictionary alloc] init];
@@ -147,7 +204,7 @@ NSArray * titoli;
     
     self.title = @"Progetti Spaziali";
     
-    self.sfondoView.image = [UIImage imageNamed:@"Assets/nebulaViola1.jpg"];
+   
     
     [super viewDidLoad];
     

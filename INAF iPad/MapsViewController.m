@@ -535,7 +535,6 @@
           }
 }
 
-
 - (void)viewDidLoad
 {
     [self.mapView setMapType:MKMapTypeHybrid];

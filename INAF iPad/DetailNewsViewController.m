@@ -36,9 +36,20 @@
     {
         NSString *titolo = self.news.title;
         NSString* spazio = @"";
-        NSURL   *imageToShare = [NSURL URLWithString:self.news.link];
         
-        NSArray *postItems = [NSArray arrayWithObjects:titolo,spazio,imageToShare, nil];
+                
+        UIImage * image = self.image.image;
+        
+        NSArray *postItems;
+        
+        if(image)
+        
+          postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link,image, nil];
+        
+        else
+            postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link, nil];
+
+        
         
         UIActivityViewController *activityVC = [[UIActivityViewController alloc]
                                                 initWithActivityItems:postItems
@@ -101,6 +112,44 @@
 {
     [self deviceOrientationDidChangeNotification:nil];
 
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        
+        if([self.news.videos count] >0)
+        {
+            
+           [self.webView setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+            
+            [self loadVideo];
+        }
+        
+        
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            
+            
+            [self.image setFrame:CGRectMake(243, 135, 538, 260)];
+            if([self.news.videos count] >0)
+            {
+                
+                [self.webView setFrame:CGRectMake(243, 135, 538, 260)];
+                
+                [self loadVideo];
+            }
+            
+            
+        }
+    }
+    
+    
 }
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
@@ -171,7 +220,14 @@
     if(orientation == 1 || orientation == 2)
     {
         [self.image setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
-        [self.webView setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+        if([self.news.videos count] >0)
+        {
+            
+            [self.webView setFrame:CGRectMake(10, 187, self.view.frame.size.width-20, 361)];
+            
+            [self loadVideo];
+        }
+        
         
     }
     else
@@ -297,6 +353,7 @@
     }
     else if([self.news.videos count] >0)
     {
+        NSLog(@"load video");
         [self loadVideo];
     }
     else

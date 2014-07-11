@@ -287,6 +287,26 @@
     
     
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
+        [self.mapView setRegion:region animated:YES];
+        
+    }
+    if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+    {
+        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, 140), MKCoordinateSpanMake(180, 360));
+        [self.mapView setRegion:region animated:YES];
+        
+    }
+    
+    
+    NSLog(@" %f %f",self.mapView.region.center.latitude,self.mapView.region.center.longitude);
+    
+}
 -(void)viewDidAppear:(BOOL)animated
 {
     if(load == 0)
@@ -371,8 +391,22 @@
             [self.mapView removeAnnotations:annotations];
             [annotations removeAllObjects];
             
-            MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
-            [self.mapView setRegion:region animated:YES];
+            int orientation = [UIApplication sharedApplication].statusBarOrientation;
+            
+            if(orientation == 3 || orientation == 4)
+            {
+                MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, 140), MKCoordinateSpanMake(180, 360));
+                [self.mapView setRegion:region animated:YES];
+                
+            }
+            if(orientation == 1 || orientation == 2)
+            {
+                MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
+                [self.mapView setRegion:region animated:YES];
+                
+            }
+            
+
             
             
             cont=-1;

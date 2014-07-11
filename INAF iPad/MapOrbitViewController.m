@@ -498,6 +498,26 @@ void getLatLong(double *lat, double *lon)
 {
     return 300;
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
+        [self.mapView setRegion:region animated:YES];
+
+    }
+    if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+    {
+        MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, 140), MKCoordinateSpanMake(180, 360));
+        [self.mapView setRegion:region animated:YES];
+
+    }
+    
+    
+    NSLog(@" %f %f",self.mapView.region.center.latitude,self.mapView.region.center.longitude);
+
+}
 - (void)viewDidLoad
 {
     
