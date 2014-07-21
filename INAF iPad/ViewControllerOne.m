@@ -711,69 +711,141 @@ finish:
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipadp"]];
         
-        NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        
-        NSError * jsonParsingError = nil;
-        
-        NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
-        
-        NSDictionary * json = [jsonElement objectForKey:@"response"];
-        
-        NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
-        
-        
-        
-        NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
-        
-        UIImage * image = [UIImage imageWithData:dataImmagine];
-        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             
+             if(data)
+             {
+             
+                 NSError * jsonParsingError = nil;
+                 
+                 NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+                 
+                 NSDictionary * json = [jsonElement objectForKey:@"response"];
+                 
+                 NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
+                 
+                 
+                 
+                 NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                 
+                 UIImage * image = [UIImage imageWithData:dataImmagine];
+                 
+                  imageP = image;
+                 
+                 int orientation= [UIApplication sharedApplication].statusBarOrientation;
+                 
+                 if(orientation == 1 || orientation == 2)
+                 {
+                     self.logoInaf.image=imageP;
+                 }
+                 
+                 NSLog(@"width %f",image.size.height);
+                 
+                 if(image.size.height == 260)
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     
+                     NSLog(@"scrivi1");
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                     
+                 }
+                 else
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     NSLog(@"scrivi2");
+                     
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                 }
+             }
+         }];
         // landscape 2
         
         NSURLRequest *request2 = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=1024&height=260&deviceName=ipadl"]];
         
-        NSData * response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:nil error:nil];
-        
-        NSError * jsonParsingError2 = nil;
-        
-        NSDictionary * jsonElement2 = [NSJSONSerialization JSONObjectWithData:response2 options:0 error:&jsonParsingError2];
-        
-        NSDictionary * json2 = [jsonElement2 objectForKey:@"response"];
-        
-        NSString * urlImage2 = [json2 objectForKey:@"urlMainSplashScreen"];
-        
-        
-        
-        NSData * dataImmagine2 = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage2]];
-        
-        UIImage * image2 = [UIImage imageWithData:dataImmagine2];
+        [NSURLConnection sendAsynchronousRequest:request2
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             if(data)
+             {
+             
+                 NSError * jsonParsingError = nil;
+                 
+                 NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+                 
+                 NSDictionary * json = [jsonElement objectForKey:@"response"];
+                 
+                 NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
+                 
+                 
+                 
+                 NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                 
+                 UIImage * image = [UIImage imageWithData:dataImmagine];
+                 
+                 imageL = image;
+                 
+                int orientation= [UIApplication sharedApplication].statusBarOrientation;
+                 
+                 if(orientation == 3 || orientation == 4)
+                 {
+                     self.logoInaf.image=imageL;
+                     
+                 }
 
-        
-        NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
-        NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-        [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
-        
-        pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
-        pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
-        [NSKeyedArchiver archiveRootObject:image2 toFile:pathIm2 ];
+                 
+                 NSLog(@"width %f",image.size.height);
+                 
+                 
+                 
+                 if(image.size.height == 260)
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     
+                     NSLog(@"scrivi1");
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                     
+                 }
+                 else
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     NSLog(@"scrivi2");
+                     
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                 }
+             }
+             
+         }];
 
-        imageP = image; imageL = image2;
-    
    
+    
+   /*
         int orientation= [UIApplication sharedApplication].statusBarOrientation;
         
         if(orientation == 1 || orientation == 2)
         {
-             self.logoInaf.image=image;
+             self.logoInaf.image=imageP;
         }
         else
         {
             if(orientation == 3 || orientation == 4)
             {
-                self.logoInaf.image=image2;
+                self.logoInaf.image=imageL;
                 
             }
         }
-
+*/
        
         
     }
@@ -813,8 +885,107 @@ finish:
             }
         }
         
-  /*
+
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
+        
+        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             if(data)
+             {
+                 NSError * jsonParsingError = nil;
+                 
+                 NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+                 
+                 NSDictionary * json = [jsonElement objectForKey:@"response"];
+                 
+                 NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
+                 
+                 
+                 
+                 NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                 
+                 UIImage * image = [UIImage imageWithData:dataImmagine];
+                 
+                 NSLog(@"width %f",image.size.height);
+                
+                 
+                 if(image.size.height == 260)
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     
+                     NSLog(@"scrivi1");
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                     
+                 }
+                 else
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     NSLog(@"scrivi2");
+                     
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                 }
+             }
+             
+                    }];
+        
+        
+        NSURLRequest *request2  = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=1024&height=260&deviceName=ipad"]];
+        
+        [NSURLConnection sendAsynchronousRequest:request2
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             if(data)
+             {
+             
+                 NSError * jsonParsingError = nil;
+                 
+                 NSDictionary * jsonElement = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+                 
+                 NSDictionary * json = [jsonElement objectForKey:@"response"];
+                 
+                 NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
+                 
+                 
+                 
+                 NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
+                 
+                 UIImage * image = [UIImage imageWithData:dataImmagine];
+                 
+                 NSLog(@"width %f",image.size.height);
+                 
+               
+                 if(image.size.height == 260)
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehomeL.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     
+                     NSLog(@"scrivi1");
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                     
+                 }
+                 else
+                 {
+                     NSString * pathIm= [[NSString alloc] initWithFormat:@"immaginehome.plist"];
+                     NSString * pathIm2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathIm];
+                     NSLog(@"scrivi2");
+                     
+                     
+                     [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
+                 }
+             }
+         }];
+        
+        /*
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSplashImage.php?width=768&height=395&deviceName=ipad"]];
         
         NSURLConnection * connection = [[NSURLConnection alloc ] initWithRequest:request delegate:self];
@@ -826,10 +997,7 @@ finish:
         connection = [[NSURLConnection alloc ] initWithRequest:request delegate:self];
         
         [connection start];
-
         */
-        
-        
         
     }
     
