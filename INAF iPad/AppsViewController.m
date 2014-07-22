@@ -250,7 +250,7 @@
         
         App * a = [apps objectAtIndex:row];
         
-        if(a.iosURL)
+        if(![a.iosURL isEqualToString:@""])
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:a.iosURL]];
         else
         {
@@ -273,11 +273,17 @@
         App * a = [apps objectAtIndex:row];
         
         
-        if(a.infoURL)
+        if(![a.infoURL isEqualToString:@""])
         {
             internet.url = a.infoURL;
         
             [self.navigationController pushViewController:internet animated:YES];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attenzione" message:@"Non sono disponibili info per questa applicazione" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+
         }
     }
     if(buttonIndex == 1)
