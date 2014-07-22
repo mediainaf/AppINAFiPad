@@ -23,6 +23,7 @@
 		034DF0B91935064500886FFD /* Istituto.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B41935064500886FFD /* Istituto.m */; };
 		034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B61935064500886FFD /* ViewControllerAnnotation.m */; };
 		034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */; };
+		0363D4D3197E524D009DB0DE /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 0363D4D2197E524D009DB0DE /* App.m */; };
 		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
 		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
 		037812B9194B13C900C38026 /* NewsInternetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037812B7194B13C900C38026 /* NewsInternetViewController.m */; };
@@ -124,6 +125,8 @@
 		034DF0B51935064500886FFD /* ViewControllerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerAnnotation.h; sourceTree = "<group>"; };
 		034DF0B61935064500886FFD /* ViewControllerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerAnnotation.m; sourceTree = "<group>"; };
 		034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerAnnotation.xib; sourceTree = "<group>"; };
+		0363D4D1197E524D009DB0DE /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		0363D4D2197E524D009DB0DE /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
 		03751C931940A43B00FF31D5 /* AppTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableCell.xib; sourceTree = "<group>"; };
 		03751C951940A45900FF31D5 /* AppTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTableCell.h; sourceTree = "<group>"; };
 		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				03751C951940A45900FF31D5 /* AppTableCell.h */,
 				03751C961940A45900FF31D5 /* AppTableCell.m */,
 				03751C931940A43B00FF31D5 /* AppTableCell.xib */,
+				0363D4D1197E524D009DB0DE /* App.h */,
+				0363D4D2197E524D009DB0DE /* App.m */,
 			);
 			name = Apps;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				034DF0A01934F49800886FFD /* DetailEventsViewController.m in Sources */,
 				034DF0971934EE0E00886FFD /* ParserImages.m in Sources */,
 				03DEDB0919338765001823F4 /* Video.m in Sources */,
+				0363D4D3197E524D009DB0DE /* App.m in Sources */,
 				03B45DB9194B5843006785B1 /* AllSatellite.m in Sources */,
 				03E67B231935F4F000C0E4AB /* DetailNewsViewController.m in Sources */,
 				03A3F4281945C4E40022D7AF /* SpaceProjViewController.m in Sources */,

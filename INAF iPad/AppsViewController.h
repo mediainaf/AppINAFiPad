@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface AppsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
