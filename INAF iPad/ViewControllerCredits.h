@@ -13,5 +13,6 @@
 @interface ViewControllerCredits : UIViewController
 - (IBAction)back:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextView *text;
 
 @end

@@ -28,6 +28,38 @@
 - (void)viewDidLoad
 {
     
+    NSData * response = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetAbout.php"]];
+    
+    if (response)
+    {
+        NSArray * jsonArray;
+        
+        NSError *e = nil;
+        jsonArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error: &e];
+        
+        
+       for(NSDictionary * d in jsonArray)
+       {
+        
+           
+           NSString *info = [d valueForKey:@"descr"];
+           
+           NSLog(@"%@",info);
+           
+           self.text.text = info;
+           
+           
+       }
+    
+
+
+    }
+    else
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
         [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
