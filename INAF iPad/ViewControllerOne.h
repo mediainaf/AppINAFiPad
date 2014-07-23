@@ -14,5 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 @property (strong, nonatomic) IBOutlet UIImageView *logoInaf;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIImageView *sfondoInfo;
+@property (strong, nonatomic) IBOutlet UITextView *testoInfo;
 
 @end

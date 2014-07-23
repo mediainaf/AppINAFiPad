@@ -577,6 +577,9 @@ finish:
         
         //[self.logoInaf setFrame:CGRectMake(0, 37, self.view.frame.size.width, self.view.frame.size.height- 529)];
          [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
+        [self.testoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+        [self.sfondoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+
         
         
         
@@ -600,7 +603,10 @@ finish:
             [self.collectionView setCollectionViewLayout:flowLayout];
             
             [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
-         
+            [self.testoInfo setFrame:CGRectMake(600, 25, 350, 230)];
+            [self.sfondoInfo setFrame:CGRectMake(600, 25, 350, 230)];
+            
+            
              self.logoInaf.image=imageL;
         }
     }
@@ -627,7 +633,9 @@ finish:
         [self.collectionView setCollectionViewLayout:flowLayout];
         
         [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
-        
+        [self.testoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+        [self.sfondoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+
         //[self.collectionView reloadData];
         
         
@@ -647,6 +655,8 @@ finish:
            [self.collectionView setFrame:CGRectMake(0, 280, self.view.frame.size.width,  self.view.frame.size.height-280)];
             
              [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
+            [self.testoInfo setFrame:CGRectMake(600, 25, 350, 230)];
+            [self.sfondoInfo setFrame:CGRectMake(600, 25, 350, 230)];
             
           //  [self.collectionView reloadData];
             
