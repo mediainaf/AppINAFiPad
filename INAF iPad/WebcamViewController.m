@@ -93,8 +93,165 @@
 {
     [timer invalidate];
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 356)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+      
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        // [self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 315)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            
+            // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
+            
+            
+            //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+    //[self.collectionView setContentOffset:CGPointZero];
+    
+    NSLog(@"altezza %f",self.collectionView.frame.size.height);
+}
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        NSLog(@"portrati");
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 356)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        
+        
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        //[self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            NSLog(@"Landscape");
+            
+            
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 315)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self deviceOrientationDidChangeNotification:nil];
+}
 - (void)viewDidLoad
 {
+    
+    int orientation= [UIApplication sharedApplication].statusBarOrientation;
+    
+    
+    
+    if(orientation == 1 || orientation == 2)
+    {
+        
+        
+        
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 356)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        
+        // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setCollectionViewLayout:flowLayout];
+       // self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
+        
+        //[self.collectionView reloadData];
+        
+        
+    }
+    else
+    {
+        if(orientation == 3 || orientation == 4)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 315)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+         //   self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
+            //  [self.collectionView reloadData];
+            
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(deviceOrientationDidChangeNotification:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:nil];
+
     
     UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadWebcam)];
     
@@ -146,15 +303,7 @@
     
     [self.collectionView registerClass:[WebcamCell class] forCellWithReuseIdentifier:@"cvCell"];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(354, 356)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setMinimumLineSpacing:20.0];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-    // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
-    [self.collectionView setCollectionViewLayout:flowLayout];
-
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
