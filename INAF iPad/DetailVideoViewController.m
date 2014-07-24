@@ -90,7 +90,7 @@
     
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
     {
-        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
+        [self.webView setFrame:CGRectMake(10, 32,748, 576)];
         [self loadVideo];
         
     }
@@ -117,8 +117,8 @@
     {
         NSLog(@"portrait");
         
-        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
-        [self loadVideo];
+        [self.webView setFrame:CGRectMake(10, 32, 748, 576)];
+        //[self loadVideo];
 
     }
     else
@@ -129,7 +129,7 @@
             NSLog(@"landscape");
 
             [self.webView setFrame:CGRectMake(181, 10, 662, 435)];
-            [self loadVideo];
+            //[self loadVideo];
 
             
         }
@@ -150,7 +150,7 @@
     
     if(orientation == 1 || orientation == 2)
     {
-        [self.webView setFrame:CGRectMake(10, 32, self.view.frame.size.width-20, 576)];
+        [self.webView setFrame:CGRectMake(10, 32, 748 , 576)];
         [self loadVideo];
     }
     else

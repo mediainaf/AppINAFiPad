@@ -262,9 +262,22 @@
         customPinView.draggable=YES;
         customPinView.tag=an.tag;
         
+     
+        UIButton * bottone;
+        
+        UIDevice *device = [UIDevice currentDevice];
         
         
-        UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        if([device.systemVersion hasPrefix:@"7"])
+        {
+             bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        }
+        else
+        {
+             bottone = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        }
+        
+        
         bottone.tag = an.tag+1;
         
         // NSLog(@" tag %d",bottone.tag);
@@ -470,6 +483,14 @@
     [bottone setTitle:@" Webcams" forState:UIControlStateNormal];
     
     [bottone setImage:cameraIcon forState:UIControlStateNormal];
+
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"6"])
+    {
+        [bottone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bottone setTintColor:[UIColor blackColor]];
+    }
     
     [bottone setFrame:CGRectMake(310, 2, 120, 30)];
     

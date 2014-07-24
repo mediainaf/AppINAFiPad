@@ -187,6 +187,15 @@ NSArray * titoli;
     
     [bottone setTitle:@" Telescopes Map" forState:UIControlStateNormal];
     
+    
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"6"])
+    {
+        [bottone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bottone setTintColor:[UIColor blackColor]];
+    }
+    
     [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
     
     [bottone setFrame:CGRectMake(310, 2, 170, 30)];

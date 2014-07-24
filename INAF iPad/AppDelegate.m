@@ -103,6 +103,13 @@
         [navTre.navigationBar setBarStyle:UIBarStyleBlackOpaque];
         [navQuattro.navigationBar setBarStyle:UIBarStyleBlackOpaque];
         
+        /*navUno.navigationBar.tintColor = [UIColor whiteColor];
+        navDue.navigationBar.tintColor = [UIColor whiteColor];
+        navTre.navigationBar.tintColor = [UIColor whiteColor];
+        navQuattro.navigationBar.tintColor = [UIColor whiteColor];
+         navCinque.navigationBar.tintColor = [UIColor whiteColor];
+         */
+        
         [navCinque.navigationBar setBarStyle:UIBarStyleBlackOpaque];
         
         navDue.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:[UIImage imageNamed:@"Assets/iconaNews.png"] tag:1];
@@ -110,6 +117,7 @@
         navTre.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Gallery" image:[UIImage imageNamed:@"Assets/iconaGallery.png"] tag:2];
         navQuattro.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Video" image:[UIImage imageNamed:@"Assets/iconaVideo.png"] tag:3];
         navCinque.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"INAF" image:[UIImage imageNamed:@"Assets/iconaMore.png"] tag:4];
+        
         
         
     }

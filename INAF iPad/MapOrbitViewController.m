@@ -360,14 +360,26 @@ void getLatLong(double *lat, double *lon)
     
     UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconaMarker.png"];
     
-    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    UIButton * bottone;
+    
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"7"])
+    {
+        bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+          [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+    }
+    else
+    {
+        bottone = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    }
     bottone.tag = a.tag+1;
     
    // NSLog(@" tag %d",bottone.tag);
     
     [bottone addTarget:self action:@selector(satelliteTouched:) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setImage:bottoneSatellite forState:UIControlStateNormal];
+  
     
     //[bottone setFrame:CGRectMake(310, 2, 30, 30)];
     

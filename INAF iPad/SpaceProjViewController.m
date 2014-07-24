@@ -187,6 +187,14 @@ NSArray * titoli;
     
     [bottone addTarget:self action:@selector(openMap) forControlEvents:UIControlEventTouchUpInside];
     
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"6"])
+    {
+        [bottone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bottone setTintColor:[UIColor blackColor]];
+    }
+    
     [bottone setTitle:@" Satellites Orbits" forState:UIControlStateNormal];
     
     [bottone setImage:bottoneSatellite forState:UIControlStateNormal];

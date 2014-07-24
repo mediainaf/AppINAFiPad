@@ -464,8 +464,22 @@ finish:
         segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Sedi",@"Progetti da Terra",@"Progetti Spaziali", nil]];
         
         segmentedControl.frame = CGRectMake(41, 68, 364, 30);
-        segmentedControl.tintColor = [UIColor blackColor];
+       
 
+        UIDevice *device = [UIDevice currentDevice];
+        
+        
+        if([device.systemVersion hasPrefix:@"6"])
+        {
+            segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        }
+        else
+        {
+             segmentedControl.tintColor = [UIColor blackColor];
+        }
+
+        
+        
         [segmentedControl addTarget:self action:@selector(segmentChanged:) forControlEvents: UIControlEventValueChanged];
         segmentedControl.selectedSegmentIndex = segmentSelected;
         [popOverView addSubview:segmentedControl];
@@ -479,14 +493,20 @@ finish:
         
         toolBar =[[UIToolbar alloc] initWithFrame:CGRectMake([popOverView frame].origin.x, [popOverView frame].origin.y, [popOverView frame].size.width, 44)];
         
+        UIBarButtonItem * flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem * done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chiudiPop)];
+
         if([[UIDevice currentDevice].systemVersion hasPrefix:@"7"])
         {
             toolBar.tintColor=[UIColor blackColor];
         }
+        else
+        {
+            segmentedControl.frame = CGRectMake(41, 58, 364, 30);
+
+            done.tintColor = [UIColor blackColor];
+        }
         
-        
-        UIBarButtonItem * flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        UIBarButtonItem * done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(chiudiPop)];
         
         [toolBar setItems:[NSArray arrayWithObjects:flexSpace,done, nil]];
         
@@ -1005,6 +1025,15 @@ finish:
     
     [bottone setTitle:@" Cerca" forState:UIControlStateNormal];
     
+    
+    UIDevice *device = [UIDevice currentDevice];
+    
+    
+    if([device.systemVersion hasPrefix:@"6"])
+    {
+        [bottone setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [bottone setTintColor:[UIColor blackColor]];
+    }
     
     [bottone setFrame:CGRectMake(10, 2, 100, 30)];
     
