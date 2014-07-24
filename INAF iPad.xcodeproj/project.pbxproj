@@ -24,6 +24,8 @@
 		034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 034DF0B61935064500886FFD /* ViewControllerAnnotation.m */; };
 		034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */; };
 		0363D4D3197E524D009DB0DE /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 0363D4D2197E524D009DB0DE /* App.m */; };
+		03685E0C198175660001568B /* EarthProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03685E0A198175660001568B /* EarthProjectListViewController.m */; };
+		03685E0D198175660001568B /* EarthProjectListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03685E0B198175660001568B /* EarthProjectListViewController.xib */; };
 		03751C941940A43B00FF31D5 /* AppTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03751C931940A43B00FF31D5 /* AppTableCell.xib */; };
 		03751C971940A45900FF31D5 /* AppTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03751C961940A45900FF31D5 /* AppTableCell.m */; };
 		037812B9194B13C900C38026 /* NewsInternetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037812B7194B13C900C38026 /* NewsInternetViewController.m */; };
@@ -127,6 +129,9 @@
 		034DF0B71935064500886FFD /* ViewControllerAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerAnnotation.xib; sourceTree = "<group>"; };
 		0363D4D1197E524D009DB0DE /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		0363D4D2197E524D009DB0DE /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
+		03685E09198175660001568B /* EarthProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthProjectListViewController.h; sourceTree = "<group>"; };
+		03685E0A198175660001568B /* EarthProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthProjectListViewController.m; sourceTree = "<group>"; };
+		03685E0B198175660001568B /* EarthProjectListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EarthProjectListViewController.xib; sourceTree = "<group>"; };
 		03751C931940A43B00FF31D5 /* AppTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableCell.xib; sourceTree = "<group>"; };
 		03751C951940A45900FF31D5 /* AppTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTableCell.h; sourceTree = "<group>"; };
 		03751C961940A45900FF31D5 /* AppTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTableCell.m; sourceTree = "<group>"; };
@@ -305,6 +310,9 @@
 				037812C0194B1DF100C38026 /* InternetMoreViewController.h */,
 				037812C1194B1DF100C38026 /* InternetMoreViewController.m */,
 				037812C2194B1DF100C38026 /* InternetMoreViewController.xib */,
+				03685E09198175660001568B /* EarthProjectListViewController.h */,
+				03685E0A198175660001568B /* EarthProjectListViewController.m */,
+				03685E0B198175660001568B /* EarthProjectListViewController.xib */,
 			);
 			name = EarthProj;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 				03A3F435194600970022D7AF /* SpaceMissionViewController.xib in Resources */,
 				03DEDAF519337CF0001823F4 /* ViewControllerTwo.xib in Resources */,
 				03DEDAF019337CE5001823F4 /* ViewControllerThree.xib in Resources */,
+				03685E0D198175660001568B /* EarthProjectListViewController.xib in Resources */,
 				03DEDAFC19338225001823F4 /* ViewControllerInfo.xib in Resources */,
 				037812C4194B1DF100C38026 /* InternetMoreViewController.xib in Resources */,
 			);
@@ -651,6 +660,7 @@
 				034DF0BA1935064500886FFD /* ViewControllerAnnotation.m in Sources */,
 				03E67B2719361AD000C0E4AB /* Telescope.m in Sources */,
 				03A3F4231945C4D70022D7AF /* EarthProjViewController.m in Sources */,
+				03685E0C198175660001568B /* EarthProjectListViewController.m in Sources */,
 				03DEDAF419337CF0001823F4 /* ViewControllerTwo.m in Sources */,
 				034DF0AF193504DB00886FFD /* AppsViewController.m in Sources */,
 				034DF0AA193504C600886FFD /* JobsViewController.m in Sources */,

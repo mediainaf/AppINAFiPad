@@ -13,6 +13,7 @@
 #import "JobsViewController.h"
 #import "MapsViewController.h"
 #import "EarthProjViewController.h"
+#import "EarthProjectListViewController.h"
 #import "SpaceProjViewController.h"
 
 
@@ -135,7 +136,7 @@
 
 - (IBAction)openProgettiDaTerra:(id)sender
 {
-    EarthProjViewController * earth = [[EarthProjViewController alloc] initWithNibName:@"EarthProjViewController" bundle:nil];
+    EarthProjectListViewController * earth = [[EarthProjectListViewController alloc] initWithNibName:@"EarthProjectListViewController" bundle:nil];
     
     [self.navigationController pushViewController:earth animated:YES];
     
