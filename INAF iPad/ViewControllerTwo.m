@@ -116,7 +116,7 @@
 {
     page++;
     
-    
+    NSLog(@"page %d",page);
     title = [[NSMutableString alloc] init];
     author = [[NSMutableString alloc] init];
     date = [[NSMutableString alloc] init];
@@ -124,8 +124,38 @@
     content = [[NSMutableString alloc] init];
     link = [[NSMutableString alloc] init];
 
-    
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+    if([segmentedControl selectedSegmentIndex] == 0)
+    {
+        if(pickerRowSelected == 0)
+            
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+        
+        else
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/?paged=%d",[institutesTag objectAtIndex:pickerRowSelected],page]]];
+
+        
+    }
+    if([segmentedControl selectedSegmentIndex] == 1)
+    {
+        if(pickerRowSelected == 0)
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+
+            
+        else
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/?paged=%d",[telescopesTag objectAtIndex:pickerRowSelected],page]]];
+
+        
+    }
+    if([segmentedControl selectedSegmentIndex] == 2)
+    {
+        if(pickerRowSelected == 0)
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat: @"http://www.media.inaf.it/feed/?paged=%d",page]]];
+
+        else
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/feed/?paged=%d",[satellitesTag objectAtIndex:pickerRowSelected],page]]];
+
+        
+    }
     
     [parser setDelegate:self];
     
@@ -151,12 +181,11 @@
             
               NSLog(@"reload");
              
-              if(pickerRowSelected == 0)
-              {
+              
                   [self.loadingView setHidden:NO];
 
                   [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
-              }
+              
            
         
         }
@@ -532,6 +561,9 @@ finish:
     [popOverController dismissPopoverAnimated:YES];
     
     [self.loadingView setHidden:NO];
+    
+    
+    page=1;
     
     double delayInSeconds = 0.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
