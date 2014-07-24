@@ -11,6 +11,7 @@
 #import "Telescope.h"
 #import "SpaceTableViewCell.h"
 #import "InternetMoreViewController.h"
+#import "WebcamViewController.h"
 
 @interface EarthProjectListViewController ()
 {
@@ -116,13 +117,13 @@ NSArray * titoli;
     
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
     {
-        self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTPort.jpg"];
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/TNGPort.jpg"];
     }
     else
     {
         if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
         {
-           self.sfondoView.image = [UIImage imageNamed:@"Assets/LBT.jpg"];
+           self.sfondoView.image = [UIImage imageNamed:@"Assets/TNG.jpg"];
         }
     }
 }
@@ -133,13 +134,13 @@ NSArray * titoli;
     
     if(orientation == 1 || orientation == 2)
     {
-       self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTPort.jpg"];
+       self.sfondoView.image = [UIImage imageNamed:@"Assets/TNGPort.jpg"];
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
-            self.sfondoView.image = [UIImage imageNamed:@"Assets/LBT.jpg"];
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/TNG.jpg"];
         }
     }
     
@@ -153,13 +154,13 @@ NSArray * titoli;
     
     if(orientation == 1 || orientation == 2)
     {
-        self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTPort.jpg"];
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/TNGPort.jpg"];
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
-            self.sfondoView.image = [UIImage imageNamed:@"Assets/LBT.jpg"];
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/TNG.jpg"];
         }
     }
     
@@ -211,7 +212,7 @@ NSArray * titoli;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if([telescopes count] >0)
-        return [telescopes count];
+        return [telescopes count]+1;
     return 10;
 }
 
@@ -230,68 +231,84 @@ NSArray * titoli;
     
     if([telescopes count] >0)
     {
-        
-        
-        Telescope * s = [telescopes objectAtIndex:indexPath.row];
-        
-        cell.title.text = s.name;
-        
-        NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,
-                                indexPath.row];
-        
-        
-        if([cachedImages objectForKey:identifier] != nil)
+        if(indexPath.row == 0)
         {
-            cell.thumbnail.image = [cachedImages valueForKey:identifier];
-            //[cell.indicator stopAnimating];
-            NSLog(@"metti immagine");
+            cell.title.text = @"Webcam";
+           
+            NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,
+                                    indexPath.row];
             
+
+            [cachedImages setObject:[UIImage imageNamed:@"Assets/iconaWebcam.png"] forKey:identifier];
+
+              cell.thumbnail.image = [cachedImages valueForKey:identifier];
         }
         else
         {
-            cell.thumbnail.image = nil;
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
-            dispatch_async(queue, ^{
-                //This is what you will load lazily
+            Telescope * s = [telescopes objectAtIndex:indexPath.row-1];
+            
+            cell.title.text = s.name;
+            
+            NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,
+                                    indexPath.row];
+            
+            
+            if([cachedImages objectForKey:identifier] != nil)
+            {
+                cell.thumbnail.image = [cachedImages valueForKey:identifier];
+                //[cell.indicator stopAnimating];
+                NSLog(@"metti immagine");
                 
-                NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://www.media.inaf.it/wp-content/themes/mediainaf/images/tags/%@.jpg",s.img]]];
-                dispatch_sync(dispatch_get_main_queue(), ^{
+            }
+            else
+            {
+                cell.thumbnail.image = nil;
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
+                dispatch_async(queue, ^{
+                    //This is what you will load lazily
                     
-                    UIImage * image = [UIImage imageWithData:data];
-                    
-                    if(image != nil)
-                    {
-                        [cachedImages setObject:image forKey:identifier];
-                        //cell.thumbnail.image = image;
-                        [cell setNeedsLayout];
+                    NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://www.media.inaf.it/wp-content/themes/mediainaf/images/tags/%@.jpg",s.img]]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
                         
-                        [self.tableView beginUpdates];
+                        UIImage * image = [UIImage imageWithData:data];
                         
-                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                        [self.tableView endUpdates];
-                        
-                        
-                        
-                    }
-                    else
-                    {
-                        UIImage * image = [UIImage imageNamed:@"Assets/iconaTelescopio.png"];
-                        [cachedImages setObject:image forKey:identifier];
-                        
-                        [cell setNeedsLayout];
-                        [self.tableView beginUpdates];
-                        
-                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                        [self.tableView endUpdates];
-                        
-                        
-                        
-                        
-                        
-                        
-                    }
+                        if(image != nil)
+                        {
+                            [cachedImages setObject:image forKey:identifier];
+                            //cell.thumbnail.image = image;
+                            [cell setNeedsLayout];
+                            
+                            [self.tableView beginUpdates];
+                            
+                            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                            [self.tableView endUpdates];
+                            
+                            
+                            
+                        }
+                        else
+                        {
+                            UIImage * image = [UIImage imageNamed:@"Assets/iconaTelescopio.png"];
+                            [cachedImages setObject:image forKey:identifier];
+                            
+                            [cell setNeedsLayout];
+                            [self.tableView beginUpdates];
+                            
+                            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                            [self.tableView endUpdates];
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
+                    });
                 });
-            });
+                
+            }
+            
+            
             
         }
     }
@@ -300,18 +317,32 @@ NSArray * titoli;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
     
-    Telescope * s =[telescopes objectAtIndex:indexPath.row];
+    if(indexPath.row == 0)
+    {
+        WebcamViewController * webcam = [[WebcamViewController alloc] initWithNibName:@"WebcamViewController" bundle:nil];
+        
+        [self.navigationController pushViewController:webcam animated:YES];
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    else
+    {
+        InternetMoreViewController * internet = [[InternetMoreViewController alloc] initWithNibName:@"InternetMoreViewController" bundle:nil];
+        
+        Telescope * s =[telescopes objectAtIndex:indexPath.row-1];
+        
+        internet.url = [NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/",s.tag];
+        
+        [self.navigationController pushViewController:internet animated:YES];
+        
+        
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+    }
     
-    internet.url = [NSString stringWithFormat:@"http://www.media.inaf.it/tag/%@/",s.tag];
-    
-    [self.navigationController pushViewController:internet animated:YES];
-    
-    
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     
     
 }

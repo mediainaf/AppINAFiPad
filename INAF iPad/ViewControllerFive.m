@@ -39,14 +39,17 @@
     
     if(orientation == 1 || orientation == 2)
     {
-        self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTPort.jpg"];
+       // self.sfondoView.image = [UIImage imageNamed:@"Assets/VST_tramonto.jpg"];
+      //  self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
         
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
-             self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTLand.jpg"];
+         //    self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
         }
     }
     
@@ -65,14 +68,16 @@
     
     if(orientation == 1 || orientation == 2)
     {
-               
-         self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMore.jpg"];
+     
+        //self.sfondoView.image = [UIImage imageNamed:@"Assets/VST_tramonto.jpg"];
+        self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTPort.jpg"];
     }
     else
     {
         if(orientation == 3 || orientation == 4)
         {
-            self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
+            self.sfondoView.image = [UIImage imageNamed:@"Assets/LBTLand.jpg"];
+           // self.sfondoView.image = [UIImage imageNamed:@"Assets/galileoMoreLand.jpg"];
         }
     }
     

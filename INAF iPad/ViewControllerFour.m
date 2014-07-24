@@ -54,14 +54,14 @@
     [self.loadingView setHidden:YES];
 
     
-    NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json"] encoding:NSUTF8StringEncoding error:nil];
+    NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json&max-results=50"] encoding:NSUTF8StringEncoding error:nil];
     if(!response1)
     {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json"]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/inaftv/uploads?alt=json&max-results=50"]];
     
     NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     

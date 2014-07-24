@@ -57,6 +57,7 @@
         navCinque.navigationBar.tintColor=[UIColor blackColor];
         
         /*
+        
         navUno.navigationBar.tintColor=[UIColor whiteColor];
         navDue.navigationBar.tintColor=[UIColor whiteColor];
         navTre.navigationBar.tintColor=[UIColor whiteColor];
@@ -69,13 +70,14 @@
         navTre.navigationBar.barStyle=UIBarStyleBlack;
         navQuattro.navigationBar.barStyle=UIBarStyleBlack;
         navCinque.navigationBar.barStyle=UIBarStyleBlack;
+        
         */
         
         //tabBarController.tabBar.barTintColor=[UIColor blackColor];
 
         tabBarController.tabBar.translucent=NO;
         tabBarController.tabBar.tintColor=[UIColor blackColor];
-       // tabBarController.tabBar.tintColor=[UIColor whiteColor];
+       //tabBarController.tabBar.tintColor=[UIColor whiteColor];
 
         
         navDue.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:[UIImage imageNamed:@"Assets/iconaNews7.png"] tag:1];
@@ -84,8 +86,7 @@
         navQuattro.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Video" image:[UIImage imageNamed:@"Assets/iconaVideo7.png"] tag:3];
         navCinque.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"More" image:[UIImage imageNamed:@"Assets/iconaMore7.png"] tag:4];
         
-        
-        navUno.navigationBar.translucent=NO;
+
        
         
 
