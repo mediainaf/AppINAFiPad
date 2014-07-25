@@ -165,7 +165,7 @@
         [bottone setTintColor:[UIColor blackColor]];
     }
     
-    [bottone setFrame:CGRectMake(310, 2, 100, 30)];
+    [bottone setFrame:CGRectMake(310, 2, 60, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     
