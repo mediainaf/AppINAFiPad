@@ -15,7 +15,7 @@
 #import "EarthProjViewController.h"
 #import "EarthProjectListViewController.h"
 #import "SpaceProjViewController.h"
-
+#import "TweetViewController.h"
 
 
 @interface ViewControllerFive ()
@@ -88,7 +88,7 @@
      object:nil];
 
     self.title= @"More";
-    
+    [self.bottTweet setImage:[UIImage imageNamed:@"Assets/bottoneTweet.png"] forState:UIControlStateNormal];
     [self.bottApps setImage:[UIImage imageNamed:@"Assets/bottoneApps.png"] forState:UIControlStateNormal];
     [self.bottMaps setImage:[UIImage imageNamed:@"Assets/bottoneSedi.png"] forState:UIControlStateNormal];
     [self.bottJobs setImage:[UIImage imageNamed:@"Assets/bottoneJobs.png"] forState:UIControlStateNormal];
@@ -136,6 +136,14 @@
     SpaceProjViewController * space = [[SpaceProjViewController alloc] initWithNibName:@"SpaceProjViewController" bundle:nil];
     
     [self.navigationController pushViewController:space animated:YES];
+}
+
+- (IBAction)shareTweet:(id)sender
+{
+    TweetViewController * tweet = [[TweetViewController alloc] initWithNibName:@"TweetViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:tweet animated:YES];
+      
 }
 
 

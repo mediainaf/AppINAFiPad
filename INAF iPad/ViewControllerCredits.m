@@ -24,8 +24,7 @@
     }
     return self;
 }
-
-- (void)viewDidLoad
+-(void)viewDidAppear:(BOOL)animated
 {
     NSData * response = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetAbout.php"]];
     
@@ -58,8 +57,12 @@
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection Error" message:@"Change internet settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
+    
 
-    [super viewDidLoad];
+}
+- (void)viewDidLoad
+{
+        [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 

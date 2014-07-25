@@ -12,6 +12,7 @@
                 <outlet property="bottMaps" destination="E8G-Pw-ifd" id="yFQ-Rp-vh3"/>
                 <outlet property="bottProgettiDaTerra" destination="gyL-iX-tSW" id="iXX-Ng-Tk7"/>
                 <outlet property="bottProgettiSpaziali" destination="oZs-8K-ddf" id="R2c-rv-IkI"/>
+                <outlet property="bottTweet" destination="o15-TQ-Euk" id="OxY-VQ-gS9"/>
                 <outlet property="sfondoView" destination="fWq-Rq-RYn" id="I1U-ZM-ojA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -31,7 +32,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3BE-Qa-CBf">
-                    <rect key="frame" x="0.0" y="53" width="768" height="382"/>
+                    <rect key="frame" x="0.0" y="53" width="768" height="460"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -63,6 +64,16 @@
                     </state>
                     <connections>
                         <action selector="openJobs:" destination="-1" eventType="touchUpInside" id="Wyb-Hb-ZrA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o15-TQ-Euk">
+                    <rect key="frame" x="20" y="443" width="297" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Condividi Tweet">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="shareTweet:" destination="-1" eventType="touchUpInside" id="If0-6o-SRa"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oZs-8K-ddf">

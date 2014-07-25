@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewControllerFive : UIViewController
+@interface ViewControllerFive : UIViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 
 
@@ -19,12 +19,14 @@
 @property (strong, nonatomic) IBOutlet UIButton *bottJobs;
 @property (strong, nonatomic) IBOutlet UIButton *bottProgettiDaTerra;
 @property (strong, nonatomic) IBOutlet UIButton *bottProgettiSpaziali;
+@property (strong, nonatomic) IBOutlet UIButton *bottTweet;
 
 
 - (IBAction)openApps:(id)sender;
 - (IBAction)openMaps:(id)sender;
 - (IBAction)openJobs:(id)sender;
 - (IBAction)openProgettiSpaziali:(id)sender;
+- (IBAction)shareTweet:(id)sender;
 
 - (IBAction)openProgettiDaTerra:(id)sender;
 
