@@ -105,12 +105,13 @@
                 
             case NSOrderedDescending: one = 1; break;
                 
-            case NSOrderedSame: one = 1; break;
+            case NSOrderedSame:  one = 1; break;
                 
             default: ; break;        }
         
         
         NSComparisonResult result2 = [currDate compare:tweetDateStop];
+        
         switch (result2)
         
         {
@@ -124,14 +125,16 @@
             default: ; break;
         }
 
-        if(one == 1 && two == 1)
+        if(one == 1 && two == 1 && ![tweetHashTag isEqualToString:@""] && ![dateStart isEqualToString:@""] && ![dateStop isEqualToString:@""])
         {
-            self.navigationController.navigationItem.rightBarButtonItem.enabled = YES;
+            NSLog(@"si");
+            self.navigationItem.rightBarButtonItem.enabled = YES;
 
         }
         else
         {
-            self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
+            NSLog(@"no");
+            self.navigationItem.rightBarButtonItem.enabled = NO;
             
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Non sono aperti eventi per inviare tweet" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -171,7 +174,7 @@
     
     self.navigationItem.rightBarButtonItem=buttonBar;
 
-    self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 
     self.webView.scalesPageToFit=YES;
 
