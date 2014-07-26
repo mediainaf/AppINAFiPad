@@ -578,6 +578,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Nicolo' Parmiggiani";
 				TargetAttributes = {
+					03DEDA9F19337AB3001823F4 = {
+						DevelopmentTeam = JE4R383E8J;
+					};
 					03DEDAC019337AB3001823F4 = {
 						TestTargetID = 03DEDA9F19337AB3001823F4;
 					};

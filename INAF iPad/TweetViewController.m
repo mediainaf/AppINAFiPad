@@ -165,7 +165,7 @@
         [bottone setTintColor:[UIColor blackColor]];
     }
     
-    [bottone setFrame:CGRectMake(310, 2, 160, 30)];
+    [bottone setFrame:CGRectMake(310, 2, 130, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     
@@ -183,7 +183,7 @@
 
 -(void) openAction
 {
-    UIActionSheet* popupQuery = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Tweet Text",@"Tweet New Picture", @"Tweet Image From Library", nil];
+    UIActionSheet* popupQuery = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Tweet New Picture", @"Tweet Image From Library", nil]; // @"Tweet Text",
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [popupQuery showInView:self.view];
    
@@ -192,7 +192,7 @@
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 1) {
+    if(buttonIndex == 0) {
         
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -207,7 +207,7 @@
             [alertView show];
         }
     }
-    if(buttonIndex == 2) {
+    if(buttonIndex == 1) {
         //[self uploadFileToServer:@"test.png"];
         //return;
         UIImagePickerController * picker = [[UIImagePickerController alloc] init];
@@ -216,7 +216,7 @@
         picker.allowsEditing=TRUE;
         [self presentViewController:picker animated:YES completion:nil];
     }
-    if (buttonIndex == 0)
+    /*if (buttonIndex == 0)
     {
         
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
@@ -233,7 +233,7 @@
             
             [alert show];
         }
-    }
+    }*/
     
 }
 
