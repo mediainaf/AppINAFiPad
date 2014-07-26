@@ -9,7 +9,7 @@
 // found in the LICENSE file.
 
 #import "SpaceProjViewController.h"
-#import "SpaceMissionViewController.h"
+
 #import "SpaceTableViewCell.h"
 #import "MapOrbitViewController.h"
 #import "AllSatellite.h"
@@ -182,6 +182,7 @@ NSArray * titoli;
     
     
     UIImage * bottoneSatellite = [UIImage imageNamed:@"Assets/iconOrbit.png"];
+    
     
     UIButton * bottone = [UIButton buttonWithType:UIButtonTypeSystem];
     

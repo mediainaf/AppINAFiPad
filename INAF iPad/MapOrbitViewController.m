@@ -539,8 +539,21 @@ void getLatLong(double *lat, double *lon)
     
     UIImage * buttonMarker = [UIImage imageNamed:@"Assets/iconaMarker.png"];
     
+    UIButton * bottone;
     
-    UIButton * bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"6"])
+    {
+        bottone = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    }
+    else
+    {
+        bottone = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    }
+
+    
+    
     
     [bottone addTarget:self action:@selector(openSatellites) forControlEvents:UIControlEventTouchUpInside];
     
