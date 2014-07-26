@@ -154,7 +154,7 @@
     
     [bottone addTarget:self action:@selector(openAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [bottone setTitle:@"Tweet" forState:UIControlStateNormal];
+    [bottone setTitle:@"Condividi Tweet" forState:UIControlStateNormal];
     
     
     UIDevice * device = [UIDevice currentDevice];
@@ -165,7 +165,7 @@
         [bottone setTintColor:[UIColor blackColor]];
     }
     
-    [bottone setFrame:CGRectMake(310, 2, 60, 30)];
+    [bottone setFrame:CGRectMake(310, 2, 160, 30)];
     
     UIBarButtonItem * buttonBar = [[UIBarButtonItem alloc] initWithCustomView:bottone];
     

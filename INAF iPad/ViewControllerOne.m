@@ -558,6 +558,60 @@ finish:
         [self loadData];
     }
 }
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    
+    if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
+    {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setItemSize:CGSizeMake(354, 414)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumLineSpacing:20.0];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+        
+        
+        [self.collectionView setFrame:CGRectMake(0, 480, 768, 924-468)];
+        
+        [self.collectionView setCollectionViewLayout:flowLayout];
+        
+        //[self.logoInaf setFrame:CGRectMake(0, 37, self.view.frame.size.width, self.view.frame.size.height- 529)];
+        [self.logoInaf setFrame:CGRectMake(0, 37, 768, 395)];
+        [self.testoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+        [self.sfondoInfo setFrame:CGRectMake(508, 68, 240, 333)];
+        
+        [self.separator setHidden:NO];
+        
+        
+        self.logoInaf.image=imageP;
+        
+    }
+    else
+    {
+        if(fromInterfaceOrientation == 1 || fromInterfaceOrientation == 2)
+        {
+            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+            //[flowLayout setItemSize:CGSizeMake(354, 414)];
+            [flowLayout setItemSize:CGSizeMake(314, 367)];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            [flowLayout setMinimumLineSpacing:20.0];
+            [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
+            
+            NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
+            
+            [self.collectionView setFrame:CGRectMake(0, 280, 1024,  675-280)];
+            [self.separator setHidden:YES];
+            
+            [self.collectionView setCollectionViewLayout:flowLayout];
+            
+            [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
+            [self.testoInfo setFrame:CGRectMake(600, 25, 350, 230)];
+            [self.sfondoInfo setFrame:CGRectMake(600, 25, 350, 230)];
+            
+            
+            self.logoInaf.image=imageL;
+        }
+    }
+}
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -571,7 +625,7 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
     
         
-        [self.collectionView setFrame:CGRectMake(0, 468, self.view.frame.size.width, self.view.frame.size.height-468)];
+        [self.collectionView setFrame:CGRectMake(0, 480, 768, 924-468)];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
         
@@ -580,7 +634,7 @@ finish:
         [self.testoInfo setFrame:CGRectMake(508, 68, 240, 333)];
         [self.sfondoInfo setFrame:CGRectMake(508, 68, 240, 333)];
 
-        
+        [self.separator setHidden:NO];
         
         
          self.logoInaf.image=imageP;
@@ -597,7 +651,9 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 280, self.view.frame.size.width,  self.view.frame.size.height-280)];
+            NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
+            
+            [self.collectionView setFrame:CGRectMake(0, 280, 1024,  675-280)];
         
              
             [self.collectionView setCollectionViewLayout:flowLayout];
@@ -605,7 +661,7 @@ finish:
             [self.logoInaf setFrame:CGRectMake(0, 10 , 1024, 260)];
             [self.testoInfo setFrame:CGRectMake(600, 25, 350, 230)];
             [self.sfondoInfo setFrame:CGRectMake(600, 25, 350, 230)];
-            
+            [self.separator setHidden:YES];
             
              self.logoInaf.image=imageL;
         }
@@ -628,7 +684,7 @@ finish:
         [flowLayout setMinimumLineSpacing:20.0];
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         
-        [self.collectionView setFrame:CGRectMake(0, 468, 768, 429)];
+        [self.collectionView setFrame:CGRectMake(0, 480, 768, 429)];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
         
@@ -638,6 +694,7 @@ finish:
 
         //[self.collectionView reloadData];
         
+        [self.separator setHidden:NO];
         
     }
     else
@@ -659,7 +716,7 @@ finish:
             [self.sfondoInfo setFrame:CGRectMake(600, 25, 350, 230)];
             
           //  [self.collectionView reloadData];
-            
+            [self.separator setHidden:YES];
         }
     }
     [[NSNotificationCenter defaultCenter]

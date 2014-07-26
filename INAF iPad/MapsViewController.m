@@ -24,6 +24,7 @@
 @interface MapsViewController ()
 
 {
+    UIBarButtonItem * action;
     UIView * calloutView;
     UIButton *button;
     int load;
@@ -301,95 +302,172 @@
     
     NSLog(@"create");
     
-    if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
-       
-       
-        NSArray *viewsToRemove = [view.superview subviews];
+    UIDevice * device = [UIDevice currentDevice];
     
-        for (UIView *v in viewsToRemove) {
-            if(v.tag == 200)
-                [v removeFromSuperview];
+    if([device.systemVersion hasPrefix:@"7"])
+    {
+    
+        if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
+           
+           
+            NSArray *viewsToRemove = [view.superview subviews];
+        
+            for (UIView *v in viewsToRemove) {
+                if(v.tag == 200)
+                    [v removeFromSuperview];
+            }
+            
+            Annotation * v = (Annotation *)view;
+            ;
+            CLLocationCoordinate2D cord ;
+            cord.latitude=v.coordinate.latitude;
+            cord.longitude=v.coordinate.longitude;
+            
+            location = cord;
+            
+            MKCoordinateRegion region;
+            MKCoordinateSpan span;
+            span.latitudeDelta = 1;
+            span.longitudeDelta = 1;
+            region.span = span;
+            region.center = cord;
+            [self.mapView setRegion:region animated:TRUE];
+            [self.mapView regionThatFits:region];
+
+            
+            calloutView = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-364)/2,(self.view.frame.size.height -241)/2-(241/2)-50, 364, 241)];
+            
+            
+            
+            calloutView.tag = 200;
+            
+            calloutView.backgroundColor = [UIColor whiteColor];
+            [calloutView.layer setShadowColor:[UIColor blackColor].CGColor];
+            [calloutView.layer setShadowOpacity:0.8];
+            [calloutView.layer setShadowRadius:3.0];
+            [calloutView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
+            
+            UIButton *button4 = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            button4.frame = CGRectMake(171, 206, 22, 22);
+           // [button4 setTitle:@"Info" forState:UIControlStateNormal];
+            [button4 addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
+            [calloutView addSubview:button4];
+            
+            UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(20, 2, 324, 61)];
+            title.font = [UIFont systemFontOfSize:20.0];
+            title.numberOfLines = 2;
+            title.minimumScaleFactor=0.5;
+            [calloutView addSubview:title];
+            
+            UILabel * phone = [[UILabel alloc] initWithFrame:CGRectMake(20,69, 324, 46)];
+            phone.font = [UIFont systemFontOfSize:16.0];
+            phone.numberOfLines = 2;
+            phone.minimumScaleFactor=0.5;
+            [calloutView addSubview:phone];
+            
+            UILabel * link = [[UILabel alloc] initWithFrame:CGRectMake(20,120, 324, 46)];
+            link.font = [UIFont systemFontOfSize:16.0];
+            link.numberOfLines = 1;
+            link.minimumScaleFactor=0.5;
+            [calloutView addSubview:link];
+            
+            UILabel * address = [[UILabel alloc] initWithFrame:CGRectMake(20,162, 324, 46)];
+            address.font = [UIFont systemFontOfSize:16.0];
+            address.numberOfLines = 1;
+            address.minimumScaleFactor=0.5;
+            [calloutView addSubview:address];
+
+
+            
+            Tag=view.tag;
+            
+            
+           
+            
+            
+            Istituto * i = [istituti objectAtIndex:Tag];
+            
+            [title setText:i.name];
+            [phone setText:i.phone];
+            [link setText:i.website];
+            [address setText:i.address];
+
+            
+            [view.superview addSubview:calloutView];
+            [view.superview bringSubviewToFront:calloutView];
         }
-        
-        Annotation * v = (Annotation *)view;
-        ;
-        CLLocationCoordinate2D cord ;
-        cord.latitude=v.coordinate.latitude;
-        cord.longitude=v.coordinate.longitude;
-        
-        location = cord;
-        
-        MKCoordinateRegion region;
-        MKCoordinateSpan span;
-        span.latitudeDelta = 1;
-        span.longitudeDelta = 1;
-        region.span = span;
-        region.center = cord;
-        [self.mapView setRegion:region animated:TRUE];
-        [self.mapView regionThatFits:region];
-
-        
-        calloutView = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-364)/2,(self.view.frame.size.height -241)/2-(241/2)-50, 364, 241)];
-        
-        
-        
-        calloutView.tag = 200;
-        
-        calloutView.backgroundColor = [UIColor whiteColor];
-        [calloutView.layer setShadowColor:[UIColor blackColor].CGColor];
-        [calloutView.layer setShadowOpacity:0.8];
-        [calloutView.layer setShadowRadius:3.0];
-        [calloutView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-
-        
-        UIButton *button4 = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        button4.frame = CGRectMake(171, 206, 22, 22);
-       // [button4 setTitle:@"Info" forState:UIControlStateNormal];
-        [button4 addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
-        [calloutView addSubview:button4];
-        
-        UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(20, 2, 324, 61)];
-        title.font = [UIFont systemFontOfSize:20.0];
-        title.numberOfLines = 2;
-        title.minimumScaleFactor=0.5;
-        [calloutView addSubview:title];
-        
-        UILabel * phone = [[UILabel alloc] initWithFrame:CGRectMake(20,69, 324, 46)];
-        phone.font = [UIFont systemFontOfSize:16.0];
-        phone.numberOfLines = 2;
-        phone.minimumScaleFactor=0.5;
-        [calloutView addSubview:phone];
-        
-        UILabel * link = [[UILabel alloc] initWithFrame:CGRectMake(20,120, 324, 46)];
-        link.font = [UIFont systemFontOfSize:16.0];
-        link.numberOfLines = 1;
-        link.minimumScaleFactor=0.5;
-        [calloutView addSubview:link];
-        
-        UILabel * address = [[UILabel alloc] initWithFrame:CGRectMake(20,162, 324, 46)];
-        address.font = [UIFont systemFontOfSize:16.0];
-        address.numberOfLines = 1;
-        address.minimumScaleFactor=0.5;
-        [calloutView addSubview:address];
-
-
-        
-        Tag=view.tag;
-        
-        
-       
-        
-        
-        Istituto * i = [istituti objectAtIndex:Tag];
-        
-        [title setText:i.name];
-        [phone setText:i.phone];
-        [link setText:i.website];
-        [address setText:i.address];
-
-        
-        [view.superview addSubview:calloutView];
-        [view.superview bringSubviewToFront:calloutView];
+    }
+    else
+    {
+        if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
+            self.navigationItem.rightBarButtonItem.enabled=YES;
+            NSLog(@"%d",view.tag);
+            Tag=view.tag;
+            
+            Annotation * v = (Annotation *)view;
+            ;
+            
+            
+            CLLocationCoordinate2D cord ;
+            cord.latitude=v.coordinate.latitude;
+            cord.longitude=v.coordinate.longitude;
+            
+            location = cord;
+            
+            MKCoordinateRegion region;
+            MKCoordinateSpan span;
+            span.latitudeDelta = 1;
+            span.longitudeDelta = 1;
+            region.span = span;
+            region.center = cord;
+            
+            [self.mapView setRegion:region animated:TRUE];
+            [self.mapView regionThatFits:region];
+            
+            va = [[ViewControllerAnnotation alloc] initWithNibName:@"ViewControllerAnnotation" bundle:nil];
+            
+            //SMCalloutView *calloutView = (SMCalloutView *)[[[NSBundle mainBundle] loadNibNamed:@"CalloutView" owner:self options:nil] objectAtIndex:0];
+            
+            CGRect calloutViewFrame = va.view.frame;
+            
+            calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 +8, -calloutViewFrame.size.height-10);
+            
+            va.view.frame = calloutViewFrame;
+            
+            //va.view.layer.cornerRadius = 5;
+            //va.view.layer.masksToBounds = YES;
+            // border radius
+            //[va.view.layer setCornerRadius:5.0f];
+            
+            // border
+            // [va.view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+            // [va.view.layer setBorderWidth:0.5f];
+            
+            // drop shadow
+            [va.view.layer setShadowColor:[UIColor blackColor].CGColor];
+            [va.view.layer setShadowOpacity:0.8];
+            [va.view.layer setShadowRadius:3.0];
+            [va.view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+            
+            Istituto * i = [istituti objectAtIndex:Tag];
+            
+            [va.nome setText:i.name];
+            [va.phone setText:i.phone];
+            [va.link setText:i.website];
+            [va.address setText:i.address];
+            
+            UIButton * button2 = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            
+            [button2 addTarget:self action:@selector(openInstitute:) forControlEvents:UIControlEventTouchUpInside];
+            
+            view.rightCalloutAccessoryView = button2;
+            
+            [view addSubview:va.view];
+            
+            self.navigationItem.rightBarButtonItem= action ;
+            
+        }
     }
     /*
      if(![view.annotation isKindOfClass:[MKUserLocation class]]) {
@@ -516,7 +594,9 @@
     {
         if (a.tag == Tag) {
             
+            [va.view removeFromSuperview];
             [self.mapView deselectAnnotation:a animated:YES];
+            self.navigationItem.rightBarButtonItem= nil ;
         }
     }
 }
@@ -544,12 +624,12 @@
     
    // NSDictionary * telescopes = [NSDictionary dictionaryWithObjects:<#(NSArray *)#> forKeys:<#(NSArray *)#>];
     
-   /*
-    UIBarButtonItem * action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
+   
+    action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInstitute:) ];
     
-    self.navigationItem.rightBarButtonItem= action ;
-    self.navigationItem.rightBarButtonItem.enabled=NO;
-    */
+    self.navigationItem.rightBarButtonItem= nil ;
+    
+    
     
     self.title=@"Sedi";
     self.navigationController.navigationBar.tintColor=[UIColor blackColor];

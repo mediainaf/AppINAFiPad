@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoInfo;
 @property (strong, nonatomic) IBOutlet UITextView *testoInfo;
+@property (strong, nonatomic) IBOutlet UIImageView *separator;
 
 @end

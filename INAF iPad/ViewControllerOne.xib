@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="collectionView" destination="sJe-Bf-SwN" id="YpD-vb-7l2"/>
                 <outlet property="logoInaf" destination="7e0-0O-gbl" id="cLO-m6-6HR"/>
+                <outlet property="separator" destination="qhK-Yh-5ba" id="K9M-01-cab"/>
                 <outlet property="sfondoInfo" destination="H2E-2F-blB" id="xeB-72-RVb"/>
                 <outlet property="sfondoView" destination="53N-pm-VBx" id="GbY-82-wea"/>
                 <outlet property="testoInfo" destination="Kt7-ZF-JvF" id="O4d-uE-dL1"/>
@@ -29,7 +30,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" id="sJe-Bf-SwN">
-                    <rect key="frame" x="0.0" y="458" width="768" height="429"/>
+                    <rect key="frame" x="0.0" y="480" width="768" height="429"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j50-nW-ZZS">
@@ -53,11 +54,16 @@
                     <rect key="frame" x="508" y="68" width="240" height="333"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">L'Istituto Nazionale di Astrofisica è il principale Ente di Ricerca italiano per lo studio dell’Universo. Promuove, realizza e coordina, anche nell'ambito di programmi dell'Unione Europea e di Organismi internazionali, attività di ricerca nei campi dell'astronomia e dell'astrofisica, sia in collaborazione con le Università che con altri soggetti pubblici e privati, nazionali, internazionali ed esteri. Progetta e sviluppa tecnologie innovative e strumentazione d'avanguardia per lo studio e l'esplorazione del Cosmo. </mutableString>
+                    <string key="text">L'Istituto Nazionale di Astrofisica è il principale Ente di Ricerca italiano per lo studio dell’Universo. Promuove, realizza e coordina, anche nell'ambito di programmi dell'Unione Europea e di Organismi internazionali, attività di ricerca nei campi dell'astronomia e dell'astrofisica, sia in collaborazione con le Università che con altri soggetti pubblici e privati, nazionali, internazionali ed esteri. Progetta e sviluppa tecnologie innovative e strumentazione d'avanguardia per lo studio e l'esplorazione del Cosmo. </string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qhK-Yh-5ba">
+                    <rect key="frame" x="0.0" y="466" width="768" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
