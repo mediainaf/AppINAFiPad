@@ -13,5 +13,7 @@
 @interface ViewControllerInfo : UIViewController
 - (IBAction)back:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextView *text;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 @end

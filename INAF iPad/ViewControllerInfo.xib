@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewControllerInfo">
             <connections>
+                <outlet property="cancelButton" destination="VGx-Ge-dge" id="f65-rA-fZY"/>
+                <outlet property="navBar" destination="4wc-JM-pLl" id="LVx-er-MtE"/>
                 <outlet property="text" destination="m61-UF-x85" id="9aR-SC-ZYq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

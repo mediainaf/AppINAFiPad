@@ -62,6 +62,15 @@
 }
 - (void)viewDidLoad
 {
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if( [device.systemVersion hasPrefix:@"6"])
+    {
+        self.navBar.barStyle = UIBarStyleBlackOpaque;
+        
+    }
+
+    
         [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

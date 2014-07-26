@@ -14,5 +14,6 @@
 - (IBAction)back:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextView *text;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navBar;
 
 @end
