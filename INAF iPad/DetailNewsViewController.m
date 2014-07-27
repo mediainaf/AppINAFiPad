@@ -78,7 +78,8 @@
         
          action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
         
-        action.tintColor = [UIColor blackColor];
+       
+        
         
         action.actionSheetStyle =UIActionSheetStyleBlackOpaque ;
         

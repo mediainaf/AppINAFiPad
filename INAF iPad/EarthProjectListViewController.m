@@ -156,7 +156,8 @@ NSArray * titoli;
     
     if(orientation == 1 || orientation == 2)
     {
-        self.sfondoView.image = [UIImage imageNamed:@"Assets/TNGPort.jpg"];
+       self.sfondoView.image = [UIImage imageNamed:@"Assets/TNGPort.jpg"];
+        
     }
     else
     {

@@ -114,9 +114,9 @@
         
         navDue.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:[UIImage imageNamed:@"Assets/iconaNews.png"] tag:1];
         navUno.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"Assets/iconaHome.png"] tag:0];
-        navTre.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Gallery" image:[UIImage imageNamed:@"Assets/iconaGallery.png"] tag:2];
+        navTre.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Events" image:[UIImage imageNamed:@"Assets/iconaGallery.png"] tag:2];
         navQuattro.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Video" image:[UIImage imageNamed:@"Assets/iconaVideo.png"] tag:3];
-        navCinque.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"INAF" image:[UIImage imageNamed:@"Assets/iconaMore.png"] tag:4];
+        navCinque.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"More" image:[UIImage imageNamed:@"Assets/iconaMore.png"] tag:4];
         
         
         
