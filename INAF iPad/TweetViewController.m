@@ -56,6 +56,10 @@
     
     NSData * response = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetAbout.php"]];
     
+    NSString * resp = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetAbout.php"] encoding:NSUTF8StringEncoding error:nil];
+    
+    NSLog(@"%@",resp);
+    
     if (response)
     {
         NSArray * jsonArray;
@@ -84,14 +88,15 @@
         NSDate *currDate = [NSDate date];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         
               
         NSDate *tweetDateStart = [dateFormatter dateFromString:dateStart];
         NSDate *tweetDateStop = [dateFormatter dateFromString:dateStop];
       
-        NSLog(@" %@",tweetDateStop);
-
+        NSLog(@" %@ %@",dateStart,dateStop);
+        NSLog(@" %@ %@",tweetDateStart,tweetDateStop);
+        NSLog(@" %@",currDate);
         
         NSComparisonResult result = [currDate compare:tweetDateStart];
         

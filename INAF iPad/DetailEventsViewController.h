@@ -22,5 +22,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *author;
 @property (strong, nonatomic) IBOutlet UILabel *date;
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

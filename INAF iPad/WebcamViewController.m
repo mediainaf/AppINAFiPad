@@ -37,6 +37,8 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self deviceOrientationDidChangeNotification:nil];
+   
     NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSatellites.php"] encoding:NSUTF8StringEncoding error:nil];
     if(!response1)
     {
@@ -49,6 +51,7 @@
 }
 -(void) reloadWebcam
 {
+   
     for(int i =0;i <15 ;i++)
     {
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
@@ -147,7 +150,7 @@
 {
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
-    
+     NSLog(@"altezza %f",self.collectionView.frame.size.height);
     
     
     
@@ -191,23 +194,22 @@
             
         }
     }
-    
+     NSLog(@"altezza %f",self.collectionView.frame.size.height);
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self deviceOrientationDidChangeNotification:nil];
+    
+    
+    //[self deviceOrientationDidChangeNotification:nil];
 }
 - (void)viewDidLoad
 {
     
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
-    
-    
     if(orientation == 1 || orientation == 2)
     {
-        
-        
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setItemSize:CGSizeMake(354, 356)];

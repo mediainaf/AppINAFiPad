@@ -687,7 +687,7 @@ finish:
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     
-    NSLog(@"%f", [self.collectionView contentOffset].y);
+    NSLog(@"ruota news%f", [self.collectionView contentOffset].y);
     
     if(orientation == 1 || orientation == 2)
     {
@@ -774,10 +774,6 @@ finish:
     self.navigationItem.rightBarButtonItem= refresh ;
     
 */
-    
-    
-    
-    
     
     
     [self.collectionView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];

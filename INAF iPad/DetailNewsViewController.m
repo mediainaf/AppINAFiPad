@@ -86,12 +86,8 @@
     }
 
 }
--(void)viewDidAppear:(BOOL)animated
+-(void) calcolaScroll
 {
-    
-    float textHeight = self.content.contentSize.height;
-    NSLog(@" altezza %f",textHeight);
-    
     CGRect rect      = self.content.frame;
     rect.size.height = self.content.contentSize.height;
     self.content.frame   = rect;
@@ -106,6 +102,16 @@
     rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
     self.author.frame = rect;
 
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    float textHeight = self.content.contentSize.height;
+    NSLog(@" altezza %f",textHeight);
+    
+    [self calcolaScroll];
+    [self deviceOrientationDidChangeNotification:nil];
+
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -115,6 +121,7 @@
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    [self calcolaScroll];
     
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
     {
