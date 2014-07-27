@@ -3,8 +3,10 @@
 //  INAF iPad
 //
 //  Created by Nicolo' Parmiggiani on 25/07/14.
-//  Copyright (c) 2014 Nicolo' Parmiggiani. All rights reserved.
-//
+// Copyright (c) 2014 Nicolò Parmiggiani. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 
 #import "TweetViewController.h"
 #import <Social/Social.h>
@@ -84,8 +86,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
         
-        NSString * datacorrente = [dateFormatter stringFromDate:currDate];
-        
+              
         NSDate *tweetDateStart = [dateFormatter dateFromString:dateStart];
         NSDate *tweetDateStop = [dateFormatter dateFromString:dateStop];
       
@@ -186,7 +187,7 @@
 
 -(void) openAction
 {
-    UIActionSheet* popupQuery = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Tweet New Picture", @"Tweet Image From Library", nil]; // @"Tweet Text",
+    UIActionSheet* popupQuery = [[UIActionSheet alloc] initWithTitle:@"Condividi un Tweet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Tweet New Picture", @"Tweet Image From Library", nil]; // @"Tweet Text",
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [popupQuery showInView:self.view];
    

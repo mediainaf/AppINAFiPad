@@ -743,7 +743,7 @@ finish:
 {
     [self deviceOrientationDidChangeNotification:nil];
     
-    [self.collectionView setContentOffset:CGPointZero animated:YES];
+    //[self.collectionView setContentOffset:CGPointZero animated:YES];
 
     
     [refreshControl removeFromSuperview];
