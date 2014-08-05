@@ -408,6 +408,7 @@
             
             if(orientation == 3 || orientation == 4)
             {
+               
                 MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, 140), MKCoordinateSpanMake(180, 360));
                 [self.mapView setRegion:region animated:YES];
                 

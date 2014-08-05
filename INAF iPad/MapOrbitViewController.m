@@ -568,6 +568,9 @@ void getLatLong(double *lat, double *lon)
     
     self.title = @"Orbite Satelliti";
     
+   // MKCoordinateRegion worldRegion = MKCoordinateRegionForMapRect(MKMapRectWorld);
+    //self.mapView.region = worldRegion;
+    
     MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0, -40), MKCoordinateSpanMake(180, 360));
     [self.mapView setRegion:region animated:YES];
 

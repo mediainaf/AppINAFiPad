@@ -42,7 +42,7 @@
     [html appendString:@"</style>"];
     [html appendString:@"</head>"];
     [html appendString:@"<body>"];
-    [html appendFormat:@"<iframe id=\"ytplayer\" type=\"text/html\" width=\"%0.0f\" height=\"%0.0f\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\"/>", self.webView.frame.size.width, self.webView.frame.size.height, self.video.videoToken];
+    [html appendFormat:@"<iframe id=\"ytplayer\"  width=\"%0.0f\" height=\"%0.0f\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\"/>", self.webView.frame.size.width, self.webView.frame.size.height, self.video.videoToken];
     [html appendString:@"</body>"];
     [html appendString:@"</html>"];
     

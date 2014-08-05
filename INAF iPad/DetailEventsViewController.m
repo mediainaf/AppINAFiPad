@@ -49,6 +49,12 @@
             postItems  = [NSArray arrayWithObjects:titolo,spazio,self.event.link, nil];
         
         
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                                initWithActivityItems:postItems
+                                                applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+
     }
     if(buttonIndex == 1)
     {
