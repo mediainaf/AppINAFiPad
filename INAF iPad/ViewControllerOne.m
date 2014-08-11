@@ -561,6 +561,8 @@ finish:
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     
+     NSLog(@"orienta due %d",fromInterfaceOrientation);
+    
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
     {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -596,7 +598,7 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
+           // NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
             
             [self.collectionView setFrame:CGRectMake(0, 280, 1024,  675-280)];
             [self.separator setHidden:YES];
@@ -615,6 +617,8 @@ finish:
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    NSLog(@"orienta uno %d",orientation);
     
     if(orientation == 1 || orientation == 2)
     {
@@ -651,7 +655,7 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
+          //  NSLog(@"%f %f",self.view.frame.size.width,self.view.frame.size.height);
             
             [self.collectionView setFrame:CGRectMake(0, 280, 1024,  675-280)];
         
