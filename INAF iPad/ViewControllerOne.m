@@ -383,7 +383,7 @@ finish:
                     
                     NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
                     
-                  //  NSLog(@"%@",url);
+                   NSLog(@"%@",url);
                     
                     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                     
@@ -1143,6 +1143,7 @@ finish:
 }
 -(BOOL) checkTime
 {
+    NSLog(@"check time ");
     
     NSString * pathT= [[NSString alloc] initWithFormat:@"timestamp.plist"];
     NSString * pathT2 = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:pathT];
@@ -1158,14 +1159,17 @@ finish:
   
     NSLog(@"%@ %@",secondiNow,secondi);
 
+    if(secondi == nil ||  secondiNow == nil)
+        return YES;
     
-    if([secondiNow intValue] > [ secondi intValue] + 804800)
+    if([secondiNow intValue] > [ secondi intValue] + 345600)
     {
         return YES;
         NSLog(@"yes");
     }
     else
-    {   return  NO;
+    {
+        return  NO;
         NSLog(@"no");
     }
 }
@@ -1180,7 +1184,6 @@ finish:
     NSDictionary * json = [jsonElement objectForKey:@"response"];
     
     NSString * urlImage = [json objectForKey:@"urlMainSplashScreen"];
-    
     
     
     NSData * dataImmagine = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlImage]];
@@ -1208,9 +1211,6 @@ finish:
         
         [NSKeyedArchiver archiveRootObject:image toFile:pathIm2 ];
     }
-    
-    
-    
     
 }
 

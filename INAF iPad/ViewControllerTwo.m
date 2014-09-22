@@ -225,7 +225,7 @@
         NSMutableArray * videos = [[NSMutableArray alloc] init];
         videos = [imagesAndVideoArray objectAtIndex:1];
         
-        //NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
+        NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
         
         News * n = [[News alloc] init];
         // manca autore data link
@@ -1119,6 +1119,8 @@ finish:
                     int number = [elements count];
                     
                     NSString * url = [NSString stringWithFormat:@"http://app.media.inaf.it/GetMediaImage.php?sourceYear=%@&sourceMonth=%@&sourceName=%@&width=354&height=201",[elements objectAtIndex:number-3],[elements objectAtIndex:number-2],[elements objectAtIndex:number-1]];
+                    
+                    NSLog(@"%@",url);
                     
                     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                     

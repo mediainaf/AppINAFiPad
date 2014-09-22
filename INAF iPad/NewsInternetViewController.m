@@ -57,20 +57,10 @@
     
     
     
-    NSArray * elements = [ self.url componentsSeparatedByString:@"/"];
-    
-    NSMutableArray * elementsArray = [[NSMutableArray alloc] init ];
-    
-    [elementsArray setArray:elements];
-    
-    [elementsArray removeLastObject];
-    
-    NSMutableString * link = [[NSMutableString alloc] initWithString:[elementsArray componentsJoinedByString:@"/"]];
-    
-    
+       
         
     
-    NSURL * urlNews = [NSURL URLWithString:link ];
+    NSURL * urlNews = [NSURL URLWithString:self.url ];
     
     NSURLRequest * newsUrlRequest = [NSURLRequest requestWithURL:urlNews];
     
