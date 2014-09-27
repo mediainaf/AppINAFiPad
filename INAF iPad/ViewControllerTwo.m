@@ -206,7 +206,7 @@
          poi inserirlo nell'array "elencoFeed" */
         
      //   NSLog(@"%@",title);
-        
+        /*
         ParserImages * parserImages = [[ParserImages alloc] init];
         ParserThumbnail * parserThumbnail = [[ParserThumbnail alloc] init];
         
@@ -220,64 +220,20 @@
         NSArray * imagesAndVideoArray = [[NSArray alloc] init];
         imagesAndVideoArray = [parserImages parseText:content];
         
-        NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
-        imagesArray = [imagesAndVideoArray objectAtIndex:0];
-        NSMutableArray * videos = [[NSMutableArray alloc] init];
-        videos = [imagesAndVideoArray objectAtIndex:1];
         
-        NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
+        */
         
-        News * n = [[News alloc] init];
-        // manca autore data link
-        n.title = title;
-        n.images = imagesArray;
-        n.videos = videos;
-        n.thumbnail = linkThumbnail;
-        // news.linkImageBig = imageLinkBig;
-        n.author = author;
-        n.link = link;
+        dispatch_queue_t reentrantAvoidanceQueue = dispatch_queue_create("reentrantAvoidanceQueue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(reentrantAvoidanceQueue, ^{
+            ParserImages * parserImages = [[ParserImages alloc] init];
+            NSArray * imagesAndVideo = [[NSArray alloc] init];
+            imagesAndVideo = [parserImages parseText:content];
+            
+            [self addnews:imagesAndVideo];
+        });
+        dispatch_sync(reentrantAvoidanceQueue, ^{ });
+
         
-        NSArray * elementiData  = [date componentsSeparatedByString:@" "];
-        
-        NSString * day = [elementiData objectAtIndex:1];
-        NSString * DM = [day stringByAppendingString:[NSString stringWithFormat:@" %@",[elementiData objectAtIndex:2]]];
-        NSString * DMY = [DM stringByAppendingString:[NSString stringWithFormat:@" %@",[elementiData objectAtIndex:3]]];
-        
-        
-        
-        //     NSLog(@"data %@",DMY);
-        
-        n.date = DMY;
-        
-        NSArray *components = [summary componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-        
-        NSMutableArray *componentsToKeep = [NSMutableArray array];
-        for (int i = 0; i < [components count]; i = i + 2) {
-            [componentsToKeep addObject:[components objectAtIndex:i]];
-        }
-        
-        n.summary = [componentsToKeep componentsJoinedByString:@""];
-        
-       
-        
-        components = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-        
-        componentsToKeep = [NSMutableArray array];
-        
-        for (int i = 0; i < [components count]; i = i + 2) {
-            [componentsToKeep addObject:[components objectAtIndex:i]];
-        }
-        
-        
-        NSMutableString * contentBeforeReplace = [[NSMutableString alloc] initWithString:[componentsToKeep componentsJoinedByString:@""]];
-        [contentBeforeReplace replaceOccurrencesOfString:@"&nbsp" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [contentBeforeReplace length])];
-       
-        NSString * finalContent= [ NSString stringWithString:contentBeforeReplace];
-        
-        
-        n.content = [self stringByDecodingXMLEntities:finalContent];
-        
-        [news addObject:n];
         
         //
         // NSLog(@"autore %@",imageLinkBig);
@@ -289,6 +245,67 @@
         
     }
     
+}
+-(void) addnews :(NSArray *)imagesAndVideoArray
+{
+    NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
+    imagesArray = [imagesAndVideoArray objectAtIndex:0];
+    NSMutableArray * videos = [[NSMutableArray alloc] init];
+    videos = [imagesAndVideoArray objectAtIndex:1];
+    
+    NSLog(@"url %d %d titolo %@", [imagesArray count],[videos count],title );
+    
+    News * n = [[News alloc] init];
+    // manca autore data link
+    n.title = title;
+    n.images = imagesArray;
+    n.videos = videos;
+    //n.thumbnail = linkThumbnail;
+    // news.linkImageBig = imageLinkBig;
+    n.author = author;
+    n.link = link;
+    
+    NSArray * elementiData  = [date componentsSeparatedByString:@" "];
+    
+    NSString * day = [elementiData objectAtIndex:1];
+    NSString * DM = [day stringByAppendingString:[NSString stringWithFormat:@" %@",[elementiData objectAtIndex:2]]];
+    NSString * DMY = [DM stringByAppendingString:[NSString stringWithFormat:@" %@",[elementiData objectAtIndex:3]]];
+    
+    
+    
+    //     NSLog(@"data %@",DMY);
+    
+    n.date = DMY;
+    
+    NSArray *components = [summary componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    
+    NSMutableArray *componentsToKeep = [NSMutableArray array];
+    for (int i = 0; i < [components count]; i = i + 2) {
+        [componentsToKeep addObject:[components objectAtIndex:i]];
+    }
+    
+    n.summary = [componentsToKeep componentsJoinedByString:@""];
+    
+    
+    
+    components = [content componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    
+    componentsToKeep = [NSMutableArray array];
+    
+    for (int i = 0; i < [components count]; i = i + 2) {
+        [componentsToKeep addObject:[components objectAtIndex:i]];
+    }
+    
+    
+    NSMutableString * contentBeforeReplace = [[NSMutableString alloc] initWithString:[componentsToKeep componentsJoinedByString:@""]];
+    [contentBeforeReplace replaceOccurrencesOfString:@"&nbsp" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [contentBeforeReplace length])];
+    
+    NSString * finalContent= [ NSString stringWithString:contentBeforeReplace];
+    
+    
+    n.content = [self stringByDecodingXMLEntities:finalContent];
+    
+    [news addObject:n];
 }
 - (NSString *)stringByDecodingXMLEntities: (NSString*) string {
     
@@ -1083,7 +1100,7 @@ finish:
         
        // NSLog(@"%@",n.title);
         cell.date.text = n.date;
-        cell.description.text = n.summary;
+        cell.descriptionText.text = n.summary;
         cell.author.text = [NSString stringWithFormat:@"di %@",n.author];
         // [cell.immaginePreview loadImageAtURL:[NSURL URLWithString:[[notizie objectAtIndex:indexPath.row] linkImageSmall]]];
     

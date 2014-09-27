@@ -237,7 +237,7 @@
                             
                             nil];
     popup.tag = 1;
-      [popup showInView:[UIApplication sharedApplication].keyWindow];
+      [popup showInView:self.view];
 
     
 }

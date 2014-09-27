@@ -185,7 +185,7 @@
                             
                             nil];
     popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    [popup showInView:self.view];
     //[popup showFromTabBar:self.tabBarController.tabBar];
     
     /*
@@ -304,7 +304,7 @@
     
     UIDevice * device = [UIDevice currentDevice];
     
-    if([device.systemVersion hasPrefix:@"7"])
+    if(![device.systemVersion hasPrefix:@"6"])
     {
     
         if(![view.annotation isKindOfClass:[MKUserLocation class]]) {

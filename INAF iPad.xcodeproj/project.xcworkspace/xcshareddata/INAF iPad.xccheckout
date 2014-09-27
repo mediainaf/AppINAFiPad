@@ -10,29 +10,29 @@
 	<string>INAF iPad</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B6FC4152-40F8-41EB-8BE5-121010943543</key>
+		<key>367CEC166EFF39D5AE07DA2C4E67E7B0147D4A6E</key>
 		<string>https://github.com/mediainaf/AppINAFiPad.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>INAF iPad.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B6FC4152-40F8-41EB-8BE5-121010943543</key>
+		<key>367CEC166EFF39D5AE07DA2C4E67E7B0147D4A6E</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/mediainaf/AppINAFiPad.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B6FC4152-40F8-41EB-8BE5-121010943543</string>
+	<string>367CEC166EFF39D5AE07DA2C4E67E7B0147D4A6E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B6FC4152-40F8-41EB-8BE5-121010943543</string>
+			<string>367CEC166EFF39D5AE07DA2C4E67E7B0147D4A6E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AppINAFiPad</string>
 		</dict>

@@ -14,7 +14,7 @@
 
 
 @property (nonatomic,strong) NSString * title ;
-@property (nonatomic,strong) NSString * description ;
+@property (nonatomic,strong) NSString * descriptionText ;
 @property (nonatomic,strong) NSString * link ;
 @property (nonatomic,strong) NSString * date;
 
