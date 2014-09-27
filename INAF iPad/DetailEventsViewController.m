@@ -60,7 +60,18 @@
     {
         NewsInternetViewController * internetViewController = [[NewsInternetViewController alloc] initWithNibName:@"NewsInternetViewController" bundle:nil];
         
-        internetViewController.url =self.event.link;
+        NSArray * elements = [ self.event.link componentsSeparatedByString:@"/"];
+        
+        NSMutableArray * elementsArray = [[NSMutableArray alloc] init ];
+        
+        [elementsArray setArray:elements];
+        
+        [elementsArray removeLastObject];
+        
+        NSMutableString * link = [[NSMutableString alloc] initWithString:[elementsArray componentsJoinedByString:@"/"]];
+        
+
+        internetViewController.url =link;
         
         [self.navigationController pushViewController:internetViewController animated:YES];
         

@@ -58,9 +58,11 @@
     
     
        
-        
+    NSLog(@"%@",self.url);
     
     NSURL * urlNews = [NSURL URLWithString:self.url ];
+    
+    
     
     NSURLRequest * newsUrlRequest = [NSURLRequest requestWithURL:urlNews];
     

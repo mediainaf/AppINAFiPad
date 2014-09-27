@@ -63,12 +63,26 @@
     {
         NewsInternetViewController * internetViewController = [[NewsInternetViewController alloc] initWithNibName:@"NewsInternetViewController" bundle:nil];
         
-        internetViewController.url =self.news.link;
+        NSArray * elements = [ self.news.link componentsSeparatedByString:@"/"];
+        
+        NSMutableArray * elementsArray = [[NSMutableArray alloc] init ];
+        
+        [elementsArray setArray:elements];
+        
+        [elementsArray removeLastObject];
+        
+        NSMutableString * link = [[NSMutableString alloc] initWithString:[elementsArray componentsJoinedByString:@"/"]];
+        
+        
+
+        
+        internetViewController.url =link;
+        NSLog(@"Apri link %@",self.news.link);
+
         
         [self.navigationController pushViewController:internetViewController animated:YES];
         
-        NSLog(@"Apri link");
-    }
+           }
 }
 -(void) action
 {
