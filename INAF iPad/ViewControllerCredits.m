@@ -44,7 +44,7 @@
             
             NSLog(@"%@",info);
             
-            self.text.text = [NSString stringWithFormat:@"%@ \n\nVersione 1.0.1",info];
+            self.text.text = [NSString stringWithFormat:@"%@ \n\nVersione 1.0.2",info];
             
         }
 
