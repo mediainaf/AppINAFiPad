@@ -38,6 +38,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self deviceOrientationDidChangeNotification:nil];
+    
+    NSLog(@"%f",self.view.frame.size.height);
    
     NSString *response1 = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://app.media.inaf.it/GetSatellites.php"] encoding:NSUTF8StringEncoding error:nil];
     if(!response1)

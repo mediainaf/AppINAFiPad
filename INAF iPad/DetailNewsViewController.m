@@ -28,34 +28,79 @@
     }
     return self;
 }
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     actionSheetOpen = 0;
     
+    
     if(buttonIndex == 0)
     {
+        
+         NSString *titolo = self.news.title;
+         NSString* spazio = @"";
+         
+         
+         UIImage * image = self.image.image;
+         
+         NSArray *postItems;
+         
+         if(image)
+         
+         postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link,image, nil];
+         
+         else
+         postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link, nil];
+         
+         
+         
+         UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+         initWithActivityItems:postItems
+         applicationActivities:nil];
+        
+         [self presentViewController:activityVC animated:YES completion:nil];
+        
+        UIDevice * device = [UIDevice currentDevice];
+        
+        if([device.systemVersion hasPrefix:@"8"])
+        {
+        
+            UIPopoverPresentationController *presentationController =
+            [activityVC popoverPresentationController];
+            
+            presentationController.sourceView = self.navigationController.navigationBar;
+        }
+        
+        
+        /*
         NSString *titolo = self.news.title;
         NSString* spazio = @"";
         
-                
+        
         UIImage * image = self.image.image;
         
         NSArray *postItems;
         
         if(image)
-        
-          postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link,image, nil];
+            
+            postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link,image, nil];
         
         else
             postItems  = [NSArray arrayWithObjects:titolo,spazio,self.news.link, nil];
-
         
         
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
-                                                initWithActivityItems:postItems
-                                                applicationActivities:nil];
         
-        [self presentViewController:activityVC animated:YES completion:nil];
+        UIActivityViewController *controller =
+        [[UIActivityViewController alloc]
+         initWithActivityItems:postItems
+         applicationActivities:nil];
+        
+        [self presentViewController:controller animated:YES completion:nil];
+        
+        UIPopoverPresentationController *presentationController =
+        [controller popoverPresentationController];
+        
+        presentationController.sourceView = self.view;
+        */
         
     }
     if(buttonIndex == 1)
@@ -74,18 +119,23 @@
         NSMutableString * link = [[NSMutableString alloc] initWithString:[elementsArray componentsJoinedByString:@"/"]];
         
         
-
+        
         
         internetViewController.url =link;
         NSLog(@"Apri link %@",self.news.link);
-
+        
         
         [self.navigationController pushViewController:internetViewController animated:YES];
         
-           }
+    }
+
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 }
 -(void) action
 {
+    
     if(actionSheetOpen == 0)
     {
         actionSheetOpen = 1;
@@ -99,6 +149,10 @@
         
         [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     }
+   
+
+    
+
 
 }
 -(void) calcolaScroll

@@ -18,7 +18,7 @@
 @property (nonatomic,strong) UIImage * thumbnail;
 @property (strong, nonatomic) IBOutlet UIImageView *sfondoView;
 @property (strong, nonatomic) IBOutlet UIImageView *thumbnailView;
-@property (strong, nonatomic) IBOutlet UITextView *description;
+@property (strong, nonatomic) IBOutlet UITextView *descriptionText;
 @property (strong, nonatomic) IBOutlet UILabel *data;
 
 @property (strong, nonatomic) IBOutlet UILabel *numberOfView;

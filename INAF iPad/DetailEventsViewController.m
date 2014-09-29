@@ -28,7 +28,7 @@
     }
     return self;
 }
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     actionSheetOpen=0;
     
@@ -48,13 +48,24 @@
         else
             postItems  = [NSArray arrayWithObjects:titolo,spazio,self.event.link, nil];
         
-        
         UIActivityViewController *activityVC = [[UIActivityViewController alloc]
                                                 initWithActivityItems:postItems
                                                 applicationActivities:nil];
         
         [self presentViewController:activityVC animated:YES completion:nil];
+        
+        UIDevice * device = [UIDevice currentDevice];
+        
+        if([device.systemVersion hasPrefix:@"8"])
+        {
+            
+            UIPopoverPresentationController *presentationController =
+            [activityVC popoverPresentationController];
+            
+            presentationController.sourceView = self.navigationController.navigationBar;
+        }
 
+        NSLog(@"share event");
     }
     if(buttonIndex == 1)
     {

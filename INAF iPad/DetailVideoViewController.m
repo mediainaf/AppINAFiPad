@@ -77,11 +77,23 @@
     
         NSArray *postItems = [NSArray arrayWithObjects:titolo,spazio,image,imageToShare, nil];
         
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc]
-                                                initWithActivityItems:postItems
-                                                applicationActivities:nil];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                            initWithActivityItems:postItems
+                                            applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"8"])
+    {
         
-        [self presentViewController:activityVC animated:YES completion:nil];
+        UIPopoverPresentationController *presentationController =
+        [activityVC popoverPresentationController];
+        
+        presentationController.sourceView = self.navigationController.navigationBar;
+    }
+
     
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -182,8 +194,8 @@
     self.thumbnailView.image=self.thumbnail;
     self.data.text = self.video.data;
     self.numberOfView.text = [NSString stringWithFormat:@"%@ visualizzazioni", self.video.numberOfView];
-    self.description.text = self.video.summary;
-    [self.description setFont:[UIFont fontWithName:@"Helvetica" size:19.0]];
+    self.descriptionText.text = self.video.summary;
+    [self.descriptionText setFont:[UIFont fontWithName:@"Helvetica" size:19.0]];
     
     //self.sfondoView.image=[UIImage imageNamed:@"Assets/lab1.jpg"];
     
