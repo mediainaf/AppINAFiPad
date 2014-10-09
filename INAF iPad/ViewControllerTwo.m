@@ -42,6 +42,8 @@
     int load;
     int page;
     
+    float altezzaL,altezzaP;
+    
     NSMutableDictionary *images;
     
     NSMutableString * title, *author, * date, *summary ,*content, *link, *currentElement;
@@ -653,6 +655,9 @@ finish:
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    
+    NSLog(@"altezza %f",self.view.frame.size.height);
+    
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
     {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -662,7 +667,7 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
@@ -682,7 +687,7 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
@@ -717,7 +722,7 @@ finish:
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
@@ -739,7 +744,7 @@ finish:
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
@@ -784,6 +789,9 @@ finish:
 
 - (void)viewDidLoad
 {
+    
+     NSLog(@"tab bar%f",self.tabBarController.tabBar.frame.size.height);
+    
     /*
     
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData:) ];
@@ -1054,7 +1062,16 @@ finish:
     
     self.navigationItem.leftBarButtonItem=buttonBar;
 
-    
+    if([device.systemVersion hasPrefix:@"7"])
+    {
+        altezzaP = 924.0;
+        altezzaL = 668.0;
+    }
+    else
+    {
+        altezzaP = 931.0;
+        altezzaL = 675.0;
+    }
     
     load = 0;
     self.title = @"News";

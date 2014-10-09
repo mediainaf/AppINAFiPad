@@ -10,6 +10,7 @@
 
 #import "DetailNewsViewController.h"
 #import "NewsInternetViewController.h"
+#import "ImmagineGrandeViewController.h"
 
 @interface DetailNewsViewController ()
 {
@@ -128,6 +129,16 @@
         [self.navigationController pushViewController:internetViewController animated:YES];
         
     }
+    if(buttonIndex == 2)
+    {
+        
+        ImmagineGrandeViewController * viewControllerImmagineGrande = [[ImmagineGrandeViewController alloc]initWithNibName:@"ImmagineGrandeViewController" bundle:nil];
+        
+        viewControllerImmagineGrande.imageUrl= [self.news.images objectAtIndex:0];
+        
+        [self.navigationController pushViewController:viewControllerImmagineGrande animated:YES];
+
+    }
 
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -140,7 +151,7 @@
     {
         actionSheetOpen = 1;
         
-         action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link", nil];
+         action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Open link",@"Open Image", nil];
         
        
         
@@ -155,8 +166,28 @@
 
 
 }
+-(CGSize) getContentSize:(UITextView*) myTextView{
+    return [myTextView sizeThatFits:CGSizeMake(myTextView.frame.size.width, FLT_MAX)];
+}
 -(void) calcolaScroll
 {
+    CGRect rect      = self.content.frame;
+    rect.size.height = [self getContentSize:self.content].height;
+    self.content.frame   = rect;
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.content.frame.origin.y+self.content.frame.size.height+50)];
+    
+    
+    rect = self.date.frame;
+    rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+    self.date.frame = rect;
+    
+    rect = self.author.frame;
+    
+    rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+    self.author.frame = rect;
+
+    /*
     CGRect rect      = self.content.frame;
     rect.size.height = self.content.contentSize.height;
     self.content.frame   = rect;
@@ -169,7 +200,7 @@
     
     rect = self.author.frame;
     rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
-    self.author.frame = rect;
+    self.author.frame = rect;*/
 
 }
 -(void)viewDidAppear:(BOOL)animated

@@ -53,6 +53,8 @@
 		03B45DB4194B46DB006785B1 /* WebcamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DB3194B46DB006785B1 /* WebcamCell.m */; };
 		03B45DB6194B46EA006785B1 /* WebcamCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B45DB5194B46EA006785B1 /* WebcamCell.xib */; };
 		03B45DB9194B5843006785B1 /* AllSatellite.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B45DB8194B5843006785B1 /* AllSatellite.m */; };
+		03BDBEAF19E6A143007CBB01 /* ImmagineGrandeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BDBEAD19E6A143007CBB01 /* ImmagineGrandeViewController.m */; };
+		03BDBEB019E6A143007CBB01 /* ImmagineGrandeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BDBEAE19E6A143007CBB01 /* ImmagineGrandeViewController.xib */; };
 		03C49BE219421D6300454BC2 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03C49BE119421D6300454BC2 /* LICENSE.txt */; };
 		03DEDAA419337AB3001823F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA319337AB3001823F4 /* Foundation.framework */; };
 		03DEDAA619337AB3001823F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DEDAA519337AB3001823F4 /* CoreGraphics.framework */; };
@@ -176,6 +178,9 @@
 		03B45DB5194B46EA006785B1 /* WebcamCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebcamCell.xib; sourceTree = "<group>"; };
 		03B45DB7194B5843006785B1 /* AllSatellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllSatellite.h; sourceTree = "<group>"; };
 		03B45DB8194B5843006785B1 /* AllSatellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllSatellite.m; sourceTree = "<group>"; };
+		03BDBEAC19E6A143007CBB01 /* ImmagineGrandeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmagineGrandeViewController.h; sourceTree = "<group>"; };
+		03BDBEAD19E6A143007CBB01 /* ImmagineGrandeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmagineGrandeViewController.m; sourceTree = "<group>"; };
+		03BDBEAE19E6A143007CBB01 /* ImmagineGrandeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImmagineGrandeViewController.xib; sourceTree = "<group>"; };
 		03C49BE119421D6300454BC2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		03DEDAA019337AB3001823F4 /* INAF iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "INAF iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DEDAA319337AB3001823F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -471,6 +476,9 @@
 				037812B6194B13C900C38026 /* NewsInternetViewController.h */,
 				037812B7194B13C900C38026 /* NewsInternetViewController.m */,
 				037812B8194B13C900C38026 /* NewsInternetViewController.xib */,
+				03BDBEAC19E6A143007CBB01 /* ImmagineGrandeViewController.h */,
+				03BDBEAD19E6A143007CBB01 /* ImmagineGrandeViewController.m */,
+				03BDBEAE19E6A143007CBB01 /* ImmagineGrandeViewController.xib */,
 			);
 			name = Two;
 			sourceTree = "<group>";
@@ -627,6 +635,7 @@
 				03DEDAEB19337CD8001823F4 /* ViewControllerFour.xib in Resources */,
 				03B45DB6194B46EA006785B1 /* WebcamCell.xib in Resources */,
 				034DF0AB193504C600886FFD /* JobsViewController.xib in Resources */,
+				03BDBEB019E6A143007CBB01 /* ImmagineGrandeViewController.xib in Resources */,
 				034DF0A6193504B000886FFD /* MapsViewController.xib in Resources */,
 				034DF0BB1935064500886FFD /* ViewControllerAnnotation.xib in Resources */,
 				03DEDB01193382A7001823F4 /* ViewControllerCredits.xib in Resources */,
@@ -660,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03BDBEAF19E6A143007CBB01 /* ImmagineGrandeViewController.m in Sources */,
 				036289FF1982F2C1004C7BCE /* TweetViewController.m in Sources */,
 				03DEDAE519337CC6001823F4 /* ViewControllerFive.m in Sources */,
 				03DEDB0419338651001823F4 /* VideoCell.m in Sources */,

@@ -19,7 +19,8 @@
     NSArray * webcamLink;
     
     NSTimer * timer;
-
+    int webcamNumber;
+    float altezzaP,altezzaL;
 
 }
 
@@ -48,6 +49,10 @@
         [alert show];
     }
 
+    
+    webcamNumber = 15;
+    [self.collectionView reloadData];
+    
     [timer fire];
    // [self.collectionView reloadData];
 }
@@ -110,7 +115,7 @@
       
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
@@ -130,7 +135,7 @@
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
@@ -166,7 +171,7 @@
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         [self.collectionView setCollectionViewLayout:flowLayout];
         //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
@@ -188,7 +193,7 @@
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             //self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
@@ -207,7 +212,21 @@
 }
 - (void)viewDidLoad
 {
+    webcamNumber = 0;
     
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"7"])
+    {
+        altezzaP = 924.0;
+        altezzaL = 668.0;
+    }
+    else
+    {
+        altezzaP = 931.0;
+        altezzaL = 675.0;
+    }
+
     int orientation= [UIApplication sharedApplication].statusBarOrientation;
     
     if(orientation == 1 || orientation == 2)
@@ -223,7 +242,7 @@
         
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         [self.collectionView setCollectionViewLayout:flowLayout];
        // self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
@@ -241,7 +260,7 @@
             [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             [self.collectionView setCollectionViewLayout:flowLayout];
          //   self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
@@ -317,7 +336,7 @@
 {
     
     
-    return 15;
+    return webcamNumber;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -337,47 +356,49 @@
     NSString *identifier = [NSString stringWithFormat:@"Cell%d" ,
                             indexPath.row];
 
-    
-    if([cachedImages objectForKey:identifier] != nil)
+    if(webcamNumber > 0)
     {
-        cell.webcam.image = [cachedImages valueForKey:identifier];
-        [cell.indicator stopAnimating];
-      //  NSLog(@"metti immagine");
-        
-    }
-    else
-    {
-        cell.webcam.image = nil;
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
-        dispatch_async(queue, ^{
-            //This is what you will load lazily
+        if([cachedImages objectForKey:identifier] != nil)
+        {
+            cell.webcam.image = [cachedImages valueForKey:identifier];
+            [cell.indicator stopAnimating];
+            //  NSLog(@"metti immagine");
             
-            NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[webcamLink objectAtIndex:indexPath.row ] ]];
-            dispatch_sync(dispatch_get_main_queue(), ^{
+        }
+        else
+        {
+            cell.webcam.image = nil;
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,  0ul);
+            dispatch_async(queue, ^{
+                //This is what you will load lazily
                 
-          //      NSLog(@"immagine scaricata");
-                
-                UIImage * image = [UIImage imageWithData:data];
-                if(image)
-                {
-                    [cachedImages setObject:image forKey:identifier];
-                    //cell.thumbnail.image = image;
-                    [cell setNeedsLayout];
-                    [UIView setAnimationsEnabled:NO];
+                NSData   *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[webcamLink objectAtIndex:indexPath.row ] ]];
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     
-                    [self.collectionView performBatchUpdates:^{
-                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                    //      NSLog(@"immagine scaricata");
+                    
+                    UIImage * image = [UIImage imageWithData:data];
+                    if(image)
+                    {
+                        [cachedImages setObject:image forKey:identifier];
+                        //cell.thumbnail.image = image;
+                        [cell setNeedsLayout];
+                        [UIView setAnimationsEnabled:NO];
                         
-                    } completion:^(BOOL finished) {
-                        [UIView setAnimationsEnabled:YES];
-                }];
-                }
-                
+                        [self.collectionView performBatchUpdates:^{
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+                            
+                        } completion:^(BOOL finished) {
+                            [UIView setAnimationsEnabled:YES];
+                        }];
+                    }
+                    
+                });
             });
-        });
-        
+            
+        }
+
     }
-    
     
     
     return cell;

@@ -55,6 +55,8 @@
 {
         //self.play.image = [UIImage imageNamed:@"Assets/play.png"];
     
+    [self calcolaScroll];
+    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(apriVideo)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.numberOfTouchesRequired = 1;
@@ -96,8 +98,51 @@
 
     
 }
+-(CGSize) getContentSize:(UITextView*) myTextView{
+    return [myTextView sizeThatFits:CGSizeMake(myTextView.frame.size.width, FLT_MAX)];
+}
+-(void) calcolaScroll
+{
+    CGRect rect      = self.descriptionText.frame;
+    rect.size.height = [self getContentSize:self.descriptionText].height;
+    self.descriptionText.frame   = rect;
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.descriptionText.frame.origin.y+self.descriptionText.frame.size.height+50)];
+    
+    
+    rect = self.data.frame;
+    rect.origin.y = self.descriptionText.frame.origin.y+20+self.descriptionText.frame.size.height ;
+   
+    if(rect.origin.y > 892)
+        self.data.frame = rect;
+    
+    rect = self.numberOfView.frame;
+    
+    rect.origin.y = self.descriptionText.frame.origin.y+20+self.descriptionText.frame.size.height ;
+    if(rect.origin.y > 892)
+        self.numberOfView.frame = rect;
+    
+    /*
+     CGRect rect      = self.content.frame;
+     rect.size.height = self.content.contentSize.height;
+     self.content.frame   = rect;
+     
+     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.content.frame.origin.y+self.content.frame.size.height+50)];
+     
+     rect = self.date.frame;
+     rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+     self.date.frame = rect;
+     
+     rect = self.author.frame;
+     rect.origin.y = self.content.frame.origin.y+20+self.content.frame.size.height ;
+     self.author.frame = rect;
+     */
+}
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    
+    [self calcolaScroll];
+
     NSLog(@"webview %f",self.webView.frame.origin.x);
     
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)

@@ -19,6 +19,8 @@
 @interface ViewControllerThree ()
 {
     
+    float altezzaP,altezzaL;
+    
     UIRefreshControl * refreshControl;
     int page;
     
@@ -318,7 +320,7 @@
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
          self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
@@ -338,7 +340,7 @@
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-           [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+           [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
           
@@ -389,7 +391,7 @@
         [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
         // [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        [self.collectionView setFrame:CGRectMake(0, 0,768, 924)];
+        [self.collectionView setFrame:CGRectMake(0, 0,768, altezzaP)];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
         [self.collectionView setCollectionViewLayout:flowLayout];
@@ -409,7 +411,7 @@
             [flowLayout setMinimumLineSpacing:20.0];
             [flowLayout setSectionInset:UIEdgeInsetsMake(20, 20, 20, 20)];
             
-            [self.collectionView setFrame:CGRectMake(0, 0,1024, 668)];
+            [self.collectionView setFrame:CGRectMake(0, 0,1024, altezzaL)];
             
             // [self.collectionView setFrame:CGRectMake(0, 0, 1024, 668)];
             
@@ -433,7 +435,20 @@
 - (void)viewDidLoad
 {
     
-        
+    UIDevice * device = [UIDevice currentDevice];
+    
+    if([device.systemVersion hasPrefix:@"7"])
+    {
+        altezzaP = 924.0;
+        altezzaL = 668.0;
+    }
+    else
+    {
+        altezzaP = 931.0;
+        altezzaL = 675.0;
+    }
+    
+
     
     
     

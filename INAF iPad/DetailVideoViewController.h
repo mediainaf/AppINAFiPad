@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "Video.h"
 
-@interface DetailVideoViewController : UIViewController
+@interface DetailVideoViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property(nonatomic,strong) Video * video;
@@ -24,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *numberOfView;
 @property (strong, nonatomic) IBOutlet UIImageView *play;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
