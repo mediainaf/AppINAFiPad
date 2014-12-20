@@ -53,6 +53,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+     [self deviceOrientationDidChangeNotification:nil];
         //self.play.image = [UIImage imageNamed:@"Assets/play.png"];
     
     [self calcolaScroll];
@@ -63,8 +64,7 @@
     [self.thumbnailView addGestureRecognizer:singleTap];
     [self.thumbnailView setUserInteractionEnabled:YES];
     
-    
-    [self loadVideo];
+        [self loadVideo];
     
     
 }
@@ -138,7 +138,8 @@
      self.author.frame = rect;
      */
 }
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+/*
+ -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     
     [self calcolaScroll];
@@ -165,9 +166,12 @@
         }
     }
 
-}
+}*/
 - (void)deviceOrientationDidChangeNotification:(NSNotification*)note
 {
+    
+    [self calcolaScroll];
+
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if(orientation == 1 || orientation == 2)
@@ -175,7 +179,7 @@
         NSLog(@"portrait");
         
         [self.webView setFrame:CGRectMake(10, 32, 748, 576)];
-        //[self loadVideo];
+        [self loadVideo];
 
     }
     else
@@ -186,7 +190,7 @@
             NSLog(@"landscape");
 
             [self.webView setFrame:CGRectMake(181, 10, 662, 435)];
-            //[self loadVideo];
+            [self loadVideo];
 
             
         }

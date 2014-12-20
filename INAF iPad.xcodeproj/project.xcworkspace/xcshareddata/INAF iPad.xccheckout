@@ -14,7 +14,7 @@
 		<string>https://github.com/mediainaf/AppINAFiPad.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>INAF iPad.xcodeproj/project.xcworkspace</string>
+	<string>INAF iPad.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>367CEC166EFF39D5AE07DA2C4E67E7B0147D4A6E</key>

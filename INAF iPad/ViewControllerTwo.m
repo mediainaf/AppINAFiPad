@@ -74,7 +74,7 @@
         content = [[NSMutableString alloc] init];
         link = [[NSMutableString alloc] init];
         
-        // inizializza tutti gli elementi
+      
     }
     
     
@@ -161,12 +161,12 @@
     
     [parser setDelegate:self];
     
-    // settiamo alcune proprietà
+    
     [parser setShouldProcessNamespaces:NO];
     [parser  setShouldReportNamespacePrefixes:NO];
     [ parser  setShouldResolveExternalEntities:NO];
     
-    // avviamo il parsing del feed RSS
+    
     [parser parse];
     
     [self.collectionView reloadData];
@@ -178,19 +178,19 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
     
-          if ([scrollView contentOffset].y >= self.collectionView.contentSize.height-self.view.frame.size.height){
-      
-            
-              NSLog(@"reload");
-             
-              
-                  [self.loadingView setHidden:NO];
-
-                  [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
-              
-           
+    if ([scrollView contentOffset].y >= self.collectionView.contentSize.height-self.view.frame.size.height){
         
-        }
+        
+        NSLog(@"reload");
+        
+        
+        [self.loadingView setHidden:NO];
+        
+        [self performSelector:@selector(changePage) withObject:nil afterDelay:0.5];
+        
+        
+        
+    }
     
 }
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -204,8 +204,6 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"item"]) {
-        /* salva tutte le proprietà del feed letto nell'elemento "item", per
-         poi inserirlo nell'array "elencoFeed" */
         
      //   NSLog(@"%@",title);
         /*

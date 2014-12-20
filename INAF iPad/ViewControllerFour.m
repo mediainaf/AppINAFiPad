@@ -159,6 +159,7 @@
     
     
 }
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if(fromInterfaceOrientation == 3 || fromInterfaceOrientation == 4)
@@ -230,7 +231,7 @@
         [self.collectionView setCollectionViewLayout:flowLayout];
         self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNews.png"];
         
-        //[self.collectionView reloadData];
+       // [self.collectionView reloadData];
         
         
     }
@@ -252,7 +253,7 @@
             
             [self.collectionView setCollectionViewLayout:flowLayout];
             self.loadingView.image = [UIImage imageNamed:@"Assets/loadingNewsL.png"];
-            //  [self.collectionView reloadData];
+           //   [self.collectionView reloadData];
             
         }
     }
